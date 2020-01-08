@@ -1,12 +1,10 @@
 <?php
+namespace App\Model;
 
-class PostManager
+require_once("model/Manager.php");
+
+class PostManager extends Manager
 {
-    private function dbConnect()
-    {
-        $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '1234');
-        return $db;
-    }
 
     public function getPosts()
     {

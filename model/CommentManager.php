@@ -1,12 +1,11 @@
 <?php
+namespace App\Model;
 
-class CommentManager
+require_once("model/Manager.php");
+
+
+class CommentManager extends Manager
 {
-    private function dbConnect()
-    {
-        $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '1234');
-        return $db;
-    }
 
     public function getComments($postId)
     {
@@ -17,6 +16,26 @@ class CommentManager
         return $comments;
     }
 
+    public function getComment($commentId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id = ?');
+        $req->execute(array($commentId));
+        $comment = $req->fetch();
+
+        return $comment;
+    }
+
+    public function getCommentPostId($commentId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT post_id FROM comments WHERE id = ?');
+        $req->execute(array($commentId));
+        $commentPostId = $req->fetch();
+
+        return $commentPostId;
+    }
+
     public function postComment($postId, $author, $comment)
     {
         $db = $this->dbConnect();
@@ -24,5 +43,14 @@ class CommentManager
         $affectedLines = $comments->execute(array($postId, $author, $comment));
 
         return $affectedLines;
+    }
+
+    public function editComment($author, $comment, $commentId)
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('UPDATE comments SET author = ?, comment = ? WHERE id = ?');
+        $affectedComment = $comments->execute(array($author, $comment, $commentId));
+
+        return $affectedComment;
     }
 }
