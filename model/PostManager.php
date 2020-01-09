@@ -1,9 +1,9 @@
 <?php
 namespace App\Model;
 
-require_once("model/Manager.php");
+require_once("model/Database.php");
 
-class PostManager extends Manager
+class PostManager extends Database
 {
 
     public function getPosts()

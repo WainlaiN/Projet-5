@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 
-class Manager
+class Database
 {
 
     protected function dbConnect()
