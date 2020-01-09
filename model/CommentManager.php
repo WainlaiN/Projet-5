@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model;
 
 require_once("model/Manager.php");
@@ -26,17 +27,7 @@ class CommentManager extends Manager
         return $comment;
     }
 
-    public function getCommentPostId($commentId)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT post_id FROM comments WHERE id = ?');
-        $req->execute(array($commentId));
-        $commentPostId = $req->fetch();
-
-        return $commentPostId;
-    }
-
-    public function postComment($postId, $author, $comment)
+    public function AddComment($postId, $author, $comment)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');

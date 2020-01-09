@@ -21,12 +21,12 @@ try {
                     throw new Exception('Tous les champs ne sont pas remplis');
                 }
             } else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('Aucun identifiant de biellet envoyé');
             }
 
         } elseif ($_GET['action'] == 'getComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                getComment($_GET['id']);
+            if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+                getComment($_GET['commentId']);
             } else {
                 throw new Exception('L\'id du commentaire est invalide');
             }

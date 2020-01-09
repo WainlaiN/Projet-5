@@ -29,7 +29,7 @@ function post()
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+    $affectedLines = $commentManager->AddComment($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -45,6 +45,7 @@ function getComment($id)
     $commentManager = new CommentManager();
     $affectedLine = $commentManager->getComment($id);
 
+
     if ($affectedLine === false) {
         throw new Exception('Impossible d\'afficher le commentaire !');
     }
@@ -57,18 +58,14 @@ function getComment($id)
 function editComment($commentId, $author, $comment)
 {
     $commentManager = new CommentManager();
-    $postId = $commentManager->getCommentPostId($commentId);
-    var_dump($postId);
     $affectedLines = $commentManager->editComment($commentId, $author, $comment);
-
-    //require('view/frontend/commentView.php');
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
 
-        header('Location: index.php?action=post&id=' .$postId);
+        header('Location: index.php?action=post&id=' .$_POST['postId']);
     }
 
 }
