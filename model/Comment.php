@@ -9,21 +9,21 @@ class Comment
     /**
      * @var int $id comment id
      */
-    private $id;
+    public $id;
     /**
      * @var string $title title comment
      */
-    private $author;
+    public $author;
 
     /**
      * @var string $chapo chapo comment
      */
-    private $comment;
+    public $comment;
 
     /**
      * @var string $$comment description comment
      */
-    private $post_id;
+    public $post_id;
 
     /**
      * @return int
@@ -31,7 +31,7 @@ class Comment
     /**
      * @var string $date_creation comment date creation
      */
-    private $comment_date;
+    public $comment_date;
 
     /**
      * @return int

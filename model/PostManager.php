@@ -14,16 +14,32 @@ class PostManager extends Database
         return $req;
     }
 
-    public function getPost($postId)
+    public function getPost($Id)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, title, chapo, description, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM post WHERE id = ?');
-        $req->execute(array($postId));
+        $req->execute(array($Id));
         $post = $req->fetch();
 
         return $post;
 
     }
+
+    public function addPost()
+    {
+
+    }
+
+    public function deletePost($Id)
+    {
+
+    }
+
+    public function editPost($Id)
+    {
+
+    }
+
 
 
 }

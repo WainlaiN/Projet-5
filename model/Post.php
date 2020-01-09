@@ -9,36 +9,36 @@ class Post
     /**
      * @var int $id post id
      */
-    private $id;
+    public $id;
     /**
      * @var string $title title post
      */
-    private $title;
+    public $title;
 
     /**
      * @var string $chapo chapo post
      */
-    private $chapo;
+    public $chapo;
 
     /**
      * @var string $description description post
      */
-    private $description;
+    public $description;
 
     /**
      * @var string $author author post
      */
-    private $author;
+    public $author;
 
     /**
      * @var string $date_creation post date creation
      */
-    private $date_creation;
+    public $date_creation;
 
     /**
      * @var string $date_update post date update
      */
-    private $date_update;
+    public $date_update;
 
     /**
      * @return int
