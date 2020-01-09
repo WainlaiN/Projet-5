@@ -50,7 +50,7 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
         }
     } else {
-        listPosts();
+        $postController->listPosts();
     }
 } catch (Exception $e) {
     $errorMEssage = $e->getMessage();

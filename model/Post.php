@@ -40,6 +40,25 @@ class Post
      */
     public $date_update;
 
+    public function __construct($datas = [])
+    {
+        if (!empty($datas)) {
+            $this->hydrate($datas);
+        }
+    }
+
+    public function hydrate($donnees)
+    {
+
+        foreach ($donnees as $key => $value) {
+            $method = 'set' . ucfirst($key);
+
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
+
     /**
      * @return int
      */

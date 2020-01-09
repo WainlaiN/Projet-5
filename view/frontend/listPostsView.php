@@ -1,32 +1,28 @@
 <?php $title = 'Mon blog'; ?>
-
+<?php //var_dump($posts); ?>
 <?php ob_start(); ?>
     <h1>Mon super blog !</h1>
     <p>Derniers billets du blog :</p>
 
 
-<?php while ($data = $posts->fetch()) {
-    ?>
+<?php foreach ($posts as $post): ?>
     <div class="container">
         <div class="news">
             <h3>
-                <?= htmlspecialchars($data['title']); ?>
-                <em>le <?= $data['date_creation_fr']; ?></em>
+                <?= htmlspecialchars($post->title); ?>
+                <em>le <?= $post->date_creation; ?></em>
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars($data['chapo'])) ?>
+                <?= nl2br(htmlspecialchars($post->chapo)); ?>
                 <br/>
-                <?= nl2br(htmlspecialchars($data['description']));
-                ?>
+                <?= nl2br(htmlspecialchars($post->description)); ?>
                 <br/>
-                <em><a href="./index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
+                <em><a href="./index.php?action=post&amp;id=<?= $post->id ?>">Commentaires</a></em>
             </p>
         </div>
     </div>
-    <?php
-}
-$posts->closeCursor();
+    <?php endforeach;
 
 $content = ob_get_clean();
 

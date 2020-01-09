@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+require_once('model/Comment.php');
 require_once("model/Database.php");
 
 

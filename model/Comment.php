@@ -41,6 +41,24 @@ class Comment
         return $this->id;
     }
 
+    public function __construct($datas = [])
+    {
+        if (!empty($datas)) {
+            $this->hydrate($datas);
+        }
+    }
+
+    public function hydrate(array $donnees)
+    {
+        foreach ($donnees as $key => $value) {
+            $method = 'set' . ucfirst($key);
+
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
+
     /**
      * @param int $id
      * @return Comment
@@ -122,6 +140,7 @@ class Comment
         $this->comment_date = $comment_date;
         return $this;
     }
+
 
 }
 
