@@ -3,10 +3,14 @@ namespace App\Model;
 
 class Manager
 {
+
     protected function dbConnect()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '1234');
-        return $db;
+        //read data array
+        $data = require __DIR__ .'/config.php';
+        return new \PDO('mysql:host=' . $data['db_host'] . ';dbname=' .$data['db_name'] . ';charset=utf8',
+        $data['db_user'], $data['db_password'],
+        array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
     }
 
 }

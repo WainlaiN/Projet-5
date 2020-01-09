@@ -7,7 +7,4 @@ return array(
     "db_name" => "blog",
     "db_host" => "localhost",
 
-
-
-
 );
