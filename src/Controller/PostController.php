@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Model\PostManager;
-use App\Model\CommentManager;
+use App\Manager\PostManager;
+use App\Manager\CommentManager;
 
-
-require_once('./model/PostManager.php');
 
 Class PostController
 {

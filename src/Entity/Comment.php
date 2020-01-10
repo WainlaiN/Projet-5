@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Model;
+namespace App\Entity;
 
 
 class Comment

@@ -3,9 +3,10 @@
 use App\Controller\PostController;
 use App\Controller\CommentController;
 
+require '../vendor/autoload.php';
 
-require "controller/PostController.php";
-require "controller/CommentController.php";
+//require "controller/PostController.php";
+//require "controller/CommentController.php";
 
 $postController = new PostController();
 $commentController = new CommentController();

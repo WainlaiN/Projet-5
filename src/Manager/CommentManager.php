@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Model;
+namespace App\Manager;
 
-require_once('model/Comment.php');
-require_once("model/Database.php");
+use App\Entity\Comment;
+use App\Core\Model;
 
-
-class CommentManager extends Database
+class CommentManager extends Model
 {
+
+    protected $model = Comment::class;
+    protected $table_name = 'posts';
 
     public function getComments($postId)
     {
