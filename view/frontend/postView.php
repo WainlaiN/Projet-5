@@ -32,17 +32,17 @@
         </div>
     </form>
 
-<?php
-while ($comment = $comments->fetch()) {
-    ?>
 
-        <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?><a href="index.php?action=getComment&amp;commentId=<?= $comment['id'] ?>"> Modifier</a></p>
+<?php foreach ($comments as $comment): ?>
 
-    <?php
-} ?>
+
+        <p><strong><?= htmlspecialchars($comment->author) ?></strong> le <?= $comment->comment_date ?></p>
+        <p><?= nl2br(htmlspecialchars($comment->comment)) ?><a href="index.php?action=getComment&amp;commentId=<?= $comment->id ?>"> Modifier</a></p>
+
+    <?php //ob_end_flush() ?>
 </div>
-<?php $content = ob_get_clean() ?>
+<?php endforeach;
+$content = ob_get_clean() ?>
 <?php require('template.php') ?>
 
 
