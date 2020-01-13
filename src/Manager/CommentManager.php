@@ -26,8 +26,9 @@ class CommentManager extends Model
 
     public function addComment($postId, $author, $comment)
     {
-
-        $newComments = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES(' . $postId . ', ' . $author . ', ' . $comment .', NOW())');
+        var_dump($postId, $author, $comment);
+        $newComments = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES (' . $postId . ', "' . $author . '", "' . $comment .'", NOW());';
+        var_dump($newComments);
         return $this->custom_query($newComments);
     }
 

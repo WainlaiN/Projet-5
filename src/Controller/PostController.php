@@ -31,7 +31,7 @@ Class PostController
 
         $post = $this->postManager->getPost($_GET['id']);
         $comments = $this->commentManager->getComments($_GET['id']);
-        var_dump($comments);
+        //var_dump($comments);
         //var_dump($post);
 
         require('./../view/frontend/postView.php');
