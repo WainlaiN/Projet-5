@@ -23,7 +23,7 @@ Class PostController
 
         $posts = $this->postManager->getPosts();
 
-        require('view/frontend/listPostsView.php');
+        require('./../view/frontend/listPostsView.php');
     }
 
     public function post()
@@ -31,7 +31,9 @@ Class PostController
 
         $post = $this->postManager->getPost($_GET['id']);
         $comments = $this->commentManager->getComments($_GET['id']);
+        var_dump($comments);
+        //var_dump($post);
 
-        require('view/frontend/postView.php');
+        require('./../view/frontend/postView.php');
     }
 }

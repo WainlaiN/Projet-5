@@ -8,19 +8,19 @@ class Model extends Database
 
     public function all()
     {
-        $sql = 'SELECT * FROM ' . $table_name . ';';
+        $sql = 'SELECT * FROM ' . $this->table_name . ';';
         return $this->custom_query($sql);
     }
 
     public function get($id)
     {
-        $sql = 'SELECT * FROM ' . $table_name . ' WHERE id =' . $id . ' ;';
+        $sql = 'SELECT * FROM ' . $this->table_name . ' WHERE id =' . $id . ' ;';
         return $this->custom_query($sql);
     }
 
     public function delete($id)
     {
-        $sql = 'DELETE FROM ' . $table_name . ' WHERE id =' . $id . ' ;';
+        $sql = 'DELETE FROM ' . $this->table_name . ' WHERE id =' . $id . ' ;';
         return $this->custom_query($sql);
     }
 

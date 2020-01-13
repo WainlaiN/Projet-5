@@ -33,15 +33,7 @@ class Comment
      */
     public $comment_date;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function __construct($datas = [])
+        public function __construct($datas = [])
     {
         if (!empty($datas)) {
             $this->hydrate($datas);
@@ -67,6 +59,14 @@ class Comment
     {
         $this->id = $id;
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**
@@ -126,7 +126,7 @@ class Comment
     /**
      * @return string
      */
-    public function getCommentDate(): string
+    public function getCommentDate()
     {
         return $this->comment_date;
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Core;
 
 
@@ -11,7 +12,7 @@ class Database
     protected function dbConnect()
     {
         if (self::$db === null) {
-            $data = require __DIR__ . '../Config/config.php';
+            $data = require __DIR__ . './../Config/config.php';
             return new \PDO('mysql:host=' . $data['db_host'] . ';dbname=' . $data['db_name'] . ';charset=utf8',
                 $data['db_user'], $data['db_password'],
                 array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
@@ -24,24 +25,32 @@ class Database
     {
         $db = $this->dbConnect();
         $req = $db->query($sql);
+
+
         if ($req->rowCount() == 0) {
             return Null;
         } elseif ($req->rowCount() == 1) {
-            if (is_null($this->model)) {
+            if (!is_null($this->model)) {
+
                 return $req->fetchObject($this->model);
             } else {
-                return $req->fetch();
+
+                return $req->fetchAll();
             }
+
         } else {
             if (!is_null($this->model)) {
                 while ($datas = $req->fetchObject($this->model)) {
                     $custom_array[] = new $this->model($datas);
-                    $req->closeCursor();
                 }
+
+                $req->closeCursor();
                 return $custom_array;
+
             } else {
                 return $req->fetchAll();
             }
         }
     }
+
 }

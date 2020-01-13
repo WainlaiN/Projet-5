@@ -55,5 +55,5 @@ try {
     }
 } catch (Exception $e) {
     $errorMEssage = $e->getMessage();
-    require('view/frontend/errorView.php');
+    require('./../view/frontend/errorView.php');
 }

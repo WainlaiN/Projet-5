@@ -9,59 +9,38 @@ class CommentManager extends Model
 {
 
     protected $model = Comment::class;
-    protected $table_name = 'posts';
+    protected $table_name = 'comments';
 
     public function getComments($postId)
     {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
-        $req->execute(array($postId));
-        while ($datas = $req->fetchObject(Comment::class)) {
-            $comments[] = new Comment($datas);
 
-        }
-        $req->closeCursor();
-        return $comments;
-
+        $req = 'SELECT * FROM comments WHERE post_id = ' . $postId . ' ORDER BY comment_date DESC';
+        return $this->custom_query($req);
 
     }
 
     public function getComment($id)
     {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id = ?');
-        $req->execute(array($id));
-        $comment = $req->fetchObject();
-
-        return $comment;
+        return $this->get($id);
     }
 
     public function addComment($postId, $author, $comment)
     {
-        $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-        $addedComments = $comments->execute(array($postId, $author, $comment));
 
-        return $addedComments;
+        $newComments = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES(' . $postId . ', ' . $author . ', ' . $comment .', NOW())');
+        return $this->custom_query($newComments);
     }
 
     public function editComment($author, $comment, $commentId)
     {
-        $db = $this->dbConnect();
-        $comments = $db->prepare('UPDATE comments SET author = ?, comment = ? WHERE id = ?');
-        $editedComment = $comments->execute(array($author, $comment, $commentId));
 
-        return $editedComment;
+        $editedComments = 'UPDATE comments SET author = ' . $author . ' , comment = ' . $comment . ' WHERE id = ' . $commentId . ';';
+        return $this->custom_query($editedComments);
     }
 
     public function deleteComment($id)
     {
-        $db = $this->dbConnect();
-        $comments = $db->prepare('DELETE FROM comments WHERE id = ?');
-        $deletedComment = $comments->execute(array(id));
-
-        return $deletedComment;
+        return $this->delete($id);
     }
-
 
 }
