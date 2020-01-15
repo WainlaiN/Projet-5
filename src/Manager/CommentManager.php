@@ -50,9 +50,8 @@ class CommentManager extends Model
      */
     public function addComment($postId, $author, $comment)
     {
-        $newComments = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES (' . $postId . ', "' . $author . '", "' . $comment .'", DATE(NOW()));';
-        var_dump($newComments);
-        return $this->custom_query($newComments);
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date) VALUES (' . $postId . ', "' . $author . '", "' . $comment .'", DATE(NOW()));';
+        return $model = $this->custom_query($newComments);
     }
 
     /**
@@ -63,9 +62,8 @@ class CommentManager extends Model
     public function editComment($commentId, $comment)
     {
 
-        $editedComments = 'UPDATE comments SET comment = "' . $comment . '" WHERE id = ' . $commentId . ';';
-        var_dump($editedComments);
-        return $this->custom_query($editedComments);
+        $editedComments = 'UPDATE ' . $this->table_name . ' SET comment = "' . $comment . '" WHERE id = ' . $commentId . ';';
+        return $model = $this->custom_query($editedComments);
     }
 
     /**

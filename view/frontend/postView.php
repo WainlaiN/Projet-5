@@ -6,7 +6,7 @@
 <div class="container">
     <div class="news">
         <h3>
-            <?= htmlspecialchars($post->getTitle() ?>
+            <?= htmlspecialchars($post->getTitle()) ?>
             <em>le <?= $post->getDateCreation() ?></em>
         </h3>
 
