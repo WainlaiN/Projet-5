@@ -8,9 +8,9 @@
 
 <h2>Editer le commentaire</h2>
 <div class="container">
-    <form action="index.php?action=editComment&amp;id=<?= $affectedLine->getId() ?>" method="post">
+    <form action="index.php?action=editComment&amp;id=<?= $affectedLine->getPostId() ?>" method="post">
         <div>
-            <label for="id">Article numero</label> :<br/>
+            <label for="postId">Article numero</label> :<br/>
             <input type="text" id="postId" name="postId" value="<?= $affectedLine->getPostId() ?>" readonly="readonly"/>
         </div>
         <div>

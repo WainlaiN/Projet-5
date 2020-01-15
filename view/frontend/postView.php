@@ -1,4 +1,4 @@
-<?php $title = $post->title ?>
+<?php $title = $post->getTitle() ?>
 
 <?php ob_start(); ?>
 <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
@@ -32,15 +32,21 @@
         </div>
     </form>
 
-    <?php foreach ($comments as $comment) : ?>
-        <?php //var_dump($comment); ?>
+    <?php if (!is_array($comments)) : ?>
+        <p><strong><?= htmlspecialchars($comments->getAuthor()) ?></strong> le <?= $comments->getCommentDate() ?></p>
+        <p><?= nl2br(htmlspecialchars($comments->getComment())) ?><a
+                    href="index.php?action=getComment&amp;commentId=<?= $comments->getId() ?>"> Modifier</a></p>
 
-        <p><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate() ?></p>
-        <p><?= nl2br(htmlspecialchars($comment->getComment())) ?><a
-                    href="index.php?action=getComment&amp;commentId=<?= $comment->id ?>"> Modifier</a></p>
 
-        <?php //ob_end_flush() ?>
-    <?php endforeach; ?>
+    <?php else : ?>
+
+        <?php foreach ($comments as $comment) : ?>
+            <p><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate() ?></p>
+            <p><?= nl2br(htmlspecialchars($comment->getComment())) ?><a
+                        href="index.php?action=getComment&amp;commentId=<?= $comment->id ?>"> Modifier</a></p>
+        <?php endforeach ?>
+
+    <?php endif ?>
 </div>
 
 <?php $content = ob_get_clean() ?>

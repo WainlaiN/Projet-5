@@ -25,7 +25,7 @@ class Database
     {
         $db = $this->dbConnect();
         $req = $db->query($sql);
-
+        //var_dump($sql);
 
         if ($req->rowCount() == 0) {
             return Null;
@@ -51,6 +51,7 @@ class Database
                 return $req->fetchAll();
             }
         }
+
     }
 
 }

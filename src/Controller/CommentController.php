@@ -39,10 +39,10 @@ Class CommentController
 
     }
 
-    public function editComment($commentId, $author, $comment)
+    public function editComment($commentId, $comment)
     {
 
-        $affectedLines = $this->commentManager->editComment($commentId, $author, $comment);
+        $affectedLines = $this->commentManager->editComment($commentId, $comment);
 
         if ($affectedLines === false) {
             throw new Exception('Impossible d\'ajouter le commentaire !');

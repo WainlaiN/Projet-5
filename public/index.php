@@ -5,9 +5,6 @@ use App\Controller\CommentController;
 
 require '../vendor/autoload.php';
 
-//require "controller/PostController.php";
-//require "controller/CommentController.php";
-
 $postController = new PostController();
 $commentController = new CommentController();
 
@@ -43,7 +40,7 @@ try {
         } elseif ($_GET['action'] == 'editComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    $commentController->editComment($_POST['author'], $_POST['comment'], $_GET['id']);
+                    $commentController->editComment($_GET['id'], $_POST['comment']);
                 } else {
                     throw new Exception('Tous les champs ne sont pas remplis');
                 }
