@@ -5,6 +5,15 @@ use App\Controller\CommentController;
 
 require '../vendor/autoload.php';
 
+$router = new AltoRouter();
+var_dump(__DIR__);
+$router = new \App\Entity\Router(__DIR__ . '/view/frontend');
+$router
+    ->get('GET', '/', 'index'  )
+    ->get('GET', '/blog', 'blog'  );
+    //->run();
+
+
 $postController = new PostController();
 $commentController = new CommentController();
 
@@ -52,5 +61,6 @@ try {
     }
 } catch (Exception $e) {
     $errorMEssage = $e->getMessage();
+    $errorFile = $e->getFile();
     require('./../view/frontend/errorView.php');
 }
