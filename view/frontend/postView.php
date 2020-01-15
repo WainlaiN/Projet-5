@@ -6,12 +6,12 @@
 <div class="container">
     <div class="news">
         <h3>
-            <?= htmlspecialchars($post->title) ?>
+            <?= htmlspecialchars($post->getTitle() ?>
             <em>le <?= $post->date_creation ?></em>
         </h3>
 
         <p>
-            <?= nl2br(htmlspecialchars($post->description)) ?>
+            <?= nl2br(htmlspecialchars($post->getDescription())) ?>
         </p>
     </div>
 </div>
@@ -37,15 +37,12 @@
         <p><?= nl2br(htmlspecialchars($comments->getComment())) ?><a
                     href="index.php?action=getComment&amp;commentId=<?= $comments->getId() ?>"> Modifier</a></p>
 
-
     <?php else : ?>
-
         <?php foreach ($comments as $comment) : ?>
             <p><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate() ?></p>
             <p><?= nl2br(htmlspecialchars($comment->getComment())) ?><a
                         href="index.php?action=getComment&amp;commentId=<?= $comment->id ?>"> Modifier</a></p>
         <?php endforeach ?>
-
     <?php endif ?>
 </div>
 
