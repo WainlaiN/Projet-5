@@ -5,19 +5,19 @@ use App\Controller\CommentController;
 
 require '../vendor/autoload.php';
 
-$router = new AltoRouter();
-var_dump(__DIR__);
-$router = new \App\Entity\Router(__DIR__ . '/view/frontend');
+$router = new \App\Entity\Router(__DIR__ . '\view\frontend');
+var_dump($router);
 $router
-    ->get('GET', '/', 'index'  )
-    ->get('GET', '/blog', 'blog'  );
-    //->run();
+    ->get('GET', 'commentView ', 'test'  )
+    ->get('GET', 'blog', 'blog'  )
+    ->run();
+
 
 
 $postController = new PostController();
 $commentController = new CommentController();
 
-try {
+/**try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == "listPosts") {
             $postController->listPosts();
@@ -63,4 +63,4 @@ try {
     $errorMEssage = $e->getMessage();
     $errorFile = $e->getFile();
     require('./../view/frontend/errorView.php');
-}
+}**/

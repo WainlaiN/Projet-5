@@ -17,16 +17,17 @@ class Router
     private $router;
 
 
-
-    public function __construct(string $viewPath)
+    public function __construct($viewPath)
     {
         $this->viewPath = $viewPath;
         $this->router = new \AltoRouter();
     }
 
-    public function get(string $url, string $view, ?string $name = null): self
+    public function get( $url,  $view, $name = null): self
     {
+
         $this->router->map('GET', $url, $view, $name);
+
         return $this;
     }
 
@@ -34,7 +35,7 @@ class Router
     {
         $match = $this->router->match();
         $view = $match['target'];
-        require $this->viewPath . $view . '.php';
+        require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
 
         return $this;
     }

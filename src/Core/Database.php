@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use \PDO;
+
 
 class Database
 {
@@ -13,9 +15,9 @@ class Database
     {
         if (self::$db === null) {
             $data = require __DIR__ . './../Config/config.php';
-            return new \PDO('mysql:host=' . $data['db_host'] . ';dbname=' . $data['db_name'] . ';charset=utf8',
+            return new PDO('mysql:host=' . $data['db_host'] . ';dbname=' . $data['db_name'] . ';charset=utf8',
                 $data['db_user'], $data['db_password'],
-                array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return self::$db;
 
