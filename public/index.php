@@ -5,19 +5,35 @@ use App\Controller\CommentController;
 
 require '../vendor/autoload.php';
 
-$router = new \App\Entity\Router(__DIR__ . '\view\frontend');
-var_dump($router);
-$router
-    ->get('GET', 'commentView ', 'test'  )
-    ->get('GET', 'blog', 'blog'  )
-    ->run();
-
-
+$router = new AltoRouter();
 
 $postController = new PostController();
 $commentController = new CommentController();
 
-/**try {
+// map homepage using callable
+$router->map( 'GET', '/', $postController->listPosts(), 'list_all_posts');
+
+
+
+// map post using callable
+//$router->map( 'GET', '/post=[i:id]/', $postController->post(), 'list_post');
+
+var_dump($router);
+
+$match = $router->match();
+var_dump($match);
+//var_dump($match);
+
+
+
+
+
+
+
+/**$postController = new PostController();
+$commentController = new CommentController();
+
+try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == "listPosts") {
             $postController->listPosts();
