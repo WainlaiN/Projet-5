@@ -11,20 +11,20 @@ $postController = new PostController();
 $commentController = new CommentController();
 
 // map homepage using callable
-$router->map( 'GET', '/', $postController->listPosts(), 'list_all_posts');
-
-
-
+/**$router->map( 'GET', '/', $postController->listPosts(), 'list_all_posts');
 // map post using callable
-//$router->map( 'GET', '/post=[i:id]/', $postController->post(), 'list_post');
-
+$router->map( 'GET', '/post/[i:id]/', $postController->post($id), 'list_post');
 var_dump($router);
-
 $match = $router->match();
-var_dump($match);
-//var_dump($match);
+var_dump($match['params']);
+var_dump($match);**/
 
+$router = new \App\Entity\Router(dirname(__DIR__) . '\view');
+var_dump($router);
+$router
+    ->get('post', 'listPostsView', 'posts');
 
+$router->run();
 
 
 

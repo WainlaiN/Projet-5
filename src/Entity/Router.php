@@ -34,7 +34,10 @@ class Router
     public function run(): self
     {
         $match = $this->router->match();
+        var_dump($match);
         $view = $match['target'];
+
+        var_dump($this->viewPath . DIRECTORY_SEPARATOR . $view . '.php');
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
 
         return $this;

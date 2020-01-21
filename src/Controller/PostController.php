@@ -28,7 +28,6 @@ Class PostController
 
     public function post()
     {
-
         $post = $this->postManager->getPost($_GET['id']);
         $comments = $this->commentManager->getComments($_GET['id']);
         //var_dump($comments);

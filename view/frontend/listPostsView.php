@@ -20,7 +20,7 @@
                 <br/>
                 <?= nl2br(htmlspecialchars($post->getDescription())); ?>
                 <br/>
-                <em><a href="./post=<?= $post->id ?>">Commentaires</a></em>
+                <em><a href="./post/<?= $post->id ?>">Commentaires</a></em>
             </p>
         </div>
     </div>
