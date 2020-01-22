@@ -1,6 +1,6 @@
 <?php $objects = (object)$datas[0];
 var_dump($datas);
-var_dump($objects);
+//var_dump($objects);
  ?>
 
     <h2>Commentaires</h2>
@@ -11,7 +11,7 @@ var_dump($objects);
                 href="./index.php?action=getComment&amp;commentId=<?= $objects->getId() ?>"> Modifier</a></p>
 
 <?php else : ?>
-    <?php foreach ($objects as $key => $data) : ?>
+    <?php foreach ($datas as $data) : ?>
         <?php //var_dump($data) ?>
         <p><strong><?= $this->clean($data->author) ?></strong> le <?= $this->clean($data->comment_date) ?></p>
         <p><?= $this->clean($data->comment) ?><a
