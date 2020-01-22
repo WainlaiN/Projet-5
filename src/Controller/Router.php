@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Entity;
+namespace App\Controller;
 
 use App\Controller\PostController;
 use App\Controller\CommentController;
+use App\Entity\View;
 
 
 class Router
@@ -63,9 +64,18 @@ class Router
                 $this->postController->listPosts();
             }
         } catch (\Exception $e) {
-            $errorMEssage = $e->getMessage();
+            $errorMessage = $e->getMessage();
             $errorFile = $e->getFile();
-            require('./../view/frontend/errorView.php');
+            require('./../view/frontend/ViewError.php');
         }
     }
+
+    private function home()
+    {
+        $view = new View("Home");
+        $view->Generate(array());
+    }
+
+
 }
+

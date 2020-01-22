@@ -4,8 +4,9 @@
     <meta charset="utf-8"/>
     <title><?= $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../public/css/style.css" rel="stylesheet"/>
+    <link href="../../public/css/style.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -14,7 +15,7 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="" width="40px" height="40px" alt="Logo Festival Plein Air">
+            <img src="" width="40px" height="40px" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,13 +44,13 @@
         </div>
     </div>
 </nav>
-
-<?= $content ?>
-
+<div class="container">
+    <?= $content ?>
+</div>
 
 
 <footer class="container-fluid footer">
-    <div class="container py-3">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="socialicons py-3">

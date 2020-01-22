@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
+use App\Entity\View;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
+
 
 
 Class PostController
@@ -22,8 +25,9 @@ Class PostController
     {
 
         $posts = $this->postManager->getPosts();
+        $view = new View('ListPosts');
+        $view ->generate($posts);
 
-        require('./../view/frontend/listPostsView.php');
     }
 
     public function post()
@@ -33,6 +37,6 @@ Class PostController
         //var_dump($comments);
         //var_dump($post);
 
-        require('./../view/frontend/postView.php');
+        //require('./../view/frontend/ViewPost.php');
     }
 }
