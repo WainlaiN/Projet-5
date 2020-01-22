@@ -1,9 +1,5 @@
-<?php // $title = 'Mon blog'; ?>
-<?php //var_dump($datas);
-
-
-?>
-
+<?php $this->title = 'Mon blog';
+//var_dump($datas);?>
 
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>
@@ -23,14 +19,12 @@
                 <br/>
                 <?= nl2br(htmlspecialchars($data->getDescription())); ?>
                 <br/>
-                <em><a href="./index.php?action=post&amp;id=<?= $data->id ?>">Commentaires</a></em>
+                <em><a href="./index.php?action=post&amp;id=<?= $data->getId() ?>">Commentaires</a></em>
             </p>
         </div>
     </div>
 <?php endforeach;
 
-//$content = ob_get_clean();
 
-//require('layout.php'); ?>
 
 

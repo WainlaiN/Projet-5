@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Post;
 use App\Entity\View;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
@@ -34,9 +33,13 @@ Class PostController
     {
         $post = $this->postManager->getPost($_GET['id']);
         $comments = $this->commentManager->getComments($_GET['id']);
-        //var_dump($comments);
-        //var_dump($post);
+        $view = new View('Post');
+        $viewComments = new View('Comment');
 
-        //require('./../view/frontend/ViewPost.php');
+        //generate data for post
+        $view ->generate($post);
+        //generate data for comments
+        $viewComments ->generate($comments);
+
     }
 }

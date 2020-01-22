@@ -29,6 +29,7 @@ class CommentManager extends Model
     {
 
         $req = 'SELECT * FROM comments WHERE post_id = ' . $postId . ' ORDER BY comment_date DESC';
+        //var_dump($req);
         return $model = $this->custom_query($req);
 
     }

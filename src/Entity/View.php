@@ -42,7 +42,6 @@ class View
 
             extract($datas);
 
-
             ob_start();
 
             require $file;

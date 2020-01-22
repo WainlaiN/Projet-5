@@ -3,8 +3,8 @@
 
 namespace App\Controller;
 
-use App\Controller\PostController;
-use App\Controller\CommentController;
+//use App\Controller\PostController;
+//use App\Controller\CommentController;
 use App\Entity\View;
 
 
@@ -29,6 +29,8 @@ class Router
                 } elseif ($_GET['action'] == 'post') {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         $this->postController->post();
+                        $this->commentController->getComment($_GET['Id']);
+
                     } else {
                         throw new \Exception('Aucun identifiant de billet envoyé');
                     }
