@@ -34,7 +34,7 @@ Class CommentController
         if ($affectedLine === false) {
             throw new Exception('Impossible d\'afficher le commentaire !');
         } else {
-            require('./../view/frontend/commentView.php');
+            require('./../view/frontend/EditComment.php');
         }
 
     }

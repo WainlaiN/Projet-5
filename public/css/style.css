@@ -1,27 +1,243 @@
-h1, h3
+.header
 {
-    text-align:center;
-}
-h3
-{
-    background-color:black;
-    color:white;
-    font-size:0.9em;
-    margin-bottom:0px;
-}
-.news p
-{
-    background-color:#CCCCCC;
-    margin-top:0px;
-}
-.news
-{
-    width:70%;
-    margin:auto;
+  background: url(../../images/festiva2.jpg);
+  height: 1000px;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
 }
 
-a
-{
-    text-decoration: none;
-    color: blue;
+.main-title {
+  color:white;
+  text-transform: uppercase;
+  font-weight: 700;
+
 }
+
+.contenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.display-1 {
+  font-family: 'Pacifico', cursive;
+  color:white;
+  text-shadow: 2px 3px 3px black;
+}
+
+.nav-pills > .nav-item {
+  text-transform: uppercase;
+  padding-left: 25px;
+  font-size: 18px;
+}
+
+.nav-pills > .nav-item:hover {
+  background-color:#007bff;
+  color:white;
+  transition: all 0.9s ease;
+  opacity: 0.7;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  max-height: 460px;
+}
+
+.img-fluid:hover {
+  transition: all 0.4s ease;
+  opacity: 0.7;
+}
+
+.center-pills {
+  display: flex;
+  justify-content:space-around;
+}
+
+.films-caption {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 25px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.text {
+  font-size: 15px;
+  padding: 15px;
+}
+
+#films .nav-pills {
+  font-weight: 700;
+  font-size: 15px;
+  margin: 20px 0px 20px 0px;
+  
+}
+
+#films .films-item .films-link {
+  position: relative;
+  display: block;
+  max-width: 400px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.banniere {
+  background: url(../../images/banniere.jpg) no-repeat center;
+  background-size: cover;
+  height: 400px;
+  
+}
+
+.banniere2 {
+  background: url(../../images/banniere2.jpg) no-repeat center;
+  background-size: cover;
+  height: 400px;
+  
+}
+
+.container .jumbotron {
+  border-radius: 10px ;
+  padding:5px;
+}
+
+.section-heading {
+  padding:10px;
+  font-family: 'Pacifico', cursive;
+  text-shadow: 2px 3px 3px white;
+  font-size: 45px;
+
+}
+
+.flexitem {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  border:1px solid #ccc;
+  margin: 20px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexitem:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.flexitem__date {
+  order: 1;
+  width: auto;
+  padding:5px;
+  color: white;
+  font-size: 20px;
+  font-family: 'Pacifico', cursive;
+  background-color: grey;
+  border-radius: 10px ;
+}
+
+.flexitem__image {
+  order: 3;
+  padding: 5px;
+  transition: all 0.9s ease;
+}
+
+.flexitem__desc {
+  order: 2;
+  width: 50%;
+  padding-left: 10px;
+  display: flex;
+  flex-direction:column;
+  align-content:center;
+}
+
+.imageactu {
+  background-size: cover;
+  width: 300px;
+  height:200px;
+  
+}
+
+@media (max-width: 810px){
+  .flexitem__desc {
+   width: 50%
+  }
+ .flexitem__image {
+  display: none;
+  }
+}
+
+.actuheading{
+  font-family: 'Pacifico', cursive;
+  text-shadow: 1px 1px 3px grey;
+  
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  background: #2e4047;
+ 
+}
+
+footer .social {
+  color:white;
+}
+
+footer .social:hover {
+  color:#007bff;
+}
+
+.socialicons {
+  display: flex;
+  justify-content:space-around;
+
+}
+
+@media (max-width: 768px){
+  .date {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+
+  }
+}
+
+.mentions {
+  font-family: 'Pacifico', cursive;
+  display: flex;
+  justify-content:space-around;
+  font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

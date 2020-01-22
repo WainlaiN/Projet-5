@@ -45,10 +45,10 @@
         <?php endforeach ?>
     <?php endif ?>
 </div>
-<?php var_dump($content) ?>
+
 <?php $content = ob_get_clean() ?>
 
-<?php require('template.php') ?>
+<?php require('layout.php') ?>
 
 
 
