@@ -13,7 +13,7 @@
                         <?= $this->clean($datas->getComment()) ?>
                         <p><strong><?= $this->clean($datas->getAuthor()) ?></strong>
                             le <?= $this->clean($datas->getCommentDate()) ?></p>
-                        <a href="index.php?action=editComment&amp;commentId=<?= $objects->getId() ?>"> Modifier</a></p>
+                        <a href="../../public/index.php?action=editComment&amp;commentId=<?= $datas->getId() ?>"> Modifier</a></p>
                     </div>
                 </div>
             <?php else : ?>
@@ -21,10 +21,10 @@
                 <div class="comment-body">
                     <div class="text">
                         <?php //var_dump($data) ?>
-                        <p><strong><?= $this->clean($data->author) ?></strong> le <?= $this->clean($data->comment_date) ?>
+                        <p><strong><?= $this->clean($data->getAuthor()) ?></strong> le <?= $this->clean($data->getCommentDate()) ?>
                         </p>
-                        <p><?= $this->clean($data->comment) ?><a
-                                    href="index.php?action=editComment&amp;commentId=<?= $data->id ?>"> Modifier</a></p>
+                        <p><?= $this->clean($data->getComment()) ?><a
+                                    href="../../public/index.php?action=editComment&amp;commentId=<?= $data->getId() ?>"> Modifier</a></p>
                         <?php endforeach ?>
                         <?php endif ?>
                     </div>

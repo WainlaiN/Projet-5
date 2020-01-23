@@ -9,21 +9,21 @@ class Comment
     /**
      * @var int $id comment id
      */
-    public $id;
+    private $id;
     /**
      * @var string $title title comment
      */
-    public $author;
+    private $author;
 
     /**
      * @var string $chapo chapo comment
      */
-    public $comment;
+    private $comment;
 
     /**
      * @var string $$comment description comment
      */
-    public $post_id;
+    private $post_id;
 
     /**
      * @return int
@@ -31,7 +31,7 @@ class Comment
     /**
      * @var string $date_creation comment date creation
      */
-    public $comment_date;
+    private $comment_date;
 
         public function __construct($datas = [])
     {
