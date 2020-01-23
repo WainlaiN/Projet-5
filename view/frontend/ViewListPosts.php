@@ -19,7 +19,7 @@
                 <br/>
                 <?= nl2br(htmlspecialchars($data->getDescription())); ?>
                 <br/>
-                <em><a href="./index.php?action=post&amp;id=<?= $data->getId() ?>">Commentaires</a></em>
+                <em><a href="./index.php?action=post&amp;id=<?= $data->getId() ?>">Voir plus</a></em>
             </p>
         </div>
     </div>

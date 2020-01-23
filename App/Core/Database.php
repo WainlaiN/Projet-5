@@ -36,7 +36,7 @@ class Database
                 return $req->fetchObject($this->model);
             } else {
 
-                return $req->fetchAll();
+                return $req->fetchAll(PDO::FETCH_OBJ);
             }
 
         } else {
