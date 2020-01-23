@@ -29,7 +29,7 @@ class Router
                 } elseif ($_GET['action'] == 'post') {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         $this->postController->post();
-                        $this->commentController->getComment($_GET['Id']);
+                        $this->commentController->getComment($_GET['id']);
 
                     } else {
                         throw new \Exception('Aucun identifiant de billet envoyé');
@@ -55,7 +55,7 @@ class Router
                 } elseif ($_GET['action'] == 'editComment') {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                            $this->commentController->editComment($_GET['id'], $_POST['comment']);
+                            $this->commentController->editComment($_GET['commentId']);
                         } else {
                             throw new \Exception('Tous les champs ne sont pas remplis');
                         }

@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 <h1>Mon super blog !</h1>
 <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
-<?php var_dump($affectedLine) ?>
+<?php //var_dump($affectedLine) ?>
 
 
 

@@ -7,7 +7,6 @@ use App\Manager\PostManager;
 use App\Manager\CommentManager;
 
 
-
 Class PostController
 {
     public $postManager;
@@ -24,22 +23,20 @@ Class PostController
     {
 
         $posts = $this->postManager->getPosts();
+
         $view = new View('ListPosts');
-        $view ->generate($posts);
+
+        $view->generate($posts);
 
     }
 
     public function post()
     {
         $post = $this->postManager->getPost($_GET['id']);
-        $comments = $this->commentManager->getComments($_GET['id']);
-        $view = new View('Post');
-        $viewComments = new View('Comment');
 
-        //generate data for post
-        $view ->generate($post);
-        //generate data for comments
-        $viewComments ->generate($comments);
+        $view = new View('Post');
+
+        $view->generate($post);
 
     }
 }

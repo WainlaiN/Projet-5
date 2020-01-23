@@ -20,7 +20,7 @@ class View
 
     }
 
-    public function Generate($datas)
+    public function generate($datas)
     {
         $content = $this->generateFile($this->fileName, $datas);
         $view = $this->generateFile('../view/frontend/layout.php',
@@ -35,12 +35,21 @@ class View
         echo $view;
     }
 
+    public function generateComment($datas)
+    {
+        $view = $this->generateFile($this->fileName, $datas);
+
+        echo $view;
+    }
+
     private function generateFile($file, $datas)
     {
 
         if (file_exists($file)) {
 
-            extract($datas);
+            if (!is_object($datas)) {
+                extract($datas);
+            }
 
             ob_start();
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\View;
 use App\Manager\CommentManager;
 
 Class CommentController
@@ -20,7 +21,7 @@ Class CommentController
         if ($affectedLines === false) {
             throw new Exception('Impossible d\'ajouter le commentaire !');
         } else {
-            header('Location: index.php?action=post&id=' . $postId);
+           // header('Location: index.php?action=post&id=' . $postId);
         }
 
     }
@@ -28,28 +29,24 @@ Class CommentController
     public function getComment($id)
     {
 
-        $affectedLine = $this->commentManager->getComment($id);
+        $comments = $this->commentManager->getComments($_GET['id']);
+        $viewComments = new View('Comment');
 
-
-        if ($affectedLine === false) {
-            throw new Exception('Impossible d\'afficher le commentaire !');
+        if (is_array($comments)) {
+            $viewComments ->generateComment($comments);
         } else {
-            require('./../view/frontend/ViewEditComment.php');
+            $viewComments ->generateComment(array($comments));
         }
 
     }
 
-    public function editComment($commentId, $comment)
+    public function editComment($commentId)
     {
 
-        $affectedLines = $this->commentManager->editComment($commentId, $comment);
+        $comment = $this->commentManager->editComment($commentId);
+        $view = new View('EditComment');
 
-        if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
-        } else {
-
-            header('Location: index.php?action=post&id=' . $_POST['postId']);
-        }
+        $view->generate($comment);
 
     }
 }
