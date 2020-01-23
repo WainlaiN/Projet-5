@@ -3,13 +3,13 @@
 
 namespace App\Controller;
 
-//use App\Controller\PostController;
-//use App\Controller\CommentController;
 use App\Entity\View;
 
 
 class Router
 {
+    private $routes = [];
+
     private $postController;
     private $commentController;
 
@@ -77,6 +77,8 @@ class Router
         $view = new View("Home");
         $view->Generate(array());
     }
+
+
 
 
 }

@@ -23,9 +23,7 @@ Class PostController
     {
 
         $posts = $this->postManager->getPosts();
-
         $view = new View('ListPosts');
-
         $view->generate($posts);
 
     }
@@ -33,9 +31,7 @@ Class PostController
     public function post()
     {
         $post = $this->postManager->getPost($_GET['id']);
-
         $view = new View('Post');
-
         $view->generate($post);
 
     }
