@@ -17,10 +17,6 @@ $router->map('GET', '/post/[i:id]', 'PostController#post');
 $router->map('GET', '/admin', 'PostController#post');
 
 $match = $router->match();
-
-
-var_dump($match);
-
 $router->routerRequest($match['target'], $match['params']);
 
 ?>
