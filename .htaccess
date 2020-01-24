@@ -1,4 +1,5 @@
 RewriteEngine On
-#RewriteRule ^([^/]*)/([^/]*)$ index.php?url=$1&username=$2 [L]
+
+#RewriteBase /projet5/public/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^/]+)/? public/index.php [L,QSA]

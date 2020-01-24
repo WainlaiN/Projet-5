@@ -6,7 +6,17 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitc3d2e3cd07540fd6f08b0f95aa59c182
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\VarDumper\\' => 28,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -14,10 +24,22 @@ class ComposerStaticInitc3d2e3cd07540fd6f08b0f95aa59c182
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\VarDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-dumper',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/App',
         ),
+    );
+
+    public static $classMap = array (
+        'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +47,7 @@ class ComposerStaticInitc3d2e3cd07540fd6f08b0f95aa59c182
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitc3d2e3cd07540fd6f08b0f95aa59c182::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitc3d2e3cd07540fd6f08b0f95aa59c182::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc3d2e3cd07540fd6f08b0f95aa59c182::$classMap;
 
         }, null, ClassLoader::class);
     }

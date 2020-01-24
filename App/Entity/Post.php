@@ -3,8 +3,7 @@
 
 namespace App\Entity;
 
-
-use Cassandra\Date;
+use DateTime;
 
 class Post
 {
@@ -153,6 +152,7 @@ class Post
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getDateCreation()
     {

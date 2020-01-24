@@ -24,6 +24,7 @@ class Database
     }
 
     protected function custom_query($sql)
+
     {
         $db = $this->dbConnect();
         $req = $db->query($sql);

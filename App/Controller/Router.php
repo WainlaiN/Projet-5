@@ -8,7 +8,6 @@ use App\Entity\View;
 
 class Router
 {
-    private $routes = [];
 
     private $postController;
     private $commentController;

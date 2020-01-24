@@ -11,11 +11,20 @@ Class PostController
 {
     public $postManager;
     public $commentManager;
+    public static $instance;
 
     public function __construct()
     {
+        self::$instance = $this;
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
+    }
+
+    public static function get() {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
 
 
