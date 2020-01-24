@@ -15,11 +15,11 @@
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars($data->getChapo())); ?>
+                <?= $this->clean($data->getChapo()); ?>
                 <br/>
-                <?= nl2br(htmlspecialchars($data->getDescription())); ?>
+                <?= $this->clean($data->getDescription()); ?>
                 <br/>
-                <em><a href="./index.php?action=post&amp;id=<?= $data->getId() ?>">Voir plus</a></em>
+                <em><a href="post/<?= $data->getId() ?>">Voir plus</a></em>
             </p>
         </div>
     </div>

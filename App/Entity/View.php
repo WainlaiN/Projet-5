@@ -18,6 +18,7 @@ class View
         $this->fileName = "../view/frontend/View" . $name . ".php";
 
 
+
     }
 
     public function generate($datas)

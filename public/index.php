@@ -9,26 +9,25 @@ require '../vendor/autoload.php';
 //$router->routerRequest();
 
 
-$routerAlto = new AltoRouter();
+$router = new router2();
 
 
-$routerAlto->map('GET', '/', 'postController@listPosts');
+$router->map('GET', '/', 'PostController#listPosts');
+$router->map('GET', '/post/[i:id]', 'PostController#post');
+$router->map('GET', '/admin', 'PostController#post');
+
+$match = $router->match();
 
 
-$routerAlto->map('GET', '/post-[i:id]/', 'postController@post');
+var_dump($match);
 
-$match = $routerAlto->match();
+$router->routerRequest($match['target'], $match['params']);
+
+?>
 
 
-if (stripos($match['target'], '@') !== false) {
-    list($controller, $method) = explode('@', $match['target'], 2);
-} else {
-    $controller = $match['target'];
-    $method = 'index';
-}
 
-$router = new Router2();
-$router->routerRequest($controller,$method);
+
 
 
 

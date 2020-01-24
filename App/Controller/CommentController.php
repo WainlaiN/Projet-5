@@ -26,7 +26,7 @@ Class CommentController
 
     }
 
-    public function getComment($id)
+    public function getComment()
     {
 
         $comments = $this->commentManager->getComments($_GET['id']);
