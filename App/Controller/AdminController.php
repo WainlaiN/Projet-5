@@ -8,9 +8,9 @@ use App\Entity\View;
 
 class AdminController extends PostController
 {
-    public function EditPosts()
+    public function EditPosts($id)
     {
-        $posts = $this->postManager->getPosts();
+        $posts = $this->postManager->editPost($id);
         $view = new View('EditPost');
         $view->generate($posts);
 
@@ -18,7 +18,7 @@ class AdminController extends PostController
 
     public function DeletePost($id)
     {
-        $post = $this->postManager->deletePost($id);
+        $post = $this->postManager->delete($id);
 
     }
 

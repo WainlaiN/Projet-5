@@ -33,7 +33,7 @@ class Comment
      */
     private $comment_date;
 
-    private $is_valid;
+    private $is_valid = false;
 
         public function __construct($datas = [])
     {
@@ -42,9 +42,9 @@ class Comment
         }
     }
 
-    public function hydrate($donnees)
+    public function hydrate($datas)
     {
-        foreach ($donnees as $key => $value) {
+        foreach ($datas as $key => $value) {
             $method = 'set' . ucfirst($key);
 
             if (method_exists($this, $method)) {

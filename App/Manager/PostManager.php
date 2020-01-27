@@ -57,11 +57,13 @@ class PostManager extends Model
         return $this->delete($id);
     }
 
+
     /**
      * @param $Id
      */
-    public function editPost($Id)
+    public function editPost($id)
     {
+        return $model = $this->get($id);
 
     }
 
