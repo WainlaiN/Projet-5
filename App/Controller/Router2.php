@@ -32,7 +32,7 @@ class Router2 extends \AltoRouter
 
     private function home()
     {
-        $view = new View("Home");
+        $view = new View("home");
         $view->Generate(array());
     }
 

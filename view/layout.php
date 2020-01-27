@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/Home">
+        <a class="navbar-brand" href="/home">
             <img src="" width="40px" height="40px" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/Home">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#blog">Blog</a>
+                    <a class="nav-link" href="/posts">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#CV">CV</a>

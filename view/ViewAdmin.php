@@ -1,42 +1,34 @@
 <?php $this->title = 'Mon blog';
 //var_dump($datas);?>
 
-    <h1>Administration</h1>
-    <p>Derniers billets du blog :</p>
+<h1>Administration</h1>
+<p>Derniers billets du blog :</p>
 
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Date</th>
+        <th>Editer</th>
+        <th>Supprimer</th>
+        </thead>
+        <tbody>
+        <?php foreach ($datas as $data): ?>
+            <tr>
+                <td><?= $data->getId() ?></td>
+                <td><?= $this->clean($data->getTitle()); ?></td>
+                <td><?= $data->getDateCreation(); ?></td>
+                <td>
+                    <a href="post/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Editer</a>
+                </td>
+                <td>
+                    <a href="post/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
+                    onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
 
-<?php foreach ($datas as $data): ?>
+                </td>
+            </tr>
 
-    <div class="container">
-        <div class="row">
-            <div class="article">
-                <h3>
-                    <?= $this->clean($data->getTitle()); ?>
-                    <em>le <?= $data->getDateCreation(); ?></em>
-                </h3>
-
-                <p>
-                    <?= $this->clean($data->getChapo()); ?>
-                    <br/>
-                    <?= $this->clean(substr($data->getDescription(), 0, 100)); ?>
-                    <br/>
-                    <em><a href="post/<?= $data->getId() ?>">Voir plus</a></em>
-                </p>
-            </div>
-        </div>
-        <div class="row">
-
-                <div class="alert alert-danger" role="alert">
-                    Editer
-                </div>
-                <div class="alert alert-danger" role="alert">
-                    Supprimer
-                </div>
-                <div class="alert alert-danger" role="alert">
-                    <a href="/admin/comments/<?= $data->getId() ?>"> Voir les commentaires</a></p>
-                </div>
-
-        </div>
-
-    </div>
-<?php endforeach;
+        <?php endforeach; ?>
+        </tbody>
+    </table>

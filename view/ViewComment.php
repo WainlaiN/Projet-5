@@ -24,7 +24,7 @@
                         <p><strong><?= $this->clean($data->getAuthor()) ?></strong> le <?= $this->clean($data->getCommentDate()) ?>
                         </p>
                         <p><?= $this->clean($data->getComment()) ?><a
-                                    href="../public/index.php?action=editComment&amp;commentId=<?= $data->getId() ?>"> Modifier</a></p>
+                                    href="../public/index.php?action=editComment&amp;commentId=<?= $data->getId() ?>"> Supprimer</a></p>
                         <?php endforeach ?>
                         <?php endif ?>
                     </div>
