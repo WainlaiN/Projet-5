@@ -11,12 +11,13 @@ require '../vendor/autoload.php';
 
 $router = new router2();
 
-
-$router->map('GET', '/', 'PostController#listPosts');
+$router->map('GET', '/', '' );
+$router->map('GET', '/posts', 'PostController#listPosts');
 $router->map('GET', '/post/[i:id]', 'PostController#post');
-$router->map('GET', '/admin', 'PostController#post');
+$router->map('GET', '/admin', 'AdminController#listPosts');
 
 $match = $router->match();
+
 $router->routerRequest($match['target'], $match['params']);
 
 ?>

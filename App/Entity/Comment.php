@@ -33,6 +33,8 @@ class Comment
      */
     private $comment_date;
 
+    private $is_valid;
+
         public function __construct($datas = [])
     {
         if (!empty($datas)) {

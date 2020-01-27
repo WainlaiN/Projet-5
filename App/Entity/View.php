@@ -8,16 +8,12 @@ class View
     private $fileName;
 
     private $title;
-    private $header;
-    private $subheader;
-    private $button;
+
 
     public function __construct($name)
     {
 
         $this->fileName = "../view/frontend/View" . $name . ".php";
-
-
 
     }
 
@@ -27,9 +23,6 @@ class View
         $view = $this->generateFile('../view/frontend/layout.php',
             array(
                 'title' => $this->title,
-                'header' => $this->header,
-                'subheader' => $this->subheader,
-                'button' => $this->button,
                 'content' => $content
             ));
 

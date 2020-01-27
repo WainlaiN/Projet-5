@@ -76,4 +76,9 @@ class CommentManager extends Model
         return $this->delete($id);
     }
 
+    public function validateComment($id)
+    {
+
+    }
+
 }

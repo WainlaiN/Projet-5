@@ -34,7 +34,7 @@ Class PostController
         $comment = $this->commentManager->getComments($id);
         $viewComment = new View('Comment');
         $viewPost->generate($post);
-        $viewComment->generate($comment);
+        $viewComment->generatecomment($comment);
 
     }
 }

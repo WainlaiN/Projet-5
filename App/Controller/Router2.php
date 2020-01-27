@@ -23,6 +23,9 @@ class Router2 extends \AltoRouter
             } else {
                 call_user_func(array($c, $method));
             }
+        } else
+        {
+            $this->home();
         }
     }
 

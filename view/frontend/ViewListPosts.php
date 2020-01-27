@@ -17,7 +17,7 @@
             <p>
                 <?= $this->clean($data->getChapo()); ?>
                 <br/>
-                <?= $this->clean($data->getDescription()); ?>
+                <?= $this->clean(substr($data->getDescription(), 0, 100)); ?>
                 <br/>
                 <em><a href="post/<?= $data->getId() ?>">Voir plus</a></em>
             </p>
