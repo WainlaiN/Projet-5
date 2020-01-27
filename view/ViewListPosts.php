@@ -11,7 +11,7 @@
         <div class="news">
             <h3>
                 <?= $this->clean($data->getTitle()); ?>
-                <em>le <?= $data->getDateCreation(); ?></em>
+                <em>le <?= $this->clean($data->getDateCreation()); ?></em>
             </h3>
 
             <p>

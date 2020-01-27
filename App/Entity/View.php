@@ -13,14 +13,14 @@ class View
     public function __construct($name)
     {
 
-        $this->fileName = "../view/frontend/View" . $name . ".php";
+        $this->fileName = "../view/View" . $name . ".php";
 
     }
 
     public function generate($datas)
     {
         $content = $this->generateFile($this->fileName, $datas);
-        $view = $this->generateFile('../view/frontend/layout.php',
+        $view = $this->generateFile('../view/layout.php',
             array(
                 'title' => $this->title,
                 'content' => $content

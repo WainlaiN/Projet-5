@@ -1,8 +1,6 @@
-<?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
-<?php //var_dump($affectedLine) ?>
 
+<h1>Editer le commentaire</h1>
+<p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
 
 
 
@@ -26,5 +24,5 @@
         </div>
     </form>
 </div>
-<?php $content = ob_get_clean() ?>
-<?php require('layout.php') ?>
+
+

@@ -28,8 +28,8 @@ class CommentManager extends Model
     public function getComments($postId)
     {
 
+        //return $this->get($postId);
         $req = 'SELECT * FROM comments WHERE post_id = ' . $postId . ' ORDER BY comment_date DESC';
-        //var_dump($req);
         return $model = $this->custom_query($req);
 
     }
@@ -51,7 +51,7 @@ class CommentManager extends Model
      */
     public function addComment($postId, $author, $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date) VALUES (' . $postId . ', "' . $author . '", "' . $comment .'", DATE(NOW()));';
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date, is_valid) VALUES (' . $postId . ', "' . $author . '", "' . $comment .'", DATE(NOW(), FALSE);';
         return $model = $this->custom_query($newComments);
     }
 
@@ -76,8 +76,10 @@ class CommentManager extends Model
         return $this->delete($id);
     }
 
-    public function validateComment($id)
+    public function validateComment($commentId)
     {
+        $editedComments = 'UPDATE ' . $this->table_name . ' SET is_valid = TRUE WHERE id = ' . $commentId . ';';
+        return $model = $this->custom_query($editedComments);
 
     }
 

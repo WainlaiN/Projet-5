@@ -35,6 +35,7 @@ class Database
             if (!is_null($this->model)) {
 
                 return $req->fetchObject($this->model);
+
             } else {
 
                 return $req->fetchAll(PDO::FETCH_OBJ);
@@ -42,6 +43,7 @@ class Database
 
         } else {
             if (!is_null($this->model)) {
+
                 while ($datas = $req->fetchObject($this->model)) {
                     $custom_array[] = new $this->model($datas);
                 }
@@ -50,7 +52,7 @@ class Database
                 return $custom_array;
 
             } else {
-                return $req->fetchAll();
+                return $req->fetchAll(PDO::FETCH_OBJ);
             }
         }
 

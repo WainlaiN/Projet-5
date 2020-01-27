@@ -8,6 +8,15 @@ use App\Entity\View;
 
 class AdminController extends PostController
 {
+
+    public function listPosts()
+    {
+        $posts = $this->postManager->getPosts();
+        $view = new View('Admin');
+        $view->generate($posts);
+
+    }
+
     public function EditPosts($id)
     {
         $posts = $this->postManager->editPost($id);
@@ -19,6 +28,7 @@ class AdminController extends PostController
     public function DeletePost($id)
     {
         $post = $this->postManager->delete($id);
+
 
     }
 
@@ -40,6 +50,16 @@ class AdminController extends PostController
         $comment = $this->commentManager->deleteComment($id);
 
     }
+
+    public function getComments($id)
+    {
+        $comments = $this->commentManager->getComments($id);
+        $view = new View('Comment');
+        $view->generate($comments);
+
+    }
+
+
 
 
 
