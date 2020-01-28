@@ -29,6 +29,11 @@ class Router2 extends \AltoRouter
         }
     }
 
+    public function url(string $name, array $params = [])
+    {
+
+    }
+
 
     private function home()
     {
