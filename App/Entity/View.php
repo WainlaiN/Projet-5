@@ -56,7 +56,7 @@ class View
         }
     }
 
-    private function clean($data)
+    public function clean($data)
     {
         return htmlspecialchars($data, ENT_QUOTES, 'UTF-8', false);
     }

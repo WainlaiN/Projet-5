@@ -20,7 +20,7 @@
                 <td><?= $this->clean($data->getTitle()); ?></td>
                 <td><?= $data->getDateCreation(); ?></td>
                 <td>
-                    <a href="post/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Editer</a>
+                    <a href="/admin/post/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Editer</a>
                 </td>
                 <td>
                     <a href="post/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"

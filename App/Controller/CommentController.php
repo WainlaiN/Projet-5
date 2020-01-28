@@ -40,14 +40,6 @@ Class CommentController
 
     }
 
-    public function editComment($commentId)
-    {
 
-        $comment = $this->commentManager->editComment($commentId);
-        $view = new View('EditComment');
-
-        $view->generate($comment);
-
-    }
 }
 

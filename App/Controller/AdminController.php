@@ -1,13 +1,22 @@
 <?php
 
-
 namespace App\Controller;
 
 
 use App\Entity\View;
+use App\Manager\PostManager;
+use App\Manager\CommentManager;
 
-class AdminController extends PostController
+class AdminController
 {
+    public $postManager;
+    public $commentManager;
+
+    public function __construct()
+    {
+        $this->postManager = new PostManager();
+        $this->commentManager = New CommentManager();
+    }
 
     public function listPosts()
     {
@@ -58,9 +67,6 @@ class AdminController extends PostController
         $view->generate($comments);
 
     }
-
-
-
 
 
 }

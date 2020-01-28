@@ -1,25 +1,32 @@
+<?php //dump($datas) ?>
 <h1>Editer l'article</h1>
-<p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
+<p><a href="/admin">Retour à la liste des billets</a></p>
 
 
 
 <h2>Editer l'article'</h2>
-<div class="container">
-    <form action="index.php?action=editComment&amp;id=<?= $affectedLine->getId() ?>" method="post">
-        <div>
-            <label for="postId">Article numero</label> :<br/>
-            <input type="text" id="postId" name="postId" value="<?= $affectedLine->getPostId() ?>" readonly="readonly"/>
-        </div>
-        <div>
-            <label for="author">Auteur</label><br/>
-            <input type="text" id="author" name="author" value="<?= $affectedLine->getAuthor() ?>"/>
-        </div>
-        <div>
-            <label for="comment">Commentaire</label><br/>
-            <textarea id="comment" name="comment"><?= $affectedLine->getComment() ?></textarea>
-        </div>
-        <div>
-            <input type="submit" value="Modifier">
-        </div>
+
+    <form action="/admin/delete"  method="post">
+
+            <div class="form-group">
+                <label for="author">Auteur</label><br/>
+                <input type="text" id="author" name="author" value="<?= $datas->getAuthor() ?>" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="author">Titre</label><br/>
+                <input type="text" id="title" name="title" value="<?= $datas->getTitle() ?>" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="author">Chapo</label><br/>
+                <input type="chapo" id="chapo" name="chapo" value="<?= $datas->getChapo() ?>" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="comment">Description</label><br/>
+                <textarea id="description" name="description" rows="10" class="form-control"><?= $datas->getDescription() ?></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Modifier">
+            </div>
+
     </form>
-</div>
+
