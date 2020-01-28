@@ -3,9 +3,6 @@
 <p><a href="/admin">Retour à la liste des billets</a></p>
 
 
-
-<h2>Editer l'article'</h2>
-
     <form action="/admin/delete"  method="post">
 
             <div class="form-group">

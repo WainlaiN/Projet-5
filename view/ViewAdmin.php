@@ -4,7 +4,11 @@
 <h1>Administration</h1>
 <p>Derniers billets du blog :</p>
 
-<div class="container">
+
+<div class="row">
+    <a href="/admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
+</div>
+<div class="row">
     <table class="table table-striped">
         <thead>
         <th>ID</th>
@@ -24,7 +28,7 @@
                 </td>
                 <td>
                     <a href="post/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
-                    onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
+                       onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
 
                 </td>
             </tr>
@@ -32,3 +36,4 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+</div>

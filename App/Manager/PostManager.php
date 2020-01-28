@@ -25,6 +25,13 @@ class PostManager extends Model
     /**
      * @return array|mixed|null
      */
+
+    public function addPost($postId, $author, $comment)
+    {
+        $newPost = 'INSERT INTO ' . $this->table_name . '(title, chapo, description, author, date_creation) VALUES ("' . $title . '", "' . $chapo .'","' . $description .'","' . $author .', " DATE(NOW(), FALSE);';
+        return $model = $this->custom_query($newPost);
+    }
+
     public function getPosts()
     {
         return $model = $this->all();
@@ -40,13 +47,6 @@ class PostManager extends Model
         return $model = $this->get($id);
     }
 
-    /**
-     *
-     */
-    public function addPost()
-    {
-
-    }
 
     /**
      * @param $id

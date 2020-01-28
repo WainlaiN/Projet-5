@@ -26,7 +26,7 @@ class AdminController
 
     }
 
-    public function EditPosts($id)
+    public function editPosts($id)
     {
         $posts = $this->postManager->editPost($id);
         $view = new View('EditPost');
@@ -34,7 +34,18 @@ class AdminController
 
     }
 
-    public function DeletePost($id)
+    public function addPost()
+    {
+        $posts = $this->postManager->addPost();
+        $view = new View('addPost');
+        $view->generate($posts);
+
+
+    }
+
+
+
+    public function deletePost($id)
     {
         $post = $this->postManager->delete($id);
 
