@@ -6,6 +6,7 @@ class Model extends Database
     protected $model = '';
     protected $table_name = '';
 
+
     public function all()
     {
         $sql = 'SELECT * FROM ' . $this->table_name . ';';

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\View;
+use App\Model\View;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 

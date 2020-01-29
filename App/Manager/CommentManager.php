@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\Entity\Comment;
+use App\Model\Comment;
 use App\Core\Model;
 
 /**
@@ -28,7 +28,6 @@ class CommentManager extends Model
     public function getComments($postId)
     {
 
-        //return $this->get($postId);
         $req = 'SELECT * FROM comments WHERE post_id = ' . $postId . ' ORDER BY comment_date DESC';
         return $model = $this->custom_query($req);
 

@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
-
-use App\Entity\Post;
-use App\Entity\View;
+use App\Manager\UserManager;
+use App\Model\View;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 
@@ -13,11 +12,26 @@ class AdminController
 {
     public $postManager;
     public $commentManager;
+    public $userManager;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
+        $this->userManager = new UserManager();
+
+
+        if (!isset($_SESSION['auth'])) {
+            $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
+            //$this->login();
+        }
+        if (isset($_SESSION['auth'])) {
+            if ($_SESSION['auth']->getStatus() != 1) {
+                $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
+                //header('Location: /user');
+            }
+        }
+
     }
 
     public function listPosts()
@@ -53,15 +67,14 @@ class AdminController
                 header('Location: index.php?p=list');
             }
         }
+        $this::listPosts();
 
-        //$view = new View("Add");
-        //$view->generate(array());
 
     }
 
     public function addPostView()
     {
-        $view = new View('addPost');
+        $view = new View('AddPost');
         $view->generate(array());
     }
 
@@ -96,6 +109,13 @@ class AdminController
         $comments = $this->commentManager->getComments($id);
         $view = new View('Comment');
         $view->generate($comments);
+
+    }
+
+    public function login()
+    {
+        $view = new View('Login');
+        $view->generate(array());
 
     }
 

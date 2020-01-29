@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\Entity\View;
+use App\Model\View;
 
 
 class Router extends \AltoRouter

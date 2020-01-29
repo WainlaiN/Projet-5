@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\Entity\Post;
+use App\Model\Post;
 use App\Core\Model;
 
 /**
@@ -19,7 +19,7 @@ class PostManager extends Model
     /**
      * @var string
      */
-    protected $table_name = 'post';
+    protected $table_name = 'posts';
 
 
     /**

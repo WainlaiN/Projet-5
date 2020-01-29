@@ -1,5 +1,6 @@
-<?php $this->title = 'Mon blog';
-//var_dump($datas);?>
+<?php $this->title = 'Admin';
+
+?>
 
 <h1>Administration</h1>
 <p>Derniers billets du blog :</p>
