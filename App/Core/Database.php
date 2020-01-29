@@ -33,12 +33,12 @@ class Database
             return Null;
         } elseif ($req->rowCount() == 1) {
             if (!is_null($this->model)) {
-
+                $req->closeCursor();
                 return $req->fetchObject($this->model);
 
             } else {
-
-                return $req->fetchAll(PDO::FETCH_OBJ);
+                $req->closeCursor();
+                return $req->fetch(PDO::FETCH_OBJ);
             }
 
         } else {
@@ -52,6 +52,7 @@ class Database
                 return $custom_array;
 
             } else {
+                $req->closeCursor();
                 return $req->fetchAll(PDO::FETCH_OBJ);
             }
         }

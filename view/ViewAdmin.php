@@ -27,7 +27,7 @@
                     <a href="/admin/post/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Editer</a>
                 </td>
                 <td>
-                    <a href="post/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
+                    <a href="admin/delete/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
                        onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
 
                 </td>

@@ -23,17 +23,10 @@ class Router extends \AltoRouter
             } else {
                 call_user_func(array($c, $method));
             }
-        } else
-        {
+        } else {
             $this->home();
         }
     }
-
-    public function url(string $name, array $params = [])
-    {
-
-    }
-
 
     private function home()
     {

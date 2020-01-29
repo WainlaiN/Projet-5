@@ -19,6 +19,7 @@ class View
 
     public function generate($datas)
     {
+
         $content = $this->generateFile($this->fileName, $datas);
         $view = $this->generateFile('../view/layout.php',
             array(
