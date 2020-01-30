@@ -23,12 +23,15 @@ class AdminController
 
         if (!isset($_SESSION['auth'])) {
             $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
-            //$this->login();
+            $this->login();
+            die();
+
         }
         if (isset($_SESSION['auth'])) {
             if ($_SESSION['auth']->getStatus() != 1) {
                 $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
-                //header('Location: /user');
+                header('Location: /admin');
+
             }
         }
 
@@ -53,8 +56,7 @@ class AdminController
     public function addPost()
     {
 
-        if (!empty($_POST))
-        {
+        if (!empty($_POST)) {
             $datas['author'] = $_POST['author'];
             $datas['title'] = $_POST['title'];
             $datas['chapo'] = $_POST['chapo'];
@@ -62,8 +64,7 @@ class AdminController
 
             $post = new Post($datas);
             $result = $this->postManager->addPost($post);
-            if($result)
-            {
+            if ($result) {
                 header('Location: index.php?p=list');
             }
         }

@@ -75,6 +75,12 @@ class CommentManager extends Model
         return $this->delete($id);
     }
 
+    public function getInvalidComments()
+    {
+        $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = FALSE;';
+        return $model = $this->custom_query($invalidComments);
+    }
+
     public function validateComment($commentId)
     {
         $editedComments = 'UPDATE ' . $this->table_name . ' SET is_valid = TRUE WHERE id = ' . $commentId . ';';
