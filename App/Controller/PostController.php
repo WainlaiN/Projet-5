@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\View;
+use App\Model\ViewPublic;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 
@@ -22,7 +22,7 @@ Class PostController
     public function listPosts()
     {
         $posts = $this->postManager->getPosts();
-        $view = new View('ListPosts');
+        $view = new ViewPublic('ListPosts');
         $view->generate($posts);
 
     }
@@ -30,9 +30,9 @@ Class PostController
     public function post($id)
     {
         $post = $this->postManager->getPost($id);
-        $viewPost = new View('Post');
+        $viewPost = new ViewPublic('Post');
         $comment = $this->commentManager->getComments($id);
-        $viewComment = new View('Comment');
+        $viewComment = new ViewPublic('Comment');
         $viewPost->generate($post);
         $viewComment->generatecomment($comment);
 

@@ -13,7 +13,7 @@
                         <?= $this->clean($datas->getComment()) ?>
                         <p><strong><?= $this->clean($datas->getAuthor()) ?></strong>
                             le <?= $this->clean($datas->getCommentDate()) ?></p>
-                        <a href="../public/index.php?action=editComment&amp;commentId=<?= $datas->getId() ?>"> Modifier</a>
+                        <a href="../../public/index.php?action=editComment&amp;commentId=<?= $datas->getId() ?>"> Modifier</a>
                     </div>
                 </div>
             <?php else : ?>
@@ -24,7 +24,7 @@
                         <p><strong><?= $this->clean($data->getAuthor()) ?></strong> le <?= $this->clean($data->getCommentDate()) ?>
                         </p>
                         <p><?= $this->clean($data->getComment()) ?><a
-                                    href="../public/index.php?action=editComment&amp;commentId=<?= $data->getId() ?>"> Supprimer</a></p>
+                                    href="../../public/index.php?action=editComment&amp;commentId=<?= $data->getId() ?>"> Supprimer</a></p>
                         <?php endforeach ?>
                         <?php endif ?>
                     </div>

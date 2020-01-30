@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Manager\UserManager;
-use App\Model\View;
+use App\Model\ViewAdmin;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 
@@ -37,15 +37,15 @@ class AdminController
     public function listPosts()
     {
         $posts = $this->postManager->getPosts();
-        $view = new View('Admin');
+        $view = new ViewAdmin('Admin');
         $view->generate($posts);
 
     }
 
-    public function editPosts($id)
+    public function editPost($id)
     {
         $posts = $this->postManager->editPost($id);
-        $view = new View('EditPost');
+        $view = new ViewAdmin('EditPost');
         $view->generate($posts);
 
     }
@@ -74,7 +74,7 @@ class AdminController
 
     public function addPostView()
     {
-        $view = new View('AddPost');
+        $view = new ViewAdmin('AddPost');
         $view->generate(array());
     }
 
@@ -107,14 +107,14 @@ class AdminController
     public function getComments($id)
     {
         $comments = $this->commentManager->getComments($id);
-        $view = new View('Comment');
+        $view = new ViewAdmin('Comment');
         $view->generate($comments);
 
     }
 
     public function login()
     {
-        $view = new View('Login');
+        $view = new ViewAdmin('Login');
         $view->generate(array());
 
     }

@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\Model\View;
+use App\Model\ViewPublic;
 
 
 class Router extends \AltoRouter
@@ -30,7 +30,7 @@ class Router extends \AltoRouter
 
     private function home()
     {
-        $view = new View("home");
+        $view = new ViewPublic("home");
         $view->Generate(array());
     }
 

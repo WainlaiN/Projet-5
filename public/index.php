@@ -15,7 +15,7 @@ $router->map('GET', '/post/[i:id]', 'PostController#post');
 
 //Admin Management
 $router->map('GET', '/admin', 'AdminController#listPosts');
-$router->map('GET', '/admin/post/[i:id]', 'AdminController#editPosts');
+$router->map('GET', '/admin/post/[i:id]', 'AdminController#editPost');
 $router->map('GET', '/admin/delete/[i:id]', 'AdminController#deletePost');
 $router->map('GET', '/admin/add', 'AdminController#addPostView');
 $router->map('POST', '/admin/addPost', 'AdminController#addPost');

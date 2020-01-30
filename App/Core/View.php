@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Model;
+namespace App\Core;
 
 
 class View
 {
-    private $fileName;
+    protected $fileName;
+    protected $filepath = '';
 
-    private $title;
+    protected $title;
 
 
     public function __construct($name)
     {
 
-        $this->fileName = "../view/View" . $name . ".php";
+        $this->fileName = $this->filepath . 'View' . $name . ".php";
 
     }
 
@@ -21,7 +22,7 @@ class View
     {
 
         $content = $this->generateFile($this->fileName, $datas);
-        $view = $this->generateFile('../view/layout.php',
+        $view = $this->generateFile( $this->filepath . 'layout.php',
             array(
                 'title' => $this->title,
                 'content' => $content
