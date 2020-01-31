@@ -26,7 +26,7 @@ class PostManager extends Model
      * @return array|mixed|null
      */
 
-    public function addPost($post)
+    public function addPost($post): Post
     {
         $newPost = 'INSERT INTO ' . $this->table_name . '( title, chapo, description, author, date_creation) VALUES (
         

@@ -2,7 +2,7 @@
 
 ?>
 <h1>Se Connecter</h1>
-<form action="/checkuser" method="post">
+<form action="/connect" method="post">
     <div class="imgcontainer">
         <img src="" alt="Avatar" class="avatar">
     </div>

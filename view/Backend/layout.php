@@ -33,7 +33,7 @@
                     <a class="nav-link" href="#CV">CV</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Se connecter</a>
+                    <a class="nav-link" href="/logout">Se Déconnecter</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#registration">Inscription</a>

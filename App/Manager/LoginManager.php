@@ -17,11 +17,17 @@ class LoginManager extends Model
     /**
      * @var string
      */
-    protected $table_name = 'user';
+    protected $table_name = 'users';
 
     public function getLogin($username)
     {
-        $req = 'SELECT * FROM ' . $this->table_name . 'WHERE username=' . $username .';';
+        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE username="' . $username .'";';
+        return $model = $this->custom_query($req);
+    }
+
+    public function getStatus($username)
+    {
+        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE username="' . $username .'";';
         return $model = $this->custom_query($req);
     }
 
@@ -31,8 +37,21 @@ class LoginManager extends Model
         return $model = $this->custom_query($req);
     }
 
+    public function checkEmail()
+    {
+
+    }
+
+    public function checkPassword($password, $user)
+    {
 
 
+    }
+
+    public function registerUser()
+    {
+
+    }
 
 
 

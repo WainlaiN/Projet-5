@@ -27,6 +27,11 @@ class User
     private $password;
 
     /**
+     * @var string
+     */
+    private $user_status;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -97,6 +102,26 @@ class User
         $this->password = $password;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->user_status;
+    }
+
+    /**
+     * @param string $status
+     * @return User
+     */
+    public function setStatus(string $status)
+    {
+        $this->user_status = $status;
+        return $this;
+    }
+
+
 
 
 

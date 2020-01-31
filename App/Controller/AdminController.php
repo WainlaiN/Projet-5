@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Manager\LoginManager;
 use App\Manager\UserManager;
 use App\Model\ViewAdmin;
 use App\Manager\PostManager;
@@ -12,25 +13,25 @@ class AdminController
 {
     public $postManager;
     public $commentManager;
-    public $userManager;
+    public $loginManager;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
-        $this->userManager = new UserManager();
+        $this->loginManager = new LoginManager();
 
 
         if (!isset($_SESSION['auth'])) {
             $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
-            $this->login();
-            die();
+            header('Location: /login');
+
 
         }
         if (isset($_SESSION['auth'])) {
             if ($_SESSION['auth']->getStatus() != 1) {
                 $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
-                header('Location: /admin');
+                header('Location: /user');
 
             }
         }
@@ -110,13 +111,6 @@ class AdminController
         $comments = $this->commentManager->getComments($id);
         $view = new ViewAdmin('Comment');
         $view->generate($comments);
-
-    }
-
-    public function login()
-    {
-        $view = new ViewAdmin('Login');
-        $view->generate(array());
 
     }
 

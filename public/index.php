@@ -11,8 +11,8 @@ try {
 
 //Front management
     $router->map('GET', '/', '');
-    $router->map('GET', '/posts', 'PostController#listPosts');
-    $router->map('GET', '/post/[i:id]', 'PostController#post');
+    $router->map('GET', '/posts', 'FrontController#listPosts');
+    $router->map('GET', '/post/[i:id]', 'FrontController#post');
 
 
 //Admin Management
@@ -23,13 +23,12 @@ try {
     $router->map('POST', '/admin/addpost', 'AdminController#addPost');
     $router->map('GET', '/admin/comments/[i:id]', 'AdminController#getComments');
 
-
-    $router->map('GET', '/login', 'AdminController#login');
-    $router->map('POST', '/checkuser', 'AdminController#check');
-
+//login Management
+    $router->map('GET', '/login', 'FrontController#login');
+    $router->map('POST', '/connect', 'FrontController#connect');
+    $router->map('POST', '/logout', 'FrontController#deconnect');
 
     $match = $router->match();
-
 
     $router->routerRequest($match['target'], $match['params']);
 
