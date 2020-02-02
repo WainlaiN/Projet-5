@@ -26,7 +26,7 @@ try {
 //login Management
     $router->map('GET', '/login', 'FrontController#login');
     $router->map('POST', '/connect', 'FrontController#connect');
-    $router->map('POST', '/logout', 'FrontController#deconnect');
+    $router->map('GET', '/logout', 'FrontController#deconnect');
 
     $match = $router->match();
 
@@ -35,6 +35,7 @@ try {
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     $_SESSION['errorMessage'] = $errorMessage;
+    dump($errorMessage, $_SESSION);
     header('HTTP/1.1 404 Not Found');
     header('Location: /404');
 }

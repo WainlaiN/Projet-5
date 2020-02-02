@@ -60,6 +60,7 @@ Class FrontController
         if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
             $_SESSION['flash']['danger'] = 'Votre pseudo ' . $_POST['username'] . 'n\est pas valide';
             header('location: /login');
+
         } elseif (empty($_POST['password']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['password'])) {
             $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
             header('location: /login');
@@ -68,7 +69,7 @@ Class FrontController
             $password = strip_tags(htmlspecialchars($_POST['password']));
 
             $user = $this->loginManager->getLogin($username);
-
+            dump($user, $username);
 
             if (!$user) {
                 $_SESSION['flash']['danger'] = 'Mauvais identifiant';
@@ -77,21 +78,15 @@ Class FrontController
                 $isPasswordCorrect = password_verify($password, $user->getPassword());
 
                 if ($isPasswordCorrect != 1) {
-                    if ($user->getPassword() == $password) {
-                        $_SESSION['flash']['danger'] = 'Mot de passe incorrect !';
-                        header('location: /login');
+                    $_SESSION['flash']['danger'] = 'Mot de passe incorrect !';
+                    header('location: /login');
+
+                } else {
+                    $_SESSION['auth'] = $user;
+                    if ($_SESSION['auth']->getStatus() == 1) {
+                        header('location: /admin');
                     } else {
-                        $_SESSION['auth'] = $user;
-
-                        if ($_SESSION['auth']->getStatus() == 1) {
-
-                            header('location: /admin');
-                        } else {
-
-                            header('Location: /login');
-
-                        }
-
+                        header('Location: /login');
                     }
                 }
             }
@@ -100,8 +95,8 @@ Class FrontController
 
     public function deconnect()
     {
-        session_unset();
         session_destroy();
+        session_unset();
         header('Location: /');
     }
 }

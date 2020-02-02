@@ -3,9 +3,13 @@
 ?>
 <h1>Se Connecter</h1>
 <form action="/connect" method="post">
-    <div class="imgcontainer">
-        <img src="" alt="Avatar" class="avatar">
+
+    <?php if (isset($_SESSION['flash']['danger'])) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $_SESSION['flash']['danger'] ?>
     </div>
+
+    <?php endif ?>
 
     <div class="container">
         <label for="uname"><b>Username</b></label>

@@ -26,17 +26,17 @@ class Database
     protected function custom_query($sql)
 
     {
+        dump($sql);
         $db = $this->dbConnect();
         $req = $db->query($sql);
+
 
         if ($req->rowCount() == 0) {
             return Null;
         } elseif ($req->rowCount() == 1) {
             if (!is_null($this->model)) {
                 //$req->closeCursor();
-                //var_dump($req, $this->model);
                 return $req->fetchObject($this->model);
-
 
             } else {
                 //$req->closeCursor();
