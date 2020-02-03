@@ -19,16 +19,16 @@ class LoginManager extends Model
      */
     protected $table_name = 'users';
 
-    public function getLogin($user_name)
+    public function getLogin($username)
     {
-        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE user_name =' . $user_name .';' ;
+        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE username= "' . $username .'";' ;
         //$sql = 'SELECT * FROM ' . $this->table_name . ';';
         return $this->custom_query($req);
     }
 
-    public function getStatus($user_name)
+    public function getStatus($username)
     {
-        $req = 'SELECT user_status FROM ' . $this->table_name . ' WHERE user_name ="' . $user_name .'";' ;
+        $req = 'SELECT user_status FROM ' . $this->table_name . ' WHERE username= "' . $username .'";' ;
         return $this->custom_query($req);
     }
 

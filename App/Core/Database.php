@@ -26,7 +26,7 @@ class Database
     protected function custom_query($sql)
 
     {
-        dump($sql);
+        //dump($sql, $this->model);
         $db = $this->dbConnect();
         $req = $db->query($sql);
 

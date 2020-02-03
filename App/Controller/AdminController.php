@@ -21,6 +21,9 @@ class AdminController
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
 
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
         if (!isset($_SESSION['auth'])) {
             $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
@@ -31,7 +34,7 @@ class AdminController
         if (isset($_SESSION['auth'])) {
             if ($_SESSION['auth']->getStatus() != 1) {
                 $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
-                header('Location: /user');
+                header('Location: /Admin');
 
             }
         }

@@ -69,7 +69,7 @@ Class FrontController
             $password = strip_tags(htmlspecialchars($_POST['password']));
 
             $user = $this->loginManager->getLogin($username);
-            dump($user, $username);
+
 
             if (!$user) {
                 $_SESSION['flash']['danger'] = 'Mauvais identifiant';
@@ -77,13 +77,16 @@ Class FrontController
             } else {
                 $isPasswordCorrect = password_verify($password, $user->getPassword());
 
-                if ($isPasswordCorrect != 1) {
+
+                if ($isPasswordCorrect == false) {
                     $_SESSION['flash']['danger'] = 'Mot de passe incorrect !';
                     header('location: /login');
 
                 } else {
                     $_SESSION['auth'] = $user;
+
                     if ($_SESSION['auth']->getStatus() == 1) {
+                        //dump($isPasswordCorrect, $_SESSION, $_POST);
                         header('location: /admin');
                     } else {
                         header('Location: /login');
