@@ -13,6 +13,7 @@ try {
     $router->map('GET', '/', '');
     $router->map('GET', '/posts', 'FrontController#listPosts');
     $router->map('GET', '/post/[i:id]', 'FrontController#post');
+    $router->map('GET', '/register', 'FrontController#register');
 
 
 //Admin Management

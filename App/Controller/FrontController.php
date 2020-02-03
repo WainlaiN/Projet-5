@@ -102,4 +102,19 @@ Class FrontController
         session_unset();
         header('Location: /');
     }
+
+    public function register()
+    {
+        if ($this->loginManager->checkUsername()) {
+            if ($this->loginManager->checkEmail()) {
+                if ($this->loginManager->checkPassword()) {
+                    $this->loginManager->registerUser();
+                }
+            }
+        }
+
+        header('Location: /login');
+    }
+
+
 }
