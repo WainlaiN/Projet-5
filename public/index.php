@@ -20,7 +20,7 @@ try {
 //Admin Management
     $router->map('GET', '/admin', 'AdminController#listPosts');
     $router->map('GET', '/admin/post/[i:id]', 'AdminController#updatePostView');
-    $router->map('POST', '/admin/post/[i:id]/edit', 'AdminController#UpdatePost');
+    $router->map('POST', '/admin/post/[i:id]', 'AdminController#UpdatePost');
     $router->map('GET', '/admin/delete/[i:id]', 'AdminController#deletePost');
     $router->map('GET', '/admin/add', 'AdminController#addPostView');
     $router->map('POST', '/admin/addpost', 'AdminController#addPost');

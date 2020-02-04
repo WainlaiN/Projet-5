@@ -11,9 +11,9 @@ use App\Manager\CommentManager;
 
 class AdminController
 {
-    public $postManager;
-    public $commentManager;
-    public $loginManager;
+    private $postManager;
+    private $commentManager;
+    private $loginManager;
 
     public function __construct()
     {
@@ -64,21 +64,19 @@ class AdminController
             $datas['chapo'] = $_POST['chapo'];
             $datas['description'] = $_POST['description'];
 
-            //$post = new Post($datas);
             $result = $this->postManager->addPost($datas);
 
             if ($result) {
-                header('Location: index.php?p=list');
+                $this->listPosts();
             }
         }
-        //$this::listPosts();
+
     }
 
     public function deletePost($id)
     {
         $this->postManager->deletePost($id);
         $this->listPosts();
-
     }
 
     public function updatePostView($id)
@@ -91,7 +89,7 @@ class AdminController
     public function UpdatePost($id)
     {
         $this->postManager->updatePost($id);
-        $this::updatePostView($id);
+        $this->updatePostView($id);
     }
 
     public function DeleteComment($id)

@@ -44,7 +44,7 @@ class PostManager extends Database
         "' . $post['author'] . '",
           NOW());';
         $result = $this->sql($newPost);
-        return $result->fetch();
+        return $result;
 
     }
 
@@ -53,14 +53,22 @@ class PostManager extends Database
     {
         $post = 'DELETE FROM ' . $this->table_name . ' WHERE id=' . $id;
         $result = $this->sql($post);
-        return $result->fetch();
+        return $result;
     }
 
     public function updatePost($id)
     {
-        $editedPost = 'UPDATE ' . $this->table_name . ' SET author="' . $_POST["author"] . '", title="' . $_POST["title"] . '", chapo="' . $_POST["chapo"] . '", description="' . $_POST["description"] . '", date_update=NOW() WHERE id=' . $id;
-        $result = $this->sql($editedPost);
-        return $result->fetch();
+        $editedPost = 'UPDATE ' . $this->table_name . ' SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE id=:id';
+        $parameters = [
+            ':id' => $id,
+            ':author' => $_POST['author'],
+            ':title' => $_POST['title'],
+            ':chapo' => $_POST['chapo'],
+            ':description' => $_POST['description'],
+
+        ];
+        $result = $this->sql($editedPost, $parameters);
+        return $result;
     }
 
 

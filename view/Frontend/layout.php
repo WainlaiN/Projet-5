@@ -57,14 +57,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="#CV">CV</a>
             </li>
-            <li class="nav-item">
-                <?php if (!isset($_SESSION['auth'])) : ?>
-
+            <?php if (!isset($_SESSION['auth'])) : ?>
+                <li class="nav-item">
                     <a class="nav-link" href="/login">Connexion</a>
-                <?php else : ?>
+                </li>
+            <?php else : ?>
+                <li class="nav-item">
                     <a class="nav-link" href="/logout">Deconnexion</a>
-                <?php endif; ?>
-            </li>
+                </li>
+                <li>
+                <a class="nav-link" href="/admin">Admin</a>
+                </li>
+
+            <?php endif; ?>
             <li class="nav-item">
                 <a class="nav-link" href="/home">Inscription</a>
             </li>

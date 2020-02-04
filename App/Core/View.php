@@ -22,7 +22,7 @@ class View
     {
 
         $content = $this->generateFile($this->fileName, $datas);
-        $view = $this->generateFile( $this->filepath . 'layout.php',
+        $view = $this->generateFile($this->filepath . 'layout.php',
             array(
                 'title' => $this->title,
                 'content' => $content
@@ -54,17 +54,18 @@ class View
                 require $file;
 
                 return ob_get_clean();
-
-            } else {
-                ob_start();
-
-                require $file;
-
-                return ob_get_clean();
             }
 
+        } else {
+            ob_start();
+
+            require $file;
+
+            return ob_get_clean();
         }
+
     }
+
 
     public function clean($data)
     {

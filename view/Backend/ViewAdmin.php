@@ -1,4 +1,4 @@
-<?php $this->title = 'Admin';?>
+<?php $this->title = 'Admin'; ?>
 
 <h1>Administration</h1>
 <p>Derniers billets du blog :</p>
@@ -36,7 +36,7 @@
         </tbody>
     </table>
 
-    <div class="row py-3" >
+    <div class="row py-3">
         <a href="/admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
     </div>
 </div>
