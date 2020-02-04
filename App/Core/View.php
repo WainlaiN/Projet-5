@@ -38,24 +38,31 @@ class View
         echo $view;
     }
 
-    private function generateFile($file, $datas = null)
+    private function generateFile($file, $datas)
     {
+        if ($datas) {
 
-        if (file_exists($file)) {
+            if (file_exists($file)) {
 
-            if (!is_object($datas)) {
+                if (!is_object($datas)) {
 
-               extract($datas);
+                    extract($datas);
+                }
+
+                ob_start();
+
+                require $file;
+
+                return ob_get_clean();
+
+            } else {
+                ob_start();
+
+                require $file;
+
+                return ob_get_clean();
             }
 
-            ob_start();
-
-            require $file;
-
-            return ob_get_clean();
-
-        } else {
-            echo "Fichier '$file introuvable";
         }
     }
 

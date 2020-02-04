@@ -22,9 +22,9 @@ class CommentManager extends Database
                 $custom_array[] = new $this->model($datas);
             }
             return $custom_array;
+        } else {
+            return $result->fetchObject($this->model);
         }
-        return $result->fetch();
-
     }
 
 
