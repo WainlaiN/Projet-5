@@ -23,9 +23,7 @@ Class FrontController
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
 
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+
     }
 
     public function listPosts()
@@ -49,7 +47,7 @@ Class FrontController
 
     public function login()
     {
-        $view = new ViewAdmin('Login');
+        $view = new ViewPublic('Login');
         $view->generate(array());
 
     }
