@@ -12,22 +12,13 @@ use App\Core\Model;
 class PostManager extends Model
 {
 
-    /**
-     * @var string
-     */
+
     protected $model = Post::class;
-    /**
-     * @var string
-     */
     protected $table_name = 'posts';
-
-
-    /**
-     * @return array|mixed|null
-     */
 
     public function addPost($post)
     {
+
         $newPost = 'INSERT INTO ' . $this->table_name . '( title, chapo, description, author, date_creation) VALUES (
         
         "' . $post->getTitle() . '", 
@@ -38,40 +29,26 @@ class PostManager extends Model
         return $model = $this->custom_query($newPost);
     }
 
-
     public function getPosts()
     {
         return $model = $this->all();
-
     }
 
-    /**
-     * @param $id
-     * @return array|mixed|null
-     */
     public function getPost($id)
     {
         return $model = $this->get($id);
     }
 
 
-    /**
-     * @param $id
-     * @return array|mixed|null
-     */
     public function deletePost($id)
     {
         return $this->delete($id);
     }
 
-
-    /**
-     * @param $Id
-     */
-    public function editPost($id)
+    public function updatePost($id)
     {
-        return $model = $this->get($id);
-
+        $editedPost = 'UPDATE ' . $this->table_name . ' SET author="' . $_POST["author"] . '", title="' . $_POST["title"] . '", chapo="' . $_POST["chapo"] . '", description="' . $_POST["description"] . '", date_update=NOW() WHERE id=' . $id;
+        return $model = $this->custom_query($editedPost);
     }
 
 

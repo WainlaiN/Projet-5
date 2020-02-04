@@ -60,9 +60,9 @@
             <li class="nav-item">
                 <?php if (!isset($_SESSION['auth'])) : ?>
 
-                    <a class="nav-link" href="/login">Se connecter</a>
+                    <a class="nav-link" href="/login">Connexion</a>
                 <?php else : ?>
-                    <a class="nav-link" href="/logout">Se Déconnecter</a>
+                    <a class="nav-link" href="/logout">Deconnexion</a>
                 <?php endif; ?>
             </li>
             <li class="nav-item">
@@ -74,7 +74,7 @@
 </nav>
 <div class="container">
     <?= $content ?>
-    <?php var_dump($_SESSION); ?>
+
 </div>
 
 <!-- Footer -->

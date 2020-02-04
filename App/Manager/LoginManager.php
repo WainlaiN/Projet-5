@@ -56,17 +56,6 @@ class LoginManager extends Model
 
 
 
-    private function buildObject($row)
-    {
-        $user = new User();
-        $user->setId($row['id']);
-        $user->setUsername($row['username']);
-        $user->setPassword($row['password']);
-        $user->setEmail($row['email']);
-        $user->setStatus($row['status']);
-
-        return $user;
-    }
 
 
 

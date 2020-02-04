@@ -26,19 +26,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/admin">Accueil <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/posts">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#CV">CV</a>
-                </li>
-                <li class="nav-item">
 
+                <li class="nav-item">
                     <a class="nav-link" href="/logout">Se Déconnecter</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Retour au Blog</a>
-                </li>
+                <
             </ul>
         </div>
     </div>
@@ -47,7 +39,7 @@
 <div class="container">
 
     <?= $content ?>
-    <?php var_dump($_SESSION); ?>
+
 </div>
 
 

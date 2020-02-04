@@ -49,13 +49,7 @@ class AdminController
 
     }
 
-    public function editPost($id)
-    {
-        $posts = $this->postManager->editPost($id);
-        $view = new ViewAdmin('EditPost');
-        $view->generate($posts);
 
-    }
 
     public function addPost()
     {
@@ -90,9 +84,18 @@ class AdminController
 
     }
 
+    public function updatePostView($id)
+    {
+        $posts = $this->postManager->getPost($id);
+        $view = new ViewAdmin('EditPost');
+        $view->generate($posts);
+
+    }
+
     public function UpdatePost($id)
     {
-        $this->postManager->editPost($id);
+        $this->postManager->updatePost($id);
+        $this::updatePostView($id);
 
     }
 
@@ -105,7 +108,7 @@ class AdminController
 
     public function ValidateComment()
     {
-        $this->commentManager->deleteComment($id);
+        $this->commentManager->validateComment($id);
 
     }
 

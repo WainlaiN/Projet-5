@@ -5,10 +5,6 @@
 <h1>Administration</h1>
 <p>Derniers billets du blog :</p>
 
-
-<div class="row">
-    <a href="/admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
-</div>
 <div class="row">
     <table class="table table-striped">
         <thead>
@@ -37,4 +33,8 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+
+    <div class="row py-3" >
+        <a href="/admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
+    </div>
 </div>
