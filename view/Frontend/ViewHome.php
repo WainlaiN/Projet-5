@@ -9,7 +9,7 @@
                 <img class="img-responsive" src="img/profile.png" alt="">
                 <div class="intro-text">
                     <span class="name">Nicolas Dupriez</span>
-                    <hr class="star-light">
+
                     <span class="skills">Developpeur PHP / Symfony</span>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="img/portfolio/cabin.png" class="img-responsive" alt="">
+                    <img src="img/portfolio/cabin.png" class="img-fluid" alt="">
                 </a>
             </div>
             <div class="col-sm-4 portfolio-item">
@@ -44,7 +44,7 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="img/portfolio/cake.png" class="img-responsive" alt="">
+                    <img src="img/portfolio/cake.png" class="img-fluid" alt="">
                 </a>
             </div>
             <div class="col-sm-4 portfolio-item">
@@ -54,7 +54,7 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="img/portfolio/circus.png" class="img-responsive" alt="">
+                    <img src="img/portfolio/circus.png" class="img-fluid" alt="">
                 </a>
             </div>
             <div class="col-sm-4 portfolio-item">
@@ -64,7 +64,7 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="img/portfolio/game.png" class="img-responsive" alt="">
+                    <img src="img/portfolio/game.png" class="img-fluid" alt="">
                 </a>
             </div>
             <div class="col-sm-4 portfolio-item">
@@ -74,7 +74,7 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="img/portfolio/safe.png" class="img-responsive" alt="">
+                    <img src="img/portfolio/safe.png" class="img-fluid" alt="">
                 </a>
             </div>
             <div class="col-sm-4 portfolio-item">
@@ -84,7 +84,7 @@
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
+                    <img src="img/portfolio/submarine.png" class="img-fluid" alt="">
                 </a>
             </div>
         </div>

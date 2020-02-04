@@ -6,6 +6,7 @@
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+
 }
 p {
   font-size: 20px;
@@ -54,7 +55,7 @@ hr.star-light {
   border-color: white;
 }
 hr.star-light:after {
-  background-color: #18BC9C;
+  /*background-color: #18BC9C;*/
   color: white;
 }
 hr.star-primary {
@@ -69,7 +70,9 @@ hr.star-primary:after {
 }
 header {
   text-align: center;
-  background: #18BC9C;
+  /*background: #18BC9C;*/
+  background-image: url("../img/wallphp.jpg");
+  text-shadow: 2px 2px 2px black;
   color: white;
 }
 header .container {
