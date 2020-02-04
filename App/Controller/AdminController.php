@@ -64,13 +64,14 @@ class AdminController
             $datas['chapo'] = $_POST['chapo'];
             $datas['description'] = $_POST['description'];
 
-            $post = new Post($datas);
-            $result = $this->postManager->addPost($post);
+            //$post = new Post($datas);
+            $result = $this->postManager->addPost($datas);
+
             if ($result) {
                 header('Location: index.php?p=list');
             }
         }
-        $this::listPosts();
+        //$this::listPosts();
     }
 
     public function deletePost($id)

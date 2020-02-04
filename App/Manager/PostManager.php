@@ -18,13 +18,12 @@ class PostManager extends Model
 
     public function addPost($post)
     {
-
         $newPost = 'INSERT INTO ' . $this->table_name . '( title, chapo, description, author, date_creation) VALUES (
-        
-        "' . $post->getTitle() . '", 
-        "' . $post->getChapo() . '",
-        "' . $post->getDescription() . '",
-        "' . $post->getAuthor() . '",
+            
+        "' . $post['title'] . '", 
+        "' . $post['chapo'] . '",
+        "' . $post['description'] . '",
+        "' . $post['author'] . '",
           NOW());';
         return $model = $this->custom_query($newPost);
     }

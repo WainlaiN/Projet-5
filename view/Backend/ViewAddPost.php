@@ -3,7 +3,7 @@
 <p><a href="/admin">Retour à la liste des billets</a></p>
 
 
-<form action="/admin/addPost"  method="post">
+<form action="/admin/addpost"  method="post">
 
     <div class="form-group">
         <label for="author">Auteur</label><br/>
