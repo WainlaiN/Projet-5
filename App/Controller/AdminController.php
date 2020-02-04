@@ -49,7 +49,11 @@ class AdminController
 
     }
 
-
+    public function addPostView()
+    {
+        $view = new ViewAdmin('AddPost');
+        $view->generate(array());
+    }
 
     public function addPost()
     {
@@ -67,21 +71,11 @@ class AdminController
             }
         }
         $this::listPosts();
-
-
-    }
-
-    public function addPostView()
-    {
-        $view = new ViewAdmin('AddPost');
-        $view->generate(array());
     }
 
     public function deletePost($id)
     {
         $this->postManager->delete($id);
-
-
     }
 
     public function updatePostView($id)
@@ -89,27 +83,22 @@ class AdminController
         $posts = $this->postManager->getPost($id);
         $view = new ViewAdmin('EditPost');
         $view->generate($posts);
-
     }
 
     public function UpdatePost($id)
     {
         $this->postManager->updatePost($id);
         $this::updatePostView($id);
-
     }
 
     public function DeleteComment($id)
     {
         $this->commentManager->deleteComment($id);
-
-
     }
 
     public function ValidateComment()
     {
         $this->commentManager->validateComment($id);
-
     }
 
     public function getComments($id)
@@ -117,7 +106,6 @@ class AdminController
         $comments = $this->commentManager->getComments($id);
         $view = new ViewAdmin('Comment');
         $view->generate($comments);
-
     }
 
 
