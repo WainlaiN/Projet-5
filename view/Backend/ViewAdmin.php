@@ -12,6 +12,7 @@
         <th>Titre</th>
         <th>Date</th>
         <th>Editer</th>
+        <th>Voir les commentaires</th>
         <th>Supprimer</th>
         </thead>
         <tbody>
@@ -22,6 +23,9 @@
                 <td><?= $data->getDateCreation(); ?></td>
                 <td>
                     <a href="/admin/post/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Editer</a>
+                </td>
+                <td>
+                    <a href="/admin/comments/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Commentaires</a>
                 </td>
                 <td>
                     <a href="admin/delete/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"

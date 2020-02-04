@@ -35,11 +35,11 @@ class Database
             return Null;
         } elseif ($req->rowCount() == 1) {
             if (!is_null($this->model)) {
-                //$req->closeCursor();
+                $req->closeCursor();
                 return $req->fetchObject($this->model);
 
             } else {
-                //$req->closeCursor();
+                $req->closeCursor();
                 return $req->fetch(PDO::FETCH_OBJ);
             }
 

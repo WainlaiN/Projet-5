@@ -42,8 +42,9 @@ class View
     {
 
         if (file_exists($file)) {
-
+            //dump($datas);
             if (!is_object($datas)) {
+
                 extract($datas);
             }
 
