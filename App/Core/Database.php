@@ -7,23 +7,46 @@ use \PDO;
 
 class Database
 {
-    private static $db;
-    protected $model = '';
+    protected $db;
+
 
 
     protected function dbConnect()
     {
-        if (self::$db === null) {
+        if ($this->db === null) {
             $data = require __DIR__ . './../Config/config.php';
             return new PDO('mysql:host=' . $data['db_host'] . ';dbname=' . $data['db_name'] . ';charset=utf8',
                 $data['db_user'], $data['db_password'],
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
-        return self::$db;
+        return $this->db;
 
     }
 
-    protected function custom_query($sql)
+    protected function sql($sql, $parameters = null, $binds = null)
+    {
+
+        if ($parameters || $binds) {
+            $result = $this->dbConnect()->prepare($sql);
+
+            if ($binds) {
+                foreach ($binds as $bind) {
+                    $result->bindParam($bindnew[0], $bindnew[1], $bindnew[2]);
+                }
+                $result->execute();
+            } else {
+                $result->execute($parameters);
+            }
+
+            return $result;
+        } else {
+            $result = $this->dbConnect()->query($sql);
+
+            return $result;
+        }
+    }
+
+    /**protected function custom_query($sql)
 
     {
         //dump($sql, $this->model);
@@ -35,11 +58,12 @@ class Database
             return Null;
         } elseif ($req->rowCount() == 1) {
             if (!is_null($this->model)) {
-                $req->closeCursor();
+                dump($req);
+                //$req->closeCursor();
                 return $req->fetchObject($this->model);
 
             } else {
-                $req->closeCursor();
+                //$req->closeCursor();
                 return $req->fetch(PDO::FETCH_OBJ);
             }
 
@@ -60,7 +84,7 @@ class Database
 
         }
 
-    }
+    }**/
 
 
 }

@@ -2,14 +2,15 @@
 
 namespace App\Manager;
 
+use App\Core\Database;
 use App\Model\Comment;
-use App\Core\Model;
+
 
 /**
  * Class CommentManager
  * @package App\Manager
  */
-class CommentManager extends Model
+class CommentManager extends Database
 {
 
     /**
@@ -29,7 +30,11 @@ class CommentManager extends Model
     {
 
         $req = 'SELECT * FROM comments WHERE post_id = ' . $postId . ' ORDER BY comment_date DESC';
-        return $model = $this->custom_query($req);
+        $result = $this->sql($req);
+        while ($datas = $result->fetchObject($this->model)) {
+            $custom_array[] = new $this->model($datas);
+        }
+        return $custom_array;
 
     }
 

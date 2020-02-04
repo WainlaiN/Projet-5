@@ -1,5 +1,5 @@
 <?php $this->title = 'Mon blog';
-//var_dump($datas);?>
+//dump($datas);?>
 
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>

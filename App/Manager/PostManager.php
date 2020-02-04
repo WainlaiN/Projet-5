@@ -2,19 +2,40 @@
 
 namespace App\Manager;
 
+use App\Core\Database;
 use App\Model\Post;
-use App\Core\Model;
+
 
 /**
  * Class PostManager
  * @package App\Manager
  */
-class PostManager extends Model
+class PostManager extends Database
 {
 
 
-    protected $model = Post::class;
-    protected $table_name = 'posts';
+    private $model = Post::class;
+    private $table_name = 'posts';
+
+
+    public function getPosts()
+    {
+        $req = 'SELECT * FROM ' . $this->table_name;
+        $result = $this->sql($req);
+        while ($datas = $result->fetchObject($this->model)) {
+            $custom_array[] = new $this->model($datas);
+        }
+        return $custom_array;
+
+    }
+
+    public function getPost($id)
+    {
+        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE id=' . $id;
+        $result = $this->sql($req);
+        return $data = $result->fetchObject($this->model);
+
+    }
 
     public function addPost($post)
     {
@@ -25,17 +46,7 @@ class PostManager extends Model
         "' . $post['description'] . '",
         "' . $post['author'] . '",
           NOW());';
-        return $model = $this->custom_query($newPost);
-    }
-
-    public function getPosts()
-    {
-        return $model = $this->all();
-    }
-
-    public function getPost($id)
-    {
-        return $model = $this->get($id);
+        return $model = $this->sql($newPost)->fetch();
     }
 
 

@@ -4,10 +4,10 @@
 namespace App\Manager;
 
 
-use App\Core\Model;
+use App\Core\Database;
 use App\Model\User;
 
-class LoginManager extends Model
+class LoginManager extends Database
 
 {
     /**
@@ -22,7 +22,6 @@ class LoginManager extends Model
     public function getLogin($username)
     {
         $req = 'SELECT * FROM ' . $this->table_name . ' WHERE username= "' . $username .'";' ;
-        //$sql = 'SELECT * FROM ' . $this->table_name . ';';
         return $this->custom_query($req);
     }
 

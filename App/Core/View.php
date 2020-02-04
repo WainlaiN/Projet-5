@@ -38,11 +38,11 @@ class View
         echo $view;
     }
 
-    private function generateFile($file, $datas)
+    private function generateFile($file, $datas = null)
     {
 
         if (file_exists($file)) {
-            //dump($datas);
+
             if (!is_object($datas)) {
 
                 extract($datas);
