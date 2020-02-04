@@ -3,7 +3,7 @@
 <p><a href="/admin">Retour à la liste des billets</a></p>
 
 
-    <form action="/admin/post/<?= $datas->getId() ?>/edit"  method="post">
+    <form action="/admin/post/<?= $datas->getId() ?>"  method="post">
 
             <div class="form-group">
                 <label for="author">Auteur</label><br/>

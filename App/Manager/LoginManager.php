@@ -22,19 +22,23 @@ class LoginManager extends Database
     public function getLogin($username)
     {
         $req = 'SELECT * FROM ' . $this->table_name . ' WHERE username= "' . $username .'";' ;
-        return $this->custom_query($req);
+        $result = $this->sql($req);
+        return $result->fetchObject($this->model);
+
     }
 
     public function getStatus($username)
     {
         $req = 'SELECT user_status FROM ' . $this->table_name . ' WHERE username= "' . $username .'";' ;
-        return $this->custom_query($req);
+        $result = $this->sql($req);
+        return $result->fetchObject($this->model);
     }
 
     public function findByUsername($name)
     {
         $req = 'SELECT * FROM users WHERE name = ' . $name ;
-        return $this->custom_query($req);
+        $result = $this->sql($req);
+        return $result->fetchObject($this->model);;
     }
 
     public function checkEmail()

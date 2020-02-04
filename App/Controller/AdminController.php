@@ -76,7 +76,9 @@ class AdminController
 
     public function deletePost($id)
     {
-        $this->postManager->delete($id);
+        $this->postManager->deletePost($id);
+        $this->listPosts();
+
     }
 
     public function updatePostView($id)

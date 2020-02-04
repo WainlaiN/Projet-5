@@ -6,10 +6,7 @@ use App\Core\Database;
 use App\Model\Post;
 
 
-/**
- * Class PostManager
- * @package App\Manager
- */
+
 class PostManager extends Database
 {
 
@@ -20,8 +17,8 @@ class PostManager extends Database
 
     public function getPosts()
     {
-        $req = 'SELECT * FROM ' . $this->table_name;
-        $result = $this->sql($req);
+        $posts = 'SELECT * FROM ' . $this->table_name;
+        $result = $this->sql($posts);
         while ($datas = $result->fetchObject($this->model)) {
             $custom_array[] = new $this->model($datas);
         }
@@ -31,9 +28,9 @@ class PostManager extends Database
 
     public function getPost($id)
     {
-        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE id=' . $id;
-        $result = $this->sql($req);
-        return $data = $result->fetchObject($this->model);
+        $post = 'SELECT * FROM ' . $this->table_name . ' WHERE id=' . $id;
+        $result = $this->sql($post);
+        return $result->fetchObject($this->model);
 
     }
 
@@ -46,19 +43,24 @@ class PostManager extends Database
         "' . $post['description'] . '",
         "' . $post['author'] . '",
           NOW());';
-        return $model = $this->sql($newPost)->fetch();
+        $result = $this->sql($newPost);
+        return $result->fetch();
+
     }
 
 
     public function deletePost($id)
     {
-        return $this->delete($id);
+        $post = 'DELETE FROM ' . $this->table_name . ' WHERE id=' . $id;
+        $result = $this->sql($post);
+        return $result->fetch();
     }
 
     public function updatePost($id)
     {
         $editedPost = 'UPDATE ' . $this->table_name . ' SET author="' . $_POST["author"] . '", title="' . $_POST["title"] . '", chapo="' . $_POST["chapo"] . '", description="' . $_POST["description"] . '", date_update=NOW() WHERE id=' . $id;
-        return $model = $this->custom_query($editedPost);
+        $result = $this->sql($editedPost);
+        return $result->fetch();
     }
 
 

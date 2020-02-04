@@ -1,5 +1,5 @@
 <?php
-var_dump($datas);
+//dump($data);
 
 ?>
 

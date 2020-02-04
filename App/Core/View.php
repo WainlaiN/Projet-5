@@ -45,7 +45,7 @@ class View
 
             if (!is_object($datas)) {
 
-                extract($datas);
+               extract($datas);
             }
 
             ob_start();
