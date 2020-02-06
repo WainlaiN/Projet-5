@@ -61,18 +61,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Connexion</a>
                 </li>
-            <?php else : ?>
+            <!--<?php else : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Deconnexion</a>
                 </li>
                 <li>
-                <a class="nav-link" href="/admin">Admin</a>
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+                <li>
+                <a class="nav-link" href="/register">S'inscrire</a>
                 </li>
 
-            <?php endif; ?>
-            <li class="nav-item">
-                <a class="nav-link" href="/home">Inscription</a>
-            </li>
+            <?php endif; ?>-->
         </ul>
     </div>
 

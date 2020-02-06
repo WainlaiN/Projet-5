@@ -14,7 +14,9 @@ try {
     //$router->map('GET', '/home', '');
     $router->map('GET', '/posts', 'FrontController#listPosts');
     $router->map('GET', '/post/[i:id]', 'FrontController#post');
-    $router->map('GET', '/register', 'FrontController#register');
+    $router->map('GET', '/register', 'FrontController#registerView');
+    $router->map('POST', '/register', 'FrontController#register');
+
 
 
 //Admin Management

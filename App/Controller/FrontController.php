@@ -54,6 +54,13 @@ Class FrontController
 
     }
 
+    public function registerView()
+    {
+        $view = new ViewPublic('Register');
+        $view->generate(array());
+
+    }
+
     public function connect()
     {
 

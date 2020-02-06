@@ -1,29 +1,52 @@
-<?php
-
-?>
-<h1>Se Connecter</h1>
 <form action="/connect" method="post">
 
     <?php if (isset($_SESSION['flash']['danger'])) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?= $_SESSION['flash']['danger'] ?>
-    </div>
+        <div class="alert alert-danger" role="alert">
+            <?= $_SESSION['flash']['danger'] ?>
+        </div>
 
     <?php endif ?>
+    <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Se connecter</div>
+                        <div class="card-body">
+                            <form action="/connect" method="POST">
+                                <div class="form-group row">
+                                    <label for="username" class="col-md-4 col-form-label text-md-right">Nom
+                                        d'utilisateur</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="username" class="form-control" name="username" required
+                                               autofocus>
+                                    </div>
+                                </div>
 
-    <div class="container">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Mot de
+                                        passe</label>
+                                    <div class="col-md-6">
+                                        <input type="password" id="password" class="form-control" name="password"
+                                               required>
+                                    </div>
+                                </div>
 
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
 
-        <button type="submit"class="btn btn-primary">Login</button>
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Se connecter
+                                    </button>
+                                    <a href="/register" class="btn btn-link">
+                                        S'inscrire
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-        <button type="submit" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-</form>
+
+

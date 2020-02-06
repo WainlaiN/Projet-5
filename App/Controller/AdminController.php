@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Manager\LoginManager;
-use App\Manager\UserManager;
+use App\Model\User;
 use App\Model\ViewAdmin;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
