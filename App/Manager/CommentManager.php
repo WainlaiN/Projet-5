@@ -50,10 +50,12 @@ class CommentManager extends Database
         return $model = $this->custom_query($editedComments);
     }
 
-
     public function deleteComment($id)
     {
-        return $this->delete($id);
+        $comment = 'DELETE FROM ' . $this->table_name . ' WHERE id= :id';
+        $parameters = [':id' => $id];
+        $result = $this->sql($comment, $parameters);
+        return $result;
     }
 
     public function getInvalidComments()

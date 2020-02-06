@@ -6,7 +6,6 @@ use App\Core\Database;
 use App\Model\Post;
 
 
-
 class PostManager extends Database
 {
 
@@ -53,8 +52,9 @@ class PostManager extends Database
 
     public function deletePost($id)
     {
-        $post = 'DELETE FROM ' . $this->table_name . ' WHERE id=' . $id;
-        $result = $this->sql($post);
+        $post = 'DELETE FROM ' . $this->table_name . ' WHERE id= :id';
+        $parameters = [':id' => $id];
+        $result = $this->sql($post, $parameters);
         return $result;
     }
 

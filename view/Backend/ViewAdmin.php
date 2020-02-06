@@ -31,7 +31,7 @@
                     <a href="/admin/comments/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Commentaires</a>
                 </td>
                 <td>
-                    <a href="admin/delete/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
+                    <a href="/admin/post/delete/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
                        onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
 
                 </td>

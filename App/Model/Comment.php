@@ -58,7 +58,7 @@ class Comment
      * @param int $id
      * @return Comment
      */
-    public function setId(int $id): Comment
+    public function setId(int $id)
     {
         $this->id = $id;
         return $this;
@@ -84,7 +84,7 @@ class Comment
      * @param string $author
      * @return Comment
      */
-    public function setAuthor(string $author): Comment
+    public function setAuthor(string $author)
     {
         $this->author = $author;
         return $this;
@@ -102,7 +102,7 @@ class Comment
      * @param string $comment
      * @return Comment
      */
-    public function setComment(string $comment): Comment
+    public function setComment(string $comment)
     {
         $this->comment = $comment;
         return $this;
@@ -120,7 +120,7 @@ class Comment
      * @param string $post_id
      * @return Comment
      */
-    public function setPostId(string $post_id): Comment
+    public function setPostId(string $post_id)
     {
         $this->post_id = $post_id;
         return $this;
@@ -138,11 +138,31 @@ class Comment
      * @param string $comment_date
      * @return Comment
      */
-    public function setCommentDate(string $comment_date): Comment
+    public function setCommentDate(string $comment_date)
     {
         $this->comment_date = $comment_date;
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        return $this->is_valid;
+    }
+
+    /**
+     * @param bool $is_valid
+     * @return Comment
+     */
+    public function setisValid(bool $is_valid)
+    {
+        $this->is_valid = $is_valid;
+        return $this;
+    }
+
+
 
 
 }

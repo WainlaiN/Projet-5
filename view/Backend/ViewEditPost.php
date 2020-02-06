@@ -1,4 +1,4 @@
-<?php //dump($done) ?>
+<?php $this->title = 'Edition'; ?>
 <h1>Editer l'article</h1>
 <p><a href="/admin">Retour à la liste des billets</a></p>
 

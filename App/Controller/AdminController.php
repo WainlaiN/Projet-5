@@ -84,6 +84,12 @@ class AdminController
     public function deletePost($id)
     {
         $this->postManager->deletePost($id);
+        ;
+    }
+
+    public function deletecomment($id)
+    {
+        $this->commentManager->deleteComment($id);
         $this->listPosts();
     }
 
@@ -101,11 +107,6 @@ class AdminController
 
     }
 
-    public function DeleteComment($id)
-    {
-        $this->commentManager->deleteComment($id);
-    }
-
     public function ValidateComment()
     {
         $this->commentManager->validateComment($id);
@@ -117,6 +118,5 @@ class AdminController
         $view = new ViewAdmin('Comment');
         $view->generate($comments);
     }
-
 
 }

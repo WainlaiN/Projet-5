@@ -23,10 +23,11 @@ try {
     $router->map('GET', '/admin', 'AdminController#listPosts');
     $router->map('GET', '/admin/post/[i:id]', 'AdminController#updatePostView');
     $router->map('POST', '/admin/post/[i:id]', 'AdminController#UpdatePost');
-    $router->map('GET', '/admin/delete/[i:id]', 'AdminController#deletePost');
+    $router->map('GET', '/admin/post/delete/[i:id]', 'AdminController#deletePost');
     $router->map('GET', '/admin/add', 'AdminController#addPostView');
     $router->map('POST', '/admin/addpost', 'AdminController#addPost');
     $router->map('GET', '/admin/comments/[i:id]', 'AdminController#listComments');
+    $router->map('GET', '/admin/comment/delete/[i:id]', 'AdminController#deleteComment');
 
 
 //login Management

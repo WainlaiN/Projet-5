@@ -1,16 +1,14 @@
-
-<?php $this->title = 'Mon blog';?>
+<?php $this->title = 'Mon blog'; ?>
 
 <!-- Header -->
 <header>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <img class="img-responsive rounded-circle" src="img/moi.png" alt="">
+                <img class="img-fluid rounded-circle" src="img/moi.png" alt="" style="width: 25%">
                 <div class="intro-text">
                     <span class="name">Nicolas Dupriez</span>
-
-                    <span class="skills">Developpeur PHP / Symfony</span>
+                    <span class="skills">Développeur PHP / Symfony</span>
                 </div>
             </div>
         </div>
@@ -103,10 +101,13 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-lg-offset-2">
-                <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+                <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete
+                    source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy
+                    customization.</p>
             </div>
             <div class="col-lg-4">
-                <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+                <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or
+                    a graphic artist looking to share your projects, this template is the perfect starting point!</p>
             </div>
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <a href="#" class="btn btn-lg btn-outline">
@@ -134,28 +135,32 @@
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Name</label>
-                            <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                            <input type="text" class="form-control" placeholder="Name" id="name" required
+                                   data-validation-required-message="Please enter your name.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Email Address</label>
-                            <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+                            <input type="email" class="form-control" placeholder="Email Address" id="email" required
+                                   data-validation-required-message="Please enter your email address.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Phone Number</label>
-                            <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+                            <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required
+                                   data-validation-required-message="Please enter your phone number.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Message</label>
-                            <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                            <textarea rows="5" class="form-control" placeholder="Message" id="message" required
+                                      data-validation-required-message="Please enter a message."></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>

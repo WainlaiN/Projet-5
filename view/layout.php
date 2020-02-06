@@ -12,13 +12,13 @@
     <title><?= $title ?>></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet" >
 
     <!-- Theme CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="/css/freelancer.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
-    <link href="../public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
           type="text/css">
