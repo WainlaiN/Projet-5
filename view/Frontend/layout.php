@@ -36,7 +36,7 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="img/PHP-ARTICLE.png" width="90px" height="60px" alt="Logo">
+            <img src="img/PHP-ARTICLE.png" width="50px" height="30px" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

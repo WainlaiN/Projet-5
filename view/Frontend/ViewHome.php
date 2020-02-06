@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <img class="img-responsive" src="img/profile.png" alt="">
+                <img class="img-responsive rounded-circle" src="img/moi.png" alt="">
                 <div class="intro-text">
                     <span class="name">Nicolas Dupriez</span>
 

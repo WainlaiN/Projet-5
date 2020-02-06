@@ -6,6 +6,8 @@
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  /*background-image: url("../img/wallphp.jpg");*/
+  background: #2C3E50;
 
 }
 p {
