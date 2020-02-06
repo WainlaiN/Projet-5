@@ -25,12 +25,12 @@ class Database
 
     protected function sql($sql, $parameters = null, $binds = null)
     {
-
         if ($parameters || $binds) {
             $result = $this->dbConnect()->prepare($sql);
 
             if ($binds) {
                 foreach ($binds as $bind) {
+                    dump($bind);
                     $result->bindParam($bindnew[0], $bindnew[1], $bindnew[2]);
                 }
                 $result->execute();

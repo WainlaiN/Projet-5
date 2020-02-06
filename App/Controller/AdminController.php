@@ -90,6 +90,7 @@ class AdminController
     {
         $this->postManager->updatePost($id);
         $this->updatePostView($id);
+
     }
 
     public function DeleteComment($id)

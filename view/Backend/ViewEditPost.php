@@ -1,4 +1,4 @@
-<?php //dump($datas) ?>
+<?php //dump($done) ?>
 <h1>Editer l'article</h1>
 <p><a href="/admin">Retour à la liste des billets</a></p>
 

@@ -1,5 +1,5 @@
 <?php
-//dump($data);
+//dump($comment);
 
 ?>
 
@@ -17,7 +17,7 @@
                             Modifier</a>
                     </div>
                 </div>
-            <?php else : ?>
+            <?php elseif (is_array($datas)) : ?>
             <?php foreach ($datas as $data) : ?>
             <div class="comment-body">
                 <div class="text">
@@ -28,6 +28,10 @@
                                 href="../../public/index.php?action=editComment&amp;commentId=<?= $data->getId() ?>">
                             Supprimer</a></p>
                     <?php endforeach ?>
+                    <?php else : ?>
+                        <div class="alert alert-secondary" role="alert">
+                            Pas de commentaires pour cet Article
+                        </div>
                     <?php endif ?>
                 </div>
             </div>
