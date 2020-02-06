@@ -7,6 +7,7 @@ class View
 {
     protected $fileName;
     protected $filepath = '';
+    private $layoutfilepath = '../view/';
 
     protected $title;
 
@@ -22,7 +23,7 @@ class View
     {
 
         $content = $this->generateFile($this->fileName, $datas);
-        $view = $this->generateFile($this->filepath . 'layout.php',
+        $view = $this->generateFile($this->layoutfilepath . 'layout.php',
             array(
                 'title' => $this->title,
                 'content' => $content

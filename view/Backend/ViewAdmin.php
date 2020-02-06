@@ -1,8 +1,12 @@
 <?php $this->title = 'Admin';
 //dump($datas);?>
 
-<h1>Administration</h1>
-<p>Derniers billets du blog :</p>
+<div class="row justify-content-center">
+    <h1>Administration</h1>
+</div>
+<div class="row">
+    <p>Derniers billets du blog :</p>
+</div>
 
 <div class="row">
     <table class="table table-striped">

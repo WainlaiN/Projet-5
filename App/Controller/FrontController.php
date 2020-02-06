@@ -28,6 +28,11 @@ Class FrontController
         }
     }
 
+    public function home() {
+        $view = new ViewPublic('Home');
+        $view->generate(array());
+    }
+
     public function listPosts()
     {
         $posts = $this->postManager->getPosts();

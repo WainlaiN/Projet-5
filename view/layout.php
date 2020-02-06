@@ -18,7 +18,7 @@
     <link href="css/freelancer.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../../public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
           type="text/css">
@@ -61,7 +61,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Connexion</a>
                 </li>
-            <!--<?php else : ?>
+            <?php else : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Deconnexion</a>
                 </li>
@@ -72,7 +72,7 @@
                 <a class="nav-link" href="/register">S'inscrire</a>
                 </li>
 
-            <?php endif; ?>-->
+            <?php endif; ?>
         </ul>
     </div>
 
