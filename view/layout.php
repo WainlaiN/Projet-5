@@ -33,11 +33,13 @@
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="img/PHP-ARTICLE.png" width="50px" height="30px" alt="Logo">
+            <img src="img/php.png" width="30px" height="30px" alt="Logo">
+            <img src="img/symfony.png" width="30px" height="30px" alt="Logo">
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -57,27 +59,31 @@
             <li class="nav-item">
                 <a class="nav-link" href="#CV">CV</a>
             </li>
-            <?php if (!isset($_SESSION['auth'])) : ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Connexion</a>
-                </li>
-            <?php else : ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Deconnexion</a>
-                </li>
+            <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->getStatus() == 1) : ?>
                 <li>
                     <a class="nav-link" href="/admin">Admin</a>
                 </li>
-                <li>
-                <a class="nav-link" href="/register">S'inscrire</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        <img src="img/deco.png" width="20" height="20" alt="deconnexion">
+                    </a>
                 </li>
-
-            <?php endif; ?>
+            <?php else : ?>
+                <li>
+                    <a class="nav-link" href="/register">S'inscrire</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <img src="img/deco.png" width="20" height="20" alt="deconnexion">
+                    </a>
+                </li>
+            <?php endif ?>
         </ul>
     </div>
 
 </nav>
 <div class="container">
+    <?php //dump($_SESSION['auth']->getStatus()); ?>
     <?= $content ?>
 
 </div>

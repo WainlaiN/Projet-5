@@ -98,10 +98,9 @@ Class FrontController
                     $_SESSION['auth'] = $user;
 
                     if ($_SESSION['auth']->getStatus() == 1) {
-                        //dump($isPasswordCorrect, $_SESSION, $_POST);
                         header('location: /admin');
                     } else {
-                        header('Location: /login');
+                        header('Location: /');
                     }
                 }
             }

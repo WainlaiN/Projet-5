@@ -74,7 +74,7 @@ header {
   text-align: center;
   /*background: #18BC9C;*/
   background-image: url("../img/wallphp.jpg");
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 5px 5px 5px black;
   color: white;
 }
 header .container {

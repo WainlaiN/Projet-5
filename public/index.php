@@ -26,7 +26,8 @@ try {
     $router->map('GET', '/admin/delete/[i:id]', 'AdminController#deletePost');
     $router->map('GET', '/admin/add', 'AdminController#addPostView');
     $router->map('POST', '/admin/addpost', 'AdminController#addPost');
-    $router->map('GET', '/admin/comments/[i:id]', 'AdminController#getComments');
+    $router->map('GET', '/admin/comments/[i:id]', 'AdminController#listComments');
+
 
 //login Management
     $router->map('GET', '/login', 'FrontController#login');

@@ -1,9 +1,54 @@
-<?php
-//dump($comment);
+<?php dump($datas) ?>
 
-?>
+<div class="row justify-content-center">
+    <h1>Administration</h1>
+</div>
+<div class="row">
+    <p>Liste des Commentaires</p>
+</div>
 
-<div class="container">
+<?php if ($datas == false) : ?>
+    <div class="alert alert-secondary" role="alert">
+        Pas de commentaires pour cet Article
+    </div>
+<?php else  : ?>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+        <th>Article</th>
+        <th>Auteur</th>
+        <th>Commentaire</th>
+        <th>Valider</th>
+        <th>Supprimer</th>
+        </thead>
+        <tbody>
+        <?php if (is_object($datas)) : ?>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        <?php elseif (is_array($datas)) : ?>
+            <?php foreach ($datas as $data): ?>
+                <tr>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif ?>
+        <?php endif ?>
+
+
+        </tbody>
+    </table>
+
+    <!--<div class="container">
     <div class="row">
         <div class="panel panel-default widget">
             <div class="panel-heading">
@@ -27,7 +72,7 @@
                     <?php elseif (is_array($datas)) : ?>
                     <?php foreach ($datas
 
-                    as $data) : ?>
+                                   as $data) : ?>
                     <div class="comment-body">
                         <div class="text">
                             <p><strong><?= $this->clean($data->getAuthor()) ?></strong>

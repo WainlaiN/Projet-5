@@ -33,7 +33,7 @@ class LoginManager extends Database
         return $result->fetchObject($this->model);
     }
 
-    /** check is user is in database */
+    /** check if user is already in database */
     public function checkUsername()
     {
         if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {

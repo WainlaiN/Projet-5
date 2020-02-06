@@ -49,6 +49,14 @@ class AdminController
 
     }
 
+    public function listComments($postId)
+    {
+        $comments = $this->commentManager->getComments($postId);
+        $view = new ViewAdmin('Comment');
+        $view->generate($comments);
+
+    }
+
     public function addPostView()
     {
         $view = new ViewAdmin('AddPost');
