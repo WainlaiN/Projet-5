@@ -4,7 +4,7 @@
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>
 
-    <div class="container">
+<div class="container">
 <?php foreach ($datas as $data): ?>
 
 
