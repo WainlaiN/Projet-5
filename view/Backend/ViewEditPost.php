@@ -1,7 +1,13 @@
-<?php $this->title = 'Edition'; ?>
+<?php $this->title = 'Edition';?>
 <h1>Editer l'article</h1>
 <p><a href="/admin">Retour à la liste des billets</a></p>
 
+<?php if (count($_POST) != 0) : ?>
+<div class="alert alert-success" role="alert">
+    Votre Article a été modifié !
+</div>
+
+<?php endif ?>
 
     <form action=""  method="post">
 
@@ -15,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="author">Chapo</label><br/>
-                <input type="chapo" id="chapo" name="chapo" value="<?= $datas->getChapo() ?>" class="form-control"/>
+                <input type="text" id="chapo" name="chapo" value="<?= $datas->getChapo() ?>" class="form-control"/>
             </div>
             <div class="form-group">
                 <label for="comment">Description</label><br/>

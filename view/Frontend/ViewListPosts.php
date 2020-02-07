@@ -4,10 +4,10 @@
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>
 
-
+    <div class="container">
 <?php foreach ($datas as $data): ?>
 
-    <div class="container">
+
         <div class="news">
             <h3>
                 <?= $this->clean($data->getTitle()); ?>
@@ -22,9 +22,9 @@
                 <em><a href="post/<?= $data->getId() ?>">Voir plus</a></em>
             </p>
         </div>
-    </div>
-<?php endforeach;
 
+<?php endforeach; ?>
+  </div>
 
 
 

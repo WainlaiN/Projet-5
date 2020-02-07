@@ -1,5 +1,5 @@
 <?php $this->title = 'Admin';
-//dump($datas);?>
+//var_dump($_POST);?>
 
 <div class="row justify-content-center">
     <h1>Administration</h1>
@@ -25,13 +25,13 @@
                 <td><?= $this->clean($data->getTitle()); ?></td>
                 <td><?= $data->getDateCreation(); ?></td>
                 <td>
-                    <a href="/admin/post/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Editer</a>
+                    <a href="./admin/post/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Editer</a>
                 </td>
                 <td>
-                    <a href="/admin/comments/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Commentaires</a>
+                    <a href="./admin/comments/<?= $data->getId() ?>" style="color:white" class="btn btn-primary">Commentaires</a>
                 </td>
                 <td>
-                    <a href="/admin/post/delete/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
+                    <a href="./admin/post/delete/<?= $data->getId() ?>" style="color:white" class="btn btn-danger"
                        onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
 
                 </td>
@@ -42,6 +42,6 @@
     </table>
 
     <div class="row py-3">
-        <a href="/admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
+        <a href="./admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
     </div>
 </div>

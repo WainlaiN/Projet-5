@@ -1,4 +1,4 @@
-<?php dump($datas, $_SERVER['REDIRECT_URL']) ?>
+<?php //dump($datas, $_SERVER['REDIRECT_URL']) ?>
 
 <div class="row justify-content-center">
     <h1>Administration</h1>

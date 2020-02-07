@@ -8,7 +8,6 @@ class View
     protected $fileName;
     protected $filepath = '';
     private $layoutfilepath = '../view/';
-
     protected $title;
 
 
