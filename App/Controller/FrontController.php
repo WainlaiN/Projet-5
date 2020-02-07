@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Manager\LoginManager;
-use App\Model\ViewAdmin;
+//use App\Model\ViewAdmin;
 use App\Model\ViewPublic;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
-use http\Client\Curl\User;
+
 
 
 Class FrontController
@@ -81,6 +81,7 @@ Class FrontController
             $password = strip_tags(htmlspecialchars($_POST['password']));
 
             $user = $this->loginManager->getLogin($username);
+            //dump($user);
 
 
             if (!$user) {

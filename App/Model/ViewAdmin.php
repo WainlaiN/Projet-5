@@ -12,5 +12,4 @@ class ViewAdmin extends View
     protected $filepath = '../view/Backend/';
     protected $title;
 
-
 }

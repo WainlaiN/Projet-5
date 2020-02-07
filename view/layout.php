@@ -36,8 +36,8 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="img/php.png" width="30px" height="30px" alt="Logo">
-            <img src="img/symfony.png" width="30px" height="30px" alt="Logo">
+            <img src="../img/php.png" width="30px" height="30px" alt="Logo">
+            <img src="../img/symfony.png" width="30px" height="30px" alt="Logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -65,7 +65,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">
-                        <img src="img/deco.png" width="20" height="20" alt="deconnexion">
+                        <img src="../img/deco.png" width="20" height="20" alt="deconnexion">
                     </a>
                 </li>
             <?php else : ?>
@@ -74,7 +74,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">
-                        <img src="img/deco.png" width="20" height="20" alt="deconnexion">
+                        <img src="../img/deco.png" width="20" height="20" alt="connexion">
                     </a>
                 </li>
             <?php endif ?>
