@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>{{ title }}</title>
+    {{ dump(session.auth) }}
 
     <!-- Bootstrap Core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet">
@@ -56,8 +57,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#CV">CV</a>
                 </li>
-
-                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->getStatus() == 1) : ?>
+                {% if session is defined %}
                 <li>
                     <a class="nav-link" href="/admin">Admin</a>
                 </li>
@@ -66,7 +66,7 @@
                         <img src="../../img/deco.png" width="20" height="20" alt="deconnexion">
                     </a>
                 </li>
-                <?php else : ?>
+                {% else %}
                 <li>
                     <a class="nav-link" href="/register">S'inscrire</a>
                 </li>
@@ -75,7 +75,7 @@
                         <img src="../img/deco.png" width="20" height="20" alt="connexion">
                     </a>
                 </li>
-                <?php endif ?>
+                {% endif %}
             </ul>
         </div>
     </div>
