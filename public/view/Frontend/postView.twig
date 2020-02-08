@@ -1,0 +1,40 @@
+{% extends 'template.twig' %}
+{% block title %}Mon article {{ listpost.title }}{% endblock %}
+{% block content %}
+
+
+    <p><a href="/posts">Retour à la liste des billets</a></p>
+    <div class="container">
+        <div class="news">
+            <h3>
+                {{ post.title }}
+                <em>le {{ post.date_creation }}</em>
+            </h3>
+            <p>
+                {{ post.description }}
+            </p>
+        </div>
+        <h2>Commentaires</h2>
+        <section class="comments">
+            <article class="comment">
+                {% for listcomment in listcomments %}
+                    <div class="comment-body">
+                        <div class="text">
+                            <p><strong>{{ listcomment.author }}</strong> le {{ listcomment.comment_date }}
+                            </p>
+                            <p>{{ listcomment.comment }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </article>
+        </section>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+

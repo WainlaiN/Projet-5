@@ -9,7 +9,6 @@ use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
 
 
-
 Class FrontController
 {
     private $postManager;
@@ -33,33 +32,22 @@ Class FrontController
     public function home()
     {
         $this->renderer->render('Frontend/homeView');
-        $_SESSION['flash'] =  array();
-
-
-        //$view = new ViewPublic('Home');
-        //$view->generate(array());
+        $_SESSION['flash'] = array();
     }
 
     public function listPosts()
     {
         $list_posts = $this->postManager->getPosts();
         $this->renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
-        $_SESSION['flash'] =  array();
-
-        //$view = new ViewPublic('ListPosts');
-        //$view->generate($posts);
-
+        $_SESSION['flash'] = array();
     }
 
     public function post($id)
     {
         $post = $this->postManager->getPost($id);
-        $viewPost = new ViewPublic('Post');
-        $comment = $this->commentManager->getComments($id);
-        $viewComment = new ViewPublic('Comment');
-        $viewPost->generate($post);
-        $viewComment->generatecomment($comment);
-
+        $list_comments = $this->commentManager->getComments($id);
+        $this->renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
+        $_SESSION['flash'] = array();
     }
 
     public function login()
@@ -91,8 +79,6 @@ Class FrontController
             $password = strip_tags(htmlspecialchars($_POST['password']));
 
             $user = $this->loginManager->getLogin($username);
-            //dump($user);
-
 
             if (!$user) {
                 $_SESSION['flash']['danger'] = 'Mauvais identifiant';

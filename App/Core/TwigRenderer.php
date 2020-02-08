@@ -4,6 +4,10 @@
 namespace App\Core;
 
 use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
 
@@ -18,11 +22,17 @@ class TwigRenderer
             'cache' => false, // __DIR__ . /tmp',
             'debug' => true,
         ]);
+        $this->twig->addExtension(new DebugExtension());
         if (isset($_SESSION['flash'])) {
             $this->twig->addGlobal('session', $_SESSION);
         }
 
-        echo $this->twig->render($view . '.twig', $params);
+        try {
+            echo $this->twig->render($view . '.twig', $params);
+        } catch (LoaderError $e) {
+        } catch (RuntimeError $e) {
+        } catch (SyntaxError $e) {
+        }
     }
 
 }
