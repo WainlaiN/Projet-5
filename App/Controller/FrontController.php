@@ -52,9 +52,8 @@ Class FrontController
 
     public function login()
     {
-        $view = new ViewPublic('Login');
-        $view->generate(array());
-
+        $this->renderer->render('Frontend/loginView');
+        $_SESSION['flash'] = array();
     }
 
     public function registerView()
