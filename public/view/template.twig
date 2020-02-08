@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>{{ title }}</title>
-    {{ dump(session.auth) }}
+
 
     <!-- Bootstrap Core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet">
@@ -57,7 +57,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#CV">CV</a>
                 </li>
-                {% if session is defined %}
+                {% if session is defined  and session.auth.status == 1 %}
                 <li>
                     <a class="nav-link" href="/admin">Admin</a>
                 </li>
