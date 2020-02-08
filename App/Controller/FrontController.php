@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Manager\LoginManager;
-//use App\Model\ViewAdmin;
 use App\Model\ViewPublic;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
+use App\Core\TwigRenderer;
 
 
 
@@ -15,6 +15,7 @@ Class FrontController
     private $postManager;
     private $commentManager;
     private $loginManager;
+    private $renderer;
 
 
     public function __construct()
@@ -22,21 +23,27 @@ Class FrontController
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
+        $this->renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
     }
 
-    public function home() {
-        $view = new ViewPublic('Home');
-        $view->generate(array());
+    public function home()
+    {
+        $this->renderer->render('Frontend/homeView');
+        $_SESSION['flash'] =  array();
+
+
+        //$view = new ViewPublic('Home');
+        //$view->generate(array());
     }
 
     public function listPosts()
     {
         $posts = $this->postManager->getPosts();
-        $view = new ViewPublic('ListPosts');
+        //$view = new ViewPublic('ListPosts');
         $view->generate($posts);
 
     }

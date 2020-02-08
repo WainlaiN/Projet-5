@@ -7,6 +7,7 @@ require '../vendor/autoload.php';
 
 $router = new router();
 
+
 try {
 
 //Front management
