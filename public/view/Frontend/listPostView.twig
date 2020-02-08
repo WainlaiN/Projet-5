@@ -1,0 +1,31 @@
+{% extends 'template.twig' %}
+{% block title %}Mon article {{ listpost.title }}{% endblock %}
+{% block content %}
+
+    <h1>Mon super blog !</h1>
+    <p>Derniers billets du blog :</p>
+
+    <div class="container">
+    <div class="row">
+    <div class="col col-xs-12">
+        {% for listpost in listposts %}
+            <div class="row">
+                <div class="news">
+                    <h3>
+                        {{ listpost.title }}
+                        <em>le {{ listpost.date_creation }} </em>
+                    </h3>
+
+                    <p>
+                        {{ listpost.chapo }}
+                        <br/>
+                        {{ listpost.description }}
+                        <br/>
+                        <em><a href="post/{{ listpost.id }}">Voir plus</a></em>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

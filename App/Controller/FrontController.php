@@ -42,9 +42,12 @@ Class FrontController
 
     public function listPosts()
     {
-        $posts = $this->postManager->getPosts();
+        $list_posts = $this->postManager->getPosts();
+        $this->renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
+        $_SESSION['flash'] =  array();
+
         //$view = new ViewPublic('ListPosts');
-        $view->generate($posts);
+        //$view->generate($posts);
 
     }
 
