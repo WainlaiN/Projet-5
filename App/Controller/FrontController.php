@@ -58,8 +58,8 @@ Class FrontController
 
     public function registerView()
     {
-        $view = new ViewPublic('Register');
-        $view->generate(array());
+        $this->renderer->render('Frontend/registeView');
+        $_SESSION['flash'] = array();
 
     }
 
@@ -111,6 +111,8 @@ Class FrontController
         header('Location: /');
     }
 
+
+    //beta
     public function register()
     {
         if ($this->loginManager->checkUsername()) {
