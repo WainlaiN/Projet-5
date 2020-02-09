@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Manager\LoginManager;
-use App\Model\ViewPublic;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;

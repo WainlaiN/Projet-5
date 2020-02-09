@@ -7,6 +7,7 @@ use App\Model\User;
 use App\Model\ViewAdmin;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
+use App\Core\TwigRenderer;
 
 
 class AdminController
@@ -14,12 +15,14 @@ class AdminController
     private $postManager;
     private $commentManager;
     private $loginManager;
+    private $renderer;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
+        $this->renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -59,8 +62,11 @@ class AdminController
 
     public function addPostView()
     {
-        $view = new ViewAdmin('AddPost');
-        $view->generate(array());
+        $this->renderer->render('Backend/addPostView');
+        $_SESSION['flash'] = array();
+
+        //$view = new ViewAdmin('AddPost');
+        //$view->generate(array());
     }
 
     public function addPost()
