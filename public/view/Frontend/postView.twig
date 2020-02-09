@@ -1,10 +1,11 @@
 {% extends 'template.twig' %}
-{% block title %}Mon article {{ listpost.title }}{% endblock %}
+{% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
+    {{ dump(post) }}
 
 
     <p><a href="/posts">Retour à la liste des billets</a></p>
-    <div class="container">
+    <div class="container py-3">
         <div class="news">
             <h3>
                 {{ post.title }}
@@ -14,21 +15,57 @@
                 {{ post.description }}
             </p>
         </div>
-        <h2>Commentaires</h2>
-        <section class="comments">
-            <article class="comment">
-                {% for listcomment in listcomments %}
-                    <div class="comment-body">
-                        <div class="text">
-                            <p><strong>{{ listcomment.author }}</strong> le {{ listcomment.comment_date }}
-                            </p>
-                            <p>{{ listcomment.comment }}
-                        </div>
+
+        <div class="container py-3">
+            <div class="row">
+                <div class="panel panel-default widget">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-comment"></span>
+                        <h3 class="panel-title">
+                            Commentaires Récents</h3>
+                        <span class="label label-info">
+                    </span>
                     </div>
-                {% endfor %}
-            </article>
-        </section>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            {% for comment in listcomments %}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-lg-8 col-xs-2 col-md-1">
+                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                                    <div class="col-xs-10 col-md-11">
+                                        <div>
+                                            <a href="http://www.jquery2dotnet.com/2013/10/google-style-login-page-desing-usign.html">
+                                                Google Style Login Page Design Using Bootstrap</a>
+                                            <div class="mic-info">
+                                                By: <a href="#">{{ comment.author }}</a> on {{ comment.date_creation }}
+                                            </div>
+                                        </div>
+                                        <div class="comment-text">
+                                            {{ comment.comment }}
+                                        </div>
+                                        <div class="action">
+                                            <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 
 {% endblock %}

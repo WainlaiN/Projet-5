@@ -29,25 +29,27 @@ class CommentManager extends Database
         }
     }
 
-
     public function getComment($id)
     {
         return $this->get($id);
     }
 
-
     public function addComment($postId, $author, $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date, is_valid) VALUES (' . $postId . ', "' . $author . '", "' . $comment . '", DATE(NOW(), FALSE);';
-        return $model = $this->custom_query($newComments);
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date, is_valid) VALUES (:id,:author,:comment, DATE(NOW(),:valid);';
+        $parameters = [':id' => $postId, ':author' => $author, ':valid' => 0];
+        $result = $this->sql($newComments, $parameters);
+        return $result;
     }
 
 
     public function editComment($commentId, $comment)
     {
 
-        $editedComments = 'UPDATE ' . $this->table_name . ' SET comment = "' . $comment . '" WHERE id = ' . $commentId . ';';
-        return $model = $this->custom_query($editedComments);
+        $editedComments = 'UPDATE ' . $this->table_name . ' SET comment = :comment WHERE id = :id;';
+        $parameters = [':comment' => $commentId, ':id' => $commentId];
+        $result = $this->sql($editedComments, $parameters);
+        return $result;
     }
 
     public function deleteComment($id)
@@ -60,14 +62,20 @@ class CommentManager extends Database
 
     public function getInvalidComments()
     {
-        $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = FALSE;';
-        return $model = $this->custom_query($invalidComments);
+        $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid';
+        $parameters = [':valid' => 0];
+        $result = $this->sql($invalidComments, $parameters);
+        return $result;
+
     }
 
     public function validateComment($commentId)
     {
-        $editedComments = 'UPDATE ' . $this->table_name . ' SET is_valid = TRUE WHERE id = ' . $commentId . ';';
-        return $model = $this->custom_query($editedComments);
+        $validate = 'UPDATE ' . $this->table_name . ' SET is_valid = :valid WHERE id = :id';
+        $parameters = [':id' => $commentId, ':valid' => 1];
+        $result = $this->sql($validate, $parameters);
+        return $result;
+
 
     }
 

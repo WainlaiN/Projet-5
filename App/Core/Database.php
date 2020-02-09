@@ -9,7 +9,6 @@ class Database
 {
     protected $db;
 
-
     protected function dbConnect()
     {
         if ($this->db === null) {
@@ -19,18 +18,16 @@ class Database
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return $this->db;
-
     }
 
     protected function sql($sql, $parameters = null, $binds = null)
     {
-        //dump($sql);
+
         if ($parameters || $binds) {
             $result = $this->dbConnect()->prepare($sql);
 
             if ($binds) {
                 foreach ($binds as $bind) {
-                    dump($bind);
                     $result->bindParam($bindnew[0], $bindnew[1], $bindnew[2]);
                 }
                 $result->execute();
