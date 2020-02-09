@@ -2,8 +2,6 @@
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
 
-
-
     <p><a href="/posts">Retour à la liste des billets</a></p>
     <div class="container py-3">
         <div class="news">
@@ -57,12 +55,31 @@
                                 </li>
                             {% endfor %}
                         </ul>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        Ajouter un commentaire
 
+
+        <form action="/admin/addpost" method="post">
+
+            <div class="form-group">
+                <label for="author">Auteur</label><br/>
+                <input type="text" id="author" name="author" value="{{ session.auth.username }}"
+                       class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="comment">Votre commentaire</label><br/>
+                <textarea id="description" name="description" rows="7" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ajouter" class="btn btn-primary">
+            </div>
+
+        </form>
+    </div>
 
 
 {% endblock %}
