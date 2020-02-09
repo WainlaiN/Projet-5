@@ -1,0 +1,52 @@
+{% extends 'template.twig' %}
+{% block title %}Ajouter un article{% endblock %}
+{% block content %}
+
+
+    <div class="row justify-content-center">
+        <h1>Administration</h1>
+    </div>
+    <div class="row">
+        <p>Derniers billets du blog :</p>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Editer</th>
+            <th>Voir les commentaires</th>
+            <th>Supprimer</th>
+            </thead>
+            <tbody>
+            {% for listpost in listposts %}
+
+            <tr>
+                <td>{{ listpost.id }}</td>
+                <td>{{ listpost.title }}</td>
+                <td>{{ listpost.date_creation }}</td>
+                <td>
+                    <a href="./admin/post/{{ listpost.id }}" style="color:white" class="btn btn-primary">Editer</a>
+                </td>
+                <td>
+                    <a href="./admin/comments/{{ listpost.id }}" style="color:white" class="btn btn-primary">Commentaires</a>
+                </td>
+                <td>
+                    <a href="./admin/post/delete/{{ listpost.id }}" style="color:white" class="btn btn-danger"
+                       onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
+
+                </td>
+            </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="row py-3">
+            <a href="./admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
+        </div>
+    </div>
+
+{% endblock %}

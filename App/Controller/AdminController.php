@@ -46,18 +46,17 @@ class AdminController
 
     public function listPosts()
     {
-        $posts = $this->postManager->getPosts();
-        $view = new ViewAdmin('Admin');
-        $view->generate($posts);
+        $list_posts = $this->postManager->getPosts();
+        $this->renderer->render('Backend/adminView', ['listposts' => $list_posts]);
+        $_SESSION['flash'] = array();
 
     }
 
     public function listComments($postId)
     {
         $comments = $this->commentManager->getComments($postId);
-        $view = new ViewAdmin('Comment');
-        $view->generate($comments);
-
+        $this->renderer->render('Backend/commentsView', ['listcomments' => $comments]);
+        $_SESSION['flash'] = array();
     }
 
     public function addPostView()
@@ -65,8 +64,6 @@ class AdminController
         $this->renderer->render('Backend/addPostView');
         $_SESSION['flash'] = array();
 
-        //$view = new ViewAdmin('AddPost');
-        //$view->generate(array());
     }
 
     public function addPost()

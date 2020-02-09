@@ -34,7 +34,7 @@ class Comment
      */
     private $comment_date;
 
-    private $is_valid = false;
+    private $is_valid;
 
         public function __construct($datas = [])
     {

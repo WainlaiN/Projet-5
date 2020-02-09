@@ -80,6 +80,16 @@
         </div>
     </div>
 </nav>
+{% if session.flash.danger is defined %}
+    <div class="alert alert-danger" role="alert">
+        <h6>{{ session.flash.danger }}</h6>
+    </div>
+{% endif %}
+{% if session.flash.success is defined %}
+    <div class="alert alert-success" role="alert">
+        <h6>{{ session.flash.success }}</h6>
+    </div>
+{% endif %}
 <div class="container">
 
     {% block content %} {% endblock %}
