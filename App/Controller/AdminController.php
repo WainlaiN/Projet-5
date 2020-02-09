@@ -99,8 +99,9 @@ class AdminController
     public function updatePostView($id)
     {
         $posts = $this->postManager->getPost($id);
-        $view = new ViewAdmin('EditPost');
-        $view->generate($posts);
+        $this->renderer->render('Backend/editPostView',  ['listpost' => $posts]);
+        $_SESSION['flash'] = array();
+
     }
 
     public function UpdatePost($id)

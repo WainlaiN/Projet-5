@@ -1,0 +1,31 @@
+{% extends 'template.twig' %}
+{% block title %}Editer un article{% endblock %}
+{% block content %}
+
+    <p><a href="/admin">Retour à la liste des billets</a></p>
+    <form action="" method="post">
+
+        <div class="form-group">
+            <label for="author">Auteur</label><br/>
+            <input type="text" id="author" name="author" value="{{ listpost.author }}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="author">Titre</label><br/>
+            <input type="text" id="title" name="title" value="{{ listpost.title }}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="author">Chapo</label><br/>
+            <input type="text" id="chapo" name="chapo" value="{{ listpost.chapo }}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="comment">Description</label><br/>
+            <textarea id="description" name="description" rows="10"
+                      class="form-control">{{ listpost.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Modifier">
+        </div>
+    </form>
+
+{% endblock %}
+
