@@ -17,7 +17,7 @@
         <div class="container py-3">
             <div class="row">
                 {% for listpost in listposts %}
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 py-2">
                         <div class="card text-center">
                             <img class="card-img-top"
                                  src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -26,7 +26,8 @@
                                 <h4 class="card-title">{{ listpost.title }}</h4>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ listpost.chapo }}</h6>
                                 <p class="card-text">{{ listpost.description|striptags|slice(0, 40) }}</p>
-                                <a class="btn btn-default" href="post/{{ listpost.id }}">Plus...</a>
+                                <p class="card-text"><small class="text-muted">Mis à jour le {{ listpost.date_creation|date("d/m/Y") }}</small></p>
+                                <a class="btn btn-primary" href="post/{{ listpost.id }}">Plus...</a>
                             </div>
                         </div>
                     </div>

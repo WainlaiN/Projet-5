@@ -1,7 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
-    {{ dump(post) }}
+
 
 
     <p><a href="/posts">Retour à la liste des billets</a></p>
@@ -9,7 +9,7 @@
         <div class="news">
             <h3>
                 {{ post.title }}
-                <em>le {{ post.date_creation }}</em>
+                <em>le {{ post.date_creation|date("d/m/Y") }}</em>
             </h3>
             <p>
                 {{ post.description }}
@@ -29,35 +29,32 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             {% for comment in listcomments %}
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-lg-8 col-xs-2 col-md-1">
-                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
-                                    <div class="col-xs-10 col-md-11">
-                                        <div>
-                                            <a href="http://www.jquery2dotnet.com/2013/10/google-style-login-page-desing-usign.html">
-                                                Google Style Login Page Design Using Bootstrap</a>
-                                            <div class="mic-info">
-                                                By: <a href="#">{{ comment.author }}</a> on {{ comment.date_creation }}
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-xs-10 col-md-11">
+                                            <div>
+                                                <div class="mic-info">
+                                                    De : {{ comment.author }}
+                                                    le {{ comment.date_creation|date("d/m/Y") }}
+                                                </div>
+                                            </div>
+                                            <div class="comment-text py-2">
+                                                {{ comment.comment }}
+                                            </div>
+                                            <div class="action">
+                                                <button type="button" class="btn btn-primary" title="Edit">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-success" title="Approved">
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-danger" title="Delete">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="comment-text">
-                                            {{ comment.comment }}
-                                        </div>
-                                        <div class="action">
-                                            <button type="button" class="btn btn-primary btn-xs" title="Edit">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </button>
-                                            <button type="button" class="btn btn-success btn-xs" title="Approved">
-                                                <span class="glyphicon glyphicon-ok"></span>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs" title="Delete">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </button>
-                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
