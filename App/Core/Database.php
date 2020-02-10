@@ -26,6 +26,7 @@ class Database
         if ($parameters || $binds) {
             $result = $this->dbConnect()->prepare($sql);
 
+
             if ($binds) {
                 foreach ($binds as $bind) {
                     $result->bindParam($bindnew[0], $bindnew[1], $bindnew[2]);

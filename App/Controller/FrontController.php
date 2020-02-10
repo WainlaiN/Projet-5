@@ -52,11 +52,11 @@ Class FrontController
     public function addComment()
     {
         dump($_POST);
-        $author = strip_tags(htmlspecialchars($_POST['author']));
-        $post_id = strip_tags(htmlspecialchars($_POST['postid']));
-        $description = strip_tags(htmlspecialchars($_POST['description']));
-        $comment = $this->commentManager->addComment($post_id, $author, $description);
-        $_SESSION['flash'] = array();
+        $post_id = $_POST['postid'];
+        $author = $_POST['author'];
+        $description = $_POST['description'];
+        return $this->commentManager->addComment($post_id, $author, $description);
+
 
     }
 

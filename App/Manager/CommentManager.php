@@ -15,7 +15,7 @@ class CommentManager extends Database
     public function getComments($postId)
     {
 
-        $req = 'SELECT * FROM comments WHERE post_id = :postId ORDER BY comment_date DESC';
+        $req = 'SELECT comment, comment_date, author_id username FROM comments, user WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
 
@@ -38,7 +38,7 @@ class CommentManager extends Database
 
     public function addComment($postId, $author, $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date, is_valid) VALUES (:postId,:author,:comment, DATE(NOW(),:valid);';
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, comment, comment_date, is_valid) VALUES (:postId,:author,:comment, DATE(NOW()),:valid)';
         $parameters = [':postId' => $postId, ':author' => $author, ':comment' => $comment, ':valid' => 0];
         $result = $this->sql($newComments, $parameters);
         return $result;
