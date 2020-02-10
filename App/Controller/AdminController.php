@@ -87,7 +87,7 @@ class AdminController
     public function deletePost($id)
     {
         $this->postManager->deletePost($id);
-        ;
+
     }
 
     public function deletecomment($id)

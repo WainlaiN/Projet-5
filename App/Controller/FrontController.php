@@ -44,9 +44,15 @@ Class FrontController
     public function post($id)
     {
         $post = $this->postManager->getPost($id);
-        $list_comments = $this->commentManager->getComments($id);
+        $list_comments = $this->commentManager->getValidComments($id);
         $this->renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
         $_SESSION['flash'] = array();
+    }
+
+    public function addComment($postId)
+    {
+        $comment = $this->commentManager->addComment($postId, $author, $comment);
+
     }
 
     public function login()

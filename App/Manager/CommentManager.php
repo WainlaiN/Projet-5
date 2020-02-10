@@ -60,6 +60,15 @@ class CommentManager extends Database
         return $result;
     }
 
+    public function getValidComments()
+    {
+        $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid';
+        $parameters = [':valid' => 1];
+        $result = $this->sql($invalidComments, $parameters);
+        return $result;
+
+    }
+
     public function getInvalidComments()
     {
         $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid';
