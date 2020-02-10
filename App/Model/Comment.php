@@ -12,9 +12,9 @@ class Comment
      */
     private $id;
     /**
-     * @var string $title title comment
+     * @var int $title title comment
      */
-    private $author;
+    private $author_id;
 
     /**
      * @var string $chapo chapo comment
@@ -73,20 +73,20 @@ class Comment
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getAuthor(): string
+    public function getauthor_id()
     {
-        return $this->author;
+        return $this->author_id;
     }
 
     /**
-     * @param string $author
+     * @param int $author
      * @return Comment
      */
-    public function setAuthor(string $author)
+    public function setAuthor_id($author)
     {
-        $this->author = $author;
+        $this->author_id = $author;
         return $this;
     }
 

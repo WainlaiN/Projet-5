@@ -1,6 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Commentaires{% endblock %}
 {% block content %}
+    {% set size = listcomments | length %}
 
     <div class="row justify-content-center">
         <h1>Administration</h1>
@@ -18,15 +19,29 @@
             <th>Supprimer</th>
             </thead>
             <tbody>
-            {% for comment in listcomments %}
+            {% if size > 1 %}
+                {% for comment in listcomments %}
+                    <tr>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.comment }}</td>
+                        <td>{{ comment.is_valid }}</td>
+                        <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
+                               onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
+            {% elseif size == 1 %}
                 <tr>
-                    <td>{{ comment.author }}</td>
-                    <td>{{ comment.comment }}</td>
-                    <td>{{ comment.is_valid }}</td>
+                    <td>{{ listcomments.id }}</td>
+                    <td>{{ listcomments.comment }}</td>
+                    <td>{{ listcomments.is_valid }}</td>
                     <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
                            onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
                 </tr>
-            {% endfor %}
+            {% else %}
+                <div class="alert alert-dark" role="alert">
+                    Pas encore de commentaires pour cet article!
+                </div>
+            {% endif %}
             </tbody>
         </table>
     </div>

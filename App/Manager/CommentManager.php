@@ -15,7 +15,7 @@ class CommentManager extends Database
     public function getComments($postId)
     {
 
-        $req = 'SELECT comment, comment_date, author_id username FROM comments, user WHERE post_id = :postId ORDER BY comment_date DESC';
+        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
 
@@ -28,6 +28,7 @@ class CommentManager extends Database
             return $result->fetchObject($this->model);
         }
     }
+
 
     public function getComment($id)
     {
@@ -64,7 +65,7 @@ class CommentManager extends Database
 
     public function getValidComments($postId)
     {
-        $validComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid AND post_id = :postid';
+        $validComments = 'SELECT * FROM ' . $this->table_name . ', users WHERE is_valid = :valid AND post_id = :postid';
         $parameters = [':valid' => 1, ':postid' => $postId];
         $result = $this->sql($validComments, $parameters);
         return $result;

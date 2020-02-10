@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\Model\ViewPublic;
+
 
 
 class Router extends \AltoRouter
@@ -24,15 +24,7 @@ class Router extends \AltoRouter
                 call_user_func(array($c, $method));
             }
         } else {
-            $this->home();
+            header('Location: /');
         }
     }
-
-    private function home()
-    {
-        $view = new ViewPublic("home");
-        $view->Generate(array());
-    }
-
-
 }
