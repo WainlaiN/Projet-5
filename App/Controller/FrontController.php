@@ -49,26 +49,34 @@ Class FrontController
         $_SESSION['flash'] = array();
     }
 
-    public function addComment($postId)
+    public function addComment()
     {
-        $comment = $this->commentManager->addComment($postId, $author, $comment);
+        dump($_POST);
+        $author = strip_tags(htmlspecialchars($_POST['author']));
+        $post_id = strip_tags(htmlspecialchars($_POST['postid']));
+        $description = strip_tags(htmlspecialchars($_POST['description']));
+        $comment = $this->commentManager->addComment($post_id, $author, $description);
+        $_SESSION['flash'] = array();
 
     }
 
-    public function login()
+    public
+    function login()
     {
         $this->renderer->render('Frontend/loginView');
         $_SESSION['flash'] = array();
     }
 
-    public function registerView()
+    public
+    function registerView()
     {
         $this->renderer->render('Frontend/registeView');
         $_SESSION['flash'] = array();
 
     }
 
-    public function connect()
+    public
+    function connect()
     {
 
         if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
@@ -109,7 +117,8 @@ Class FrontController
 
     }
 
-    public function deconnect()
+    public
+    function deconnect()
     {
         session_destroy();
         session_unset();
@@ -117,8 +126,9 @@ Class FrontController
     }
 
 
-    //beta
-    public function register()
+//beta
+    public
+    function register()
     {
         if ($this->loginManager->checkUsername()) {
             if ($this->loginManager->checkEmail()) {

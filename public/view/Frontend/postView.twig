@@ -1,7 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
-    {{ dump(session) }}
+
 
     <p><a href="/posts">Retour à la liste des billets</a></p>
     <div class="container py-3">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item py-5">
+                            <li class="list-group-item py-3">
                                 <h3 class="panel-title">
                                     <h3 class="panel-title">
                                         Commentaires Récents</h3>
@@ -45,31 +45,28 @@
                                             <div class="comment-text py-2">
                                                 {{ comment.comment }}
                                             </div>
-                                            <div class="action">
-                                                <button type="button" class="btn btn-primary" title="Edit">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-success" title="Approved">
-                                                    <span class="glyphicon glyphicon-ok"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-danger" title="Delete">
-                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
                                 </li>
                             {% endfor %}
+                            <li class="list-group-item py-3">
+                                <h3 class="panel-title">
+                                    Ajouter un commentaire</h3>
+                            </li>
+                            {% if not session.auth %}
+                                <li class="list-group-item">
+                                    <div class="alert alert-danger py-3" role="alert">
+                                        Vous devez être connecté pour ajouter un commentaire
+                                    </div>
+                                </li>
+                            {% endif %}
                             {% if session.auth %}
-                                <li class="list-group-item py-5">
-                                    <h3 class="panel-title">
-                                        Ajouter un commentaire</h3>
+                                <li class="list-group-item">
                                     <form action="/comment/add" method="post">
                                         <div class="form-group">
-                                            <label for="author">Auteur</label><br/>
+                                            <input type="hidden" value="{{ post.id }}" id="postid" name="postid"/>
                                             <input type="text" id="author" name="author"
-                                                   value="{{ session.auth.username }}"
-                                                   class="form-control"/>
+                                                   value="{{ session.auth.id }}" class="form-control" disabled/>
                                         </div>
                                         <div class="form-group">
                                             <label for="comment">Votre commentaire</label><br/>
@@ -82,13 +79,13 @@
                                     </form>
                                 </li>
                             {% endif %}
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 {% endblock %}

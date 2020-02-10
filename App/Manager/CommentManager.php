@@ -31,13 +31,15 @@ class CommentManager extends Database
 
     public function getComment($id)
     {
-        return $this->get($id);
+        $req = 'SELECT * FROM comments WHERE id = :id';
+        $parameters = [':id' => $id];
+        return $result = $this->sql($req, $parameters);
     }
 
     public function addComment($postId, $author, $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date, is_valid) VALUES (:id,:author,:comment, DATE(NOW(),:valid);';
-        $parameters = [':id' => $postId, ':author' => $author, ':valid' => 0];
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author, comment, comment_date, is_valid) VALUES (:postId,:author,:comment, DATE(NOW(),:valid);';
+        $parameters = [':postId' => $postId, ':author' => $author, ':comment' => $comment, ':valid' => 0];
         $result = $this->sql($newComments, $parameters);
         return $result;
     }
@@ -46,7 +48,7 @@ class CommentManager extends Database
     public function editComment($commentId, $comment)
     {
 
-        $editedComments = 'UPDATE ' . $this->table_name . ' SET comment = :comment WHERE id = :id;';
+        $editedComments = 'UPDATE ' . $this->table_name . ' SET comment = :comment WHERE id = :id';
         $parameters = [':comment' => $commentId, ':id' => $commentId];
         $result = $this->sql($editedComments, $parameters);
         return $result;
@@ -60,11 +62,11 @@ class CommentManager extends Database
         return $result;
     }
 
-    public function getValidComments()
+    public function getValidComments($postId)
     {
-        $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid';
-        $parameters = [':valid' => 1];
-        $result = $this->sql($invalidComments, $parameters);
+        $validComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid AND post_id = :postid';
+        $parameters = [':valid' => 1, ':postid' => $postId];
+        $result = $this->sql($validComments, $parameters);
         return $result;
 
     }
