@@ -13,22 +13,21 @@ use Twig\Loader\FilesystemLoader;
 
 class TwigRenderer
 {
-    private $twig;
+    private $_twig;
 
     public function render($view, $params = [])
     {
         $loader = new FilesystemLoader('view');
-        $this->twig = new Environment($loader, [
+        $this->_twig = new Environment($loader, [
             'cache' => false, // __DIR__ . /tmp',
-            'debug' => true,
-        ]);
-        $this->twig->addExtension(new DebugExtension());
+            'debug' => true,]);
+        $this->_twig->addExtension(new DebugExtension());
         if (isset($_SESSION['flash'])) {
-            $this->twig->addGlobal('session', $_SESSION);
+            $this->_twig->addGlobal('session', $_SESSION);
         }
 
         try {
-            echo $this->twig->render($view . '.twig', $params);
+            echo $this->_twig->render($view . '.twig', $params);
         } catch (LoaderError $e) {
         } catch (RuntimeError $e) {
         } catch (SyntaxError $e) {
