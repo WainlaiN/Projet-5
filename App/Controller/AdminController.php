@@ -46,7 +46,7 @@ class AdminController
     {
         $list_posts = $this->_postManager->getPosts();
         $this->_renderer->render('Backend/adminView', ['listposts' => $list_posts]);
-        $_SESSION['flash'] = array();
+        //$_SESSION['flash'] = array();
 
     }
 
@@ -54,13 +54,13 @@ class AdminController
     {
         $comments = $this->_commentManager->getComments($postId);
         $this->_renderer->render('Backend/commentsView', ['listcomments' => $comments]);
-        $_SESSION['flash'] = array();
+        //$_SESSION['flash'] = array();
     }
 
     public function addPostView()
     {
         $this->_renderer->render('Backend/addPostView');
-        $_SESSION['flash'] = array();
+        //$_SESSION['flash'] = array();
 
     }
 
@@ -98,7 +98,7 @@ class AdminController
     {
         $posts = $this->_postManager->getPost($id);
         $this->_renderer->render('Backend/editPostView',  ['listpost' => $posts]);
-        $_SESSION['flash'] = array();
+        //$_SESSION['flash'] = array();
 
     }
 

@@ -60,23 +60,20 @@ Class FrontController
 
     }
 
-    public
-    function login()
+    public function login()
     {
         $this->_renderer->render('Frontend/loginView');
         $_SESSION['flash'] = array();
     }
 
-    public
-    function registerView()
+    public function registerView()
     {
         $this->_renderer->render('Frontend/registeView');
         $_SESSION['flash'] = array();
 
     }
 
-    public
-    function connect()
+    public function connect()
     {
 
         if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
@@ -117,8 +114,7 @@ Class FrontController
 
     }
 
-    public
-    function deconnect()
+    public function deconnect()
     {
         session_destroy();
         session_unset();
