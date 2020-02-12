@@ -10,18 +10,18 @@ use App\Core\TwigRenderer;
 
 Class FrontController
 {
-    private $postManager;
-    private $commentManager;
-    private $loginManager;
-    private $renderer;
+    private $_postManager;
+    private $_commentManager;
+    private $_loginManager;
+    private $_renderer;
 
 
     public function __construct()
     {
-        $this->postManager = new PostManager();
-        $this->commentManager = New CommentManager();
-        $this->loginManager = new LoginManager();
-        $this->renderer = new TwigRenderer();
+        $this->_postManager = new PostManager();
+        $this->_commentManager = New CommentManager();
+        $this->_loginManager = new LoginManager();
+        $this->_renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -30,22 +30,22 @@ Class FrontController
 
     public function home()
     {
-        $this->renderer->render('Frontend/homeView');
+        $this->_renderer->render('Frontend/homeView');
         $_SESSION['flash'] = array();
     }
 
     public function listPosts()
     {
-        $list_posts = $this->postManager->getPosts();
-        $this->renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
+        $list_posts = $this->_postManager->getPosts();
+        $this->_renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
         $_SESSION['flash'] = array();
     }
 
     public function post($id)
     {
-        $post = $this->postManager->getPost($id);
-        $list_comments = $this->commentManager->getValidComments($id);
-        $this->renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
+        $post = $this->_postManager->getPost($id);
+        $list_comments = $this->_commentManager->getValidComments($id);
+        $this->_renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
         $_SESSION['flash'] = array();
     }
 
@@ -55,7 +55,7 @@ Class FrontController
         $post_id = $_POST['postid'];
         $author = $_POST['author'];
         $description = $_POST['description'];
-        return $this->commentManager->addComment($post_id, $author, $description);
+        return $this->_commentManager->addComment($post_id, $author, $description);
 
 
     }
@@ -63,14 +63,14 @@ Class FrontController
     public
     function login()
     {
-        $this->renderer->render('Frontend/loginView');
+        $this->_renderer->render('Frontend/loginView');
         $_SESSION['flash'] = array();
     }
 
     public
     function registerView()
     {
-        $this->renderer->render('Frontend/registeView');
+        $this->_renderer->render('Frontend/registeView');
         $_SESSION['flash'] = array();
 
     }
@@ -90,7 +90,7 @@ Class FrontController
             $username = strip_tags(htmlspecialchars($_POST['username']));
             $password = strip_tags(htmlspecialchars($_POST['password']));
 
-            $user = $this->loginManager->getLogin($username);
+            $user = $this->_loginManager->getLogin($username);
 
             if (!$user) {
                 $_SESSION['flash']['danger'] = 'Mauvais identifiant';
@@ -130,10 +130,10 @@ Class FrontController
     public
     function register()
     {
-        if ($this->loginManager->checkUsername()) {
-            if ($this->loginManager->checkEmail()) {
-                if ($this->loginManager->checkPassword()) {
-                    $this->loginManager->registerUser();
+        if ($this->_loginManager->checkUsername()) {
+            if ($this->_loginManager->checkEmail()) {
+                if ($this->_loginManager->checkPassword()) {
+                    $this->_loginManager->registerUser();
                 }
             }
         }
