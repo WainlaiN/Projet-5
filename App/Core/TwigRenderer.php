@@ -18,9 +18,11 @@ class TwigRenderer
     public function render($view, $params = [])
     {
         $loader = new FilesystemLoader('view');
-        $this->_twig = new Environment($loader, [
+        $this->_twig = new Environment(
+            $loader, [
             'cache' => false, // __DIR__ . /tmp',
-            'debug' => true,]);
+            'debug' => true,]
+        );
         $this->_twig->addExtension(new DebugExtension());
         if (isset($_SESSION['flash'])) {
             $this->_twig->addGlobal('session', $_SESSION);

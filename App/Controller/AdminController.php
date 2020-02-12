@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Manager\LoginManager;
-use App\Model\User;
-use App\Model\ViewAdmin;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
@@ -12,17 +10,17 @@ use App\Core\TwigRenderer;
 
 class AdminController
 {
-    private $postManager;
-    private $commentManager;
-    private $loginManager;
-    private $renderer;
+    private $_postManager;
+    private $_commentManager;
+    private $_loginManager;
+    private $_renderer;
 
     public function __construct()
     {
-        $this->postManager = new PostManager();
-        $this->commentManager = New CommentManager();
-        $this->loginManager = new LoginManager();
-        $this->renderer = new TwigRenderer();
+        $this->_postManager = new PostManager();
+        $this->_commentManager = New CommentManager();
+        $this->_loginManager = new LoginManager();
+        $this->_renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -46,22 +44,22 @@ class AdminController
 
     public function listPosts()
     {
-        $list_posts = $this->postManager->getPosts();
-        $this->renderer->render('Backend/adminView', ['listposts' => $list_posts]);
+        $list_posts = $this->_postManager->getPosts();
+        $this->_renderer->render('Backend/adminView', ['listposts' => $list_posts]);
         $_SESSION['flash'] = array();
 
     }
 
     public function listComments($postId)
     {
-        $comments = $this->commentManager->getComments($postId);
-        $this->renderer->render('Backend/commentsView', ['listcomments' => $comments]);
+        $comments = $this->_commentManager->getComments($postId);
+        $this->_renderer->render('Backend/commentsView', ['listcomments' => $comments]);
         $_SESSION['flash'] = array();
     }
 
     public function addPostView()
     {
-        $this->renderer->render('Backend/addPostView');
+        $this->_renderer->render('Backend/addPostView');
         $_SESSION['flash'] = array();
 
     }
@@ -75,7 +73,7 @@ class AdminController
             $datas['chapo'] = $_POST['chapo'];
             $datas['description'] = $_POST['description'];
 
-            $result = $this->postManager->addPost($datas);
+            $result = $this->_postManager->addPost($datas);
 
             if ($result) {
                 $this->listPosts();
@@ -86,41 +84,35 @@ class AdminController
 
     public function deletePost($id)
     {
-        $this->postManager->deletePost($id);
+        $this->_postManager->deletePost($id);
 
     }
 
     public function deletecomment($id)
     {
-        $this->commentManager->deleteComment($id);
+        $this->_commentManager->deleteComment($id);
         $this->listPosts();
     }
 
     public function updatePostView($id)
     {
-        $posts = $this->postManager->getPost($id);
-        $this->renderer->render('Backend/editPostView',  ['listpost' => $posts]);
+        $posts = $this->_postManager->getPost($id);
+        $this->_renderer->render('Backend/editPostView',  ['listpost' => $posts]);
         $_SESSION['flash'] = array();
 
     }
 
     public function UpdatePost($id)
     {
-        $this->postManager->updatePost($id);
+        $this->_postManager->updatePost($id);
         $this->updatePostView($id);
 
     }
 
     public function ValidateComment()
     {
-        $this->commentManager->validateComment($id);
+        $this->_commentManager->validateComment($id);
     }
 
-    public function getComments($id)
-    {
-        $comments = $this->commentManager->getComments($id);
-        $view = new ViewAdmin('Comment');
-        $view->generate($comments);
-    }
 
 }
