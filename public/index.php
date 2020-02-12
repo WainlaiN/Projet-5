@@ -18,6 +18,7 @@ try {
     $router->map('GET', '/register', 'FrontController#registerView');
     $router->map('POST', '/register', 'FrontController#register');
     $router->map('POST', '/comment/add', 'FrontController#addComment');
+    $router->map('GET', '/CV', 'FrontController#cvNico');
 
 
 
