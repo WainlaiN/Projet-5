@@ -55,10 +55,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/posts">Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/CV">CV</a>
-                </li>
                 {% if session is defined  and session.auth.status == 1 %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/CV">CV</a>
+                    </li>
                 <li>
                     <a class="nav-link" href="/admin">Admin</a>
                 </li>
