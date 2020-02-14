@@ -2,7 +2,6 @@
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
     {% set size = listcomments | length %}
-    {{ dump(size) }}
 
     <p><a href="/posts">Retour à la liste des billets</a></p>
     <div class="container py-3">
@@ -35,7 +34,6 @@
                             </li>
                             {% if size > 1 %}
                                 {% for comment in listcomments %}
-                                    {{ dump(comment) }}
                                     <li class="list-group-item">
                                         <div class="row">
                                             <div class="col-xs-10 col-md-11">
