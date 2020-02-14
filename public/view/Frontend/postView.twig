@@ -1,6 +1,8 @@
 {% extends 'template.twig' %}
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
+    {% set size = listcomments | length %}
+    {{ dump(size) }}
 
     <p><a href="/posts">Retour à la liste des billets</a></p>
     <div class="container py-3">
@@ -31,23 +33,47 @@
                                     <h3 class="panel-title">
                                         Commentaires Récents</h3>
                             </li>
-                            {% for comment in listcomments %}
+                            {% if size > 1 %}
+                                {% for comment in listcomments %}
+                                    {{ dump(comment) }}
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-xs-10 col-md-11">
+                                                <div>
+                                                    <div class="mic-info">
+                                                        De : {{ comment.username }}
+                                                        le {{ comment.date_creation|date("d/m/Y") }}
+                                                    </div>
+                                                </div>
+                                                <div class="comment-text py-2">
+                                                    {{ comment.comment }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            {% elseif size == 1 %}
                                 <li class="list-group-item">
                                     <div class="row">
                                         <div class="col-xs-10 col-md-11">
                                             <div>
                                                 <div class="mic-info">
-                                                    De : {{ comment.username }}
-                                                    le {{ comment.date_creation|date("d/m/Y") }}
+                                                    De : {{ listcomments.username }}
+                                                    le {{ listcomments.date_creation|date("d/m/Y") }}
                                                 </div>
                                             </div>
                                             <div class="comment-text py-2">
-                                                {{ comment.comment }}
+                                                {{ listcomments.comment }}
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                            {% endfor %}
+                            {% else %}
+                                <div class="alert alert-dark" role="alert">
+                                    Pas encore de commentaires pour cet article!
+                                </div>
+                            {% endif %}
+
                             <li class="list-group-item py-3">
                                 <h3 class="panel-title">
                                     Ajouter un commentaire</h3>
