@@ -48,6 +48,7 @@ class LoginManager extends Database
             $req = $this->sql($sql, $parameters);
             $user = $req->fetchObject();
             if ($user) {
+                $_SESSION['flash']['danger'] = 'Ce pseudo est dejà utilisé';
                 return false;
             } else {
                 return true;
@@ -71,7 +72,6 @@ class LoginManager extends Database
 
             if ($user) {
                 $_SESSION['flash']['danger'] = 'Cet email est déjà utilisé.';
-
                 return false;
             } else {
                 return true;
@@ -98,27 +98,22 @@ class LoginManager extends Database
     /** register user */
     public function registerUser()
     {
-        $statuts = 2;
+        $status = 2;
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO ' . $this->table_name . ' SET username = ?, password = ?, email = ?, status = ?';
-        $parameters = [$_POST['username'], $password, $_POST['email'], $statuts];
+        $sql = 'INSERT INTO ' . $this->table_name . ' SET username = ?, password = ?, email = ?, user_status = ?';
+        $parameters = [$_POST['username'], $password, $_POST['email'], $status];
         $this->sql($sql, $parameters);
 
-        $entetemail = "From: Blog juju  <nicolas@shopbot-inc.com>\r\n";
-        $entetemail .= "Reply-To: nicolas@shopbot-inc.com \n";
+        $entetemail = "From: Blog Nico  <nicodupriez@hotmail.com>\r\n";
+        $entetemail .= "Reply-To: nicodupriez@hotmail.comm \n";
         $entetemail .= 'X-Mailer: PHP/'.phpversion()."\n";
         $entetemail .= "Content-Type: text/plain; charset=utf8\r\n";
         $objet = 'Comfirmation de la création de votre compte sur le blog de juju';
-        $message_email = 'Votre compte a bien été créé '.$_POST['username'].', vous pouvez maintenant vous connecter. Rendez-vous sur http://blog.juliencarre.fr/login';
+        $message_email = 'Votre compte a bien été créé '.$_POST['username'].', vous pouvez maintenant vous connecter. Rendez-vous sur http://xxxxxx.fr/login';
 
         mail($_POST['email'], $objet, $message_email, $entetemail);
         $_SESSION['flash']['success'] = 'Votre compte à bien été créé.';
     }
-
-
-
-
-
 
 
 

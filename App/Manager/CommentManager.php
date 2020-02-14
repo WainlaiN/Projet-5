@@ -65,11 +65,17 @@ class CommentManager extends Database
 
     public function getValidComments($postId)
     {
-        $validComments = 'SELECT * FROM ' . $this->table_name . ', users WHERE is_valid = :valid AND post_id = :postid';
+        $validComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid AND post_id = :postid';
         $parameters = [':valid' => 1, ':postid' => $postId];
         $result = $this->sql($validComments, $parameters);
-        return $result;
-
+        if ($result->rowCount() > 1) {
+            while ($datas = $result->fetchObject($this->model)) {
+                $custom_array[] = new $this->model($datas);
+            }
+            return $custom_array;
+        } else {
+            return $result->fetchObject($this->model);
+        }
     }
 
     public function getInvalidComments()
@@ -77,7 +83,14 @@ class CommentManager extends Database
         $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid';
         $parameters = [':valid' => 0];
         $result = $this->sql($invalidComments, $parameters);
-        return $result;
+        if ($result->rowCount() > 1) {
+            while ($datas = $result->fetchObject($this->model)) {
+                $custom_array[] = new $this->model($datas);
+            }
+            return $custom_array;
+        } else {
+            return $result->fetchObject($this->model);
+        }
 
     }
 

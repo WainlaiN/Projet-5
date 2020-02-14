@@ -122,9 +122,8 @@ Class FrontController
     }
 
 
-//beta
-    public
-    function register()
+    //beta
+    public function register()
     {
         if ($this->_loginManager->checkUsername()) {
             if ($this->_loginManager->checkEmail()) {
@@ -135,6 +134,41 @@ Class FrontController
         }
 
         header('Location: /login');
+    }
+
+    //beta
+    public function contactForm()
+    {
+
+        if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['message']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
+        } else {
+            $nom = strip_tags(htmlspecialchars($_POST['nom']));
+            $prenom = strip_tags(htmlspecialchars($_POST['prenom']));
+            $email = strip_tags(htmlspecialchars($_POST['email']));
+            $message = strip_tags(htmlspecialchars($_POST['message']));
+
+            $this->formManager->fromTraiment($nom, $prenom, $email, $message);
+            $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyer.';
+        }
+        header('Location: /');
+    }
+
+    public function cvNico()
+    {
+
+        $file = 'pdf/CV.pdf';
+        //dump($file);
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: '.filesize($file));
+            readfile($file);
+        }
     }
 
 

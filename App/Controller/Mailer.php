@@ -4,7 +4,8 @@
 namespace App\Controller;
 
 
-class Mailer
+class Mailer extends \Swift_Mailer
 {
+    public function send()
 
 }
