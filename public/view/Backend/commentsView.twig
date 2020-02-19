@@ -1,7 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Commentaires{% endblock %}
 {% block content %}
-    {{ dump(listcomments) }}
+
     {% set size = listcomments | length %}
 
     <div class="row justify-content-center">
@@ -24,14 +24,13 @@
             {% if size > 1 %}
                 {% for comment in listcomments %}
                     <tr>
-                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.username }}</td>
                         <td>{{ comment.comment_date }}</td>
                         <td>{{ comment.comment }}</td>
-                        {% if comment.is_valid == null %}
+                        {% if comment.is_valid is null %}
                             <td>
                                 <button type="button" class="btn btn-success">Valider</button>
                             </td>
-
                         {% else %}
                             <td>Validé</td>
                         {% endif %}
@@ -45,12 +44,10 @@
                     <td>{{ listcomments.id }}</td>
                     <td>{{ listcomments.comment_date }}</td>
                     <td>{{ listcomments.comment }}</td>
-
-                    {% if listcomments.is_valid == 0 %}
+                    {% if listcomments.is_valid is null %}
                         <td>
                             <button type="button" class="btn btn-success">Valider</button>
                         </td>
-
                     {% else %}
                         <td>Validé</td>
                     {% endif %}

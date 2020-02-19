@@ -36,6 +36,8 @@ class Comment
 
     private $is_valid;
 
+    private $username;
+
         public function __construct($datas = [])
     {
         if (!empty($datas)) {
@@ -161,6 +163,26 @@ class Comment
         $this->is_valid = $is_valid;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     * @return Comment
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+
 
 
 

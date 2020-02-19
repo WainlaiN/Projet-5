@@ -51,11 +51,11 @@ Class FrontController
 
     public function addComment()
     {
-        dump($_POST);
         $post_id = $_POST['postid'];
-        $author = $_POST['author'];
+        $author_id = $_POST['author'];
+        $author_ = $_SESSION['auth']->getUsername();
         $description = $_POST['description'];
-        return $this->_commentManager->addComment($post_id, $author, $description);
+        return $this->_commentManager->addComment($post_id, $author_id, $author_, $description);
 
 
     }

@@ -14,7 +14,7 @@ class CommentManager extends Database
 
     public function getComments($postId)
     {
-        $req = 'SELECT id, author_id, comment, is_valid, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
+        $req = 'SELECT id, author_id, comment, is_valid, post_id, username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
 
@@ -35,10 +35,10 @@ class CommentManager extends Database
         return $result = $this->sql($req, $parameters);
     }
 
-    public function addComment($postId, $author, $comment)
+    public function addComment($postId, $authorid ,$author, $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, comment, comment_date, is_valid) VALUES (:postId,:author,:comment, DATE(NOW()),:valid)';
-        $parameters = [':postId' => $postId, ':author' => $author, ':comment' => $comment, ':valid' => 0];
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:authorid,:author,:comment, DATE(NOW()))';
+        $parameters = [':postId' => $postId, ':authorid' => $authorid,':author' =>$author, ':comment' => $comment];
         $result = $this->sql($newComments, $parameters);
         return $result;
     }
@@ -67,7 +67,7 @@ class CommentManager extends Database
         $result = $this->sql($validComments, $parameters);
         if ($result->rowCount() > 1) {
             while ($datas = $result->fetchObject($this->model)) {
-                $custom_array[] = new $this->model($datas);
+                $custom_array[] = $datas;
             }
             return $custom_array;
         } else {
