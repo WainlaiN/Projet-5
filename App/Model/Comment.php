@@ -75,7 +75,7 @@ class Comment
     /**
      * @return int
      */
-    public function getauthor_id()
+    public function getauthor_id(): int
     {
         return $this->author_id;
     }
@@ -84,7 +84,7 @@ class Comment
      * @param int $author
      * @return Comment
      */
-    public function setAuthor_id($author)
+    public function setAuthor_id(int $author)
     {
         $this->author_id = $author;
         return $this;
@@ -111,7 +111,7 @@ class Comment
     /**
      * @return string
      */
-    public function getPostId(): string
+    public function getPostId(): int
     {
         return $this->post_id;
     }
@@ -120,7 +120,7 @@ class Comment
      * @param string $post_id
      * @return Comment
      */
-    public function setPostId(string $post_id)
+    public function setPostId(int $post_id)
     {
         $this->post_id = $post_id;
         return $this;

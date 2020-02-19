@@ -6,6 +6,7 @@ use App\Core\Database;
 use App\Model\Comment;
 
 
+
 class CommentManager extends Database
 {
 
@@ -15,7 +16,7 @@ class CommentManager extends Database
     public function getComments($postId)
     {
 
-        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
+        $req = 'SELECT id, author_id, comment, is_valid, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
 

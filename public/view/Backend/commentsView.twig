@@ -1,6 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Commentaires{% endblock %}
 {% block content %}
+    {{ dump(listcomments) }}
     {% set size = listcomments | length %}
 
     <div class="row justify-content-center">
@@ -14,6 +15,7 @@
         <table class="table table-striped">
             <thead>
             <th>Auteur</th>
+            <th>Date</th>
             <th>Commentaire</th>
             <th>Valider</th>
             <th>Supprimer</th>
@@ -23,8 +25,17 @@
                 {% for comment in listcomments %}
                     <tr>
                         <td>{{ comment.id }}</td>
+                        <td>{{ comment.comment_date }}</td>
                         <td>{{ comment.comment }}</td>
-                        <td>{{ comment.is_valid }}</td>
+                        {% if comment.is_valid == 0 %}
+                            <td>
+                                <button type="button" class="btn btn-success">Valider</button>
+                            </td>
+
+                        {% else %}
+                            <td>Validé</td>
+                        {% endif %}
+
                         <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
                                onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
                     </tr>
@@ -32,8 +43,18 @@
             {% elseif size == 1 %}
                 <tr>
                     <td>{{ listcomments.id }}</td>
+                    <td>{{ listcomments.comment_date }}</td>
                     <td>{{ listcomments.comment }}</td>
-                    <td>{{ listcomments.is_valid }}</td>
+
+                    {% if listcomments.is_valid == 0 %}
+                        <td>
+                            <button type="button" class="btn btn-success">Valider</button>
+                        </td>
+
+                    {% else %}
+                        <td>Validé</td>
+                    {% endif %}
+
                     <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
                            onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
                 </tr>
