@@ -1,7 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Commentaires{% endblock %}
 {% block content %}
-
+{{ dump(listcomments) }}
     {% set size = listcomments | length %}
 
     <div class="row justify-content-center">
@@ -23,18 +23,16 @@
             <tbody>
             {% if size > 1 %}
                 {% for comment in listcomments %}
+                    {{ dump(comment.is_valid) }}
                     <tr>
                         <td>{{ comment.username }}</td>
                         <td>{{ comment.comment_date }}</td>
                         <td>{{ comment.comment }}</td>
                         {% if comment.is_valid is null %}
-                            <td>
-                                <button type="button" class="btn btn-success">Valider</button>
-                            </td>
+                            <td>test</td>
                         {% else %}
                             <td>Validé</td>
                         {% endif %}
-
                         <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
                                onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
                     </tr>
@@ -44,14 +42,13 @@
                     <td>{{ listcomments.id }}</td>
                     <td>{{ listcomments.comment_date }}</td>
                     <td>{{ listcomments.comment }}</td>
-                    {% if listcomments.is_valid is null %}
+                    {% if listcomments.is_valid %}
                         <td>
                             <button type="button" class="btn btn-success">Valider</button>
                         </td>
                     {% else %}
                         <td>Validé</td>
                     {% endif %}
-
                     <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
                            onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
                 </tr>

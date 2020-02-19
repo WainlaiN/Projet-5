@@ -4,41 +4,39 @@
 namespace App\Model;
 
 
-
 class Comment
 {
+
     /**
-     * @var int $id comment id
+     * @var
      */
     private $id;
     /**
-     * @var int $title title comment
+     * @var
      */
     private $author_id;
-
     /**
-     * @var string $chapo chapo comment
+     * @var
      */
     private $comment;
-
     /**
-     * @var string $$comment description comment
+     * @var
      */
     private $post_id;
-
     /**
-     * @return int
-     */
-    /**
-     * @var string $date_creation comment date creation
+     * @var
      */
     private $comment_date;
-
+    /**
+     * @var
+     */
     private $is_valid;
-
+    /**
+     * @var
+     */
     private $username;
 
-        public function __construct($datas = [])
+    public function __construct($datas = [])
     {
         if (!empty($datas)) {
             $this->hydrate($datas);
@@ -147,22 +145,23 @@ class Comment
     }
 
     /**
-     * @return bool
+     * @return mixed
      */
-    public function isValid(): bool
+    public function getIsValid()
     {
         return $this->is_valid;
     }
 
     /**
-     * @param bool $is_valid
+     * @param mixed $is_valid
      * @return Comment
      */
-    public function setisValid(bool $is_valid)
+    public function setIsValid($is_valid)
     {
         $this->is_valid = $is_valid;
         return $this;
     }
+
 
     /**
      * @return mixed
@@ -181,10 +180,6 @@ class Comment
         $this->username = $username;
         return $this;
     }
-
-
-
-
 
 
 }

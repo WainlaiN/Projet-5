@@ -35,10 +35,10 @@ class CommentManager extends Database
         return $result = $this->sql($req, $parameters);
     }
 
-    public function addComment($postId, $authorid ,$author, $comment)
+    public function addComment($postId, $author_id ,$author, $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:authorid,:author,:comment, DATE(NOW()))';
-        $parameters = [':postId' => $postId, ':authorid' => $authorid,':author' =>$author, ':comment' => $comment];
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:author_id,:author,:comment, DATE(NOW()))';
+        $parameters = [':postId' => $postId, ':author_id' => $author_id,':author' =>$author, ':comment' => $comment];
         $result = $this->sql($newComments, $parameters);
         return $result;
     }
@@ -82,7 +82,7 @@ class CommentManager extends Database
         $result = $this->sql($invalidComments, $parameters);
         if ($result->rowCount() > 1) {
             while ($datas = $result->fetchObject($this->model)) {
-                $custom_array[] = new $this->model($datas);
+                $custom_array[] = $datas;
             }
             return $custom_array;
         } else {
