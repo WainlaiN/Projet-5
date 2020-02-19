@@ -46,7 +46,7 @@
                     <td>{{ listcomments.comment_date }}</td>
                     <td>{{ listcomments.comment }}</td>
 
-                    {% if listcomments.is_valid == 0 %}
+                    {% if listcomments.is_valid == null %}
                         <td>
                             <button type="button" class="btn btn-success">Valider</button>
                         </td>

@@ -16,7 +16,7 @@ class CommentManager extends Database
     public function getComments($postId)
     {
 
-        $req = 'SELECT id, author_id, comment, is_valid, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
+        $req = 'SELECT id, author_id, comment, is_valid, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
 
@@ -24,6 +24,7 @@ class CommentManager extends Database
             while ($datas = $result->fetchObject($this->model)) {
                 $custom_array[] = new $this->model($datas);
             }
+
             return $custom_array;
         } else {
             return $result->fetchObject($this->model);

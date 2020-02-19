@@ -29,7 +29,7 @@ class Database
 
             if ($binds) {
                 foreach ($binds as $bind) {
-                    $result->bindParam($bindnew[0], $bindnew[1], $bindnew[2]);
+                    $result->bindParam($bind[0], $bind[1], $bind[2]);
                 }
                 $result->execute();
             } else {
