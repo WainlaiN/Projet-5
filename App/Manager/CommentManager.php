@@ -20,7 +20,7 @@ class CommentManager extends Database
 
         if ($result->rowCount() > 1) {
             while ($datas = $result->fetchObject($this->model)) {
-                $custom_array[] = new $this->model($datas);
+                $custom_array[] = $datas;
             }
             return $custom_array;
         } else {
