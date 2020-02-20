@@ -96,16 +96,20 @@ class AdminController
 
     public function deletecomment($id)
     {
-        $this->_commentManager->deleteComment($id);
-        $_SESSION['flash']['success'] = "Votre commentaire a bien été supprimé!";
+        $request = $this->_commentManager->deleteComment($id);
+        if ($request === false) {
+            $_SESSION['flash']['success'] = "Impossible de supprimer le commentaire";
+        } else {
+            $_SESSION['flash']['success'] = 'Votre commentaire a été supprimé.';
+        }
         header('Location: /admin');
     }
 
     public function updatePostView($id)
     {
         $posts = $this->_postManager->getPost($id);
-        $this->_renderer->render('Backend/editPostView',  ['listpost' => $posts]);
-        //$_SESSION['flash'] = array();
+        $this->_renderer->render('Backend/editPostView', ['listpost' => $posts]);
+
 
     }
 
@@ -119,7 +123,13 @@ class AdminController
 
     public function ValidateComment($id)
     {
-        $this->_commentManager->validateComment($id);
+        $request = $this->_commentManager->validateComment($id);
+        if ($request === false) {
+            $_SESSION['flash']['success'] = "Impossible de valider le commentaire";
+        } else {
+            $_SESSION['flash']['success'] = 'Le commentaire a été validé.';
+        }
+        header('Location: /admin');
 
     }
 
