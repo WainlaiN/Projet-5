@@ -75,7 +75,7 @@ class Comment
     /**
      * @return int
      */
-    public function getauthor_id(): int
+    public function getAuthor_id(): int
     {
         return $this->author_id;
     }
@@ -129,7 +129,7 @@ class Comment
     /**
      * @return string
      */
-    public function getCommentDate()
+    public function getComment_date()
     {
         return $this->comment_date;
     }
@@ -138,7 +138,7 @@ class Comment
      * @param string $comment_date
      * @return Comment
      */
-    public function setCommentDate(string $comment_date)
+    public function setComment_date(string $comment_date)
     {
         $this->comment_date = $comment_date;
         return $this;
