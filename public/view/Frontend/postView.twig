@@ -9,7 +9,7 @@
         <div class="news">
             <h3>
                 {{ post.title }}
-                <em>le {{ post.date_creation|date("d/m/Y") }}</em>
+                <em>le {{ post.date_creation }}</em>
             </h3>
             <p>
                 {{ post.description }}
@@ -41,7 +41,7 @@
                                                 <div>
                                                     <div class="mic-info">
                                                         De : {{ comment.username }}
-                                                        le {{ comment.date_creation|date("d/m/Y") }}
+                                                        le {{ comment.date_creation }}
                                                     </div>
                                                 </div>
                                                 <div class="comment-text py-2">
@@ -58,7 +58,7 @@
                                             <div>
                                                 <div class="mic-info">
                                                     De : {{ listcomments.username }}
-                                                    le {{ listcomments.date_creation|date("d/m/Y") }}
+                                                    le {{ listcomments.date_creation }}
                                                 </div>
                                             </div>
                                             <div class="comment-text py-2">

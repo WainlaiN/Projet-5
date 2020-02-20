@@ -91,7 +91,8 @@ class AdminController
     public function deletecomment($id)
     {
         $this->_commentManager->deleteComment($id);
-        header('Location:');
+        $_SESSION['flash']['success'] = "Votre commentaire a bien été supprimé!";
+        header('Location: /admin');
     }
 
     public function updatePostView($id)
@@ -105,6 +106,7 @@ class AdminController
     public function UpdatePost($id)
     {
         $this->_postManager->updatePost($id);
+        $_SESSION['flash']['success'] = "Votre article a bien été modifié!";
         $this->updatePostView($id);
 
     }

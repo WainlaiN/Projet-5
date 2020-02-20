@@ -20,7 +20,7 @@ class PostManager extends Database
         $result = $this->sql($posts);
 
         while ($datas = $result->fetchObject($this->model)) {
-            $custom_array[] = new $this->model($datas);
+            $custom_array[] = $datas;
         }
         return $custom_array;
 
