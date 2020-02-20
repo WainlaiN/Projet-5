@@ -10,31 +10,31 @@ class Comment
     /**
      * @var
      */
-    public $id;
+    private $id;
     /**
      * @var
      */
-    public $author_id;
+    private $author_id;
     /**
      * @var
      */
-    public $comment;
+    private $comment;
     /**
      * @var
      */
-    public $post_id;
+    private $post_id;
     /**
      * @var
      */
-    public $comment_date;
+    private $comment_date;
     /**
      * @var
      */
-    public $is_valid;
+    private $is_valid;
     /**
      * @var
      */
-    public $username;
+    private $username;
 
     public function __construct($datas = [])
     {
@@ -147,7 +147,7 @@ class Comment
     /**
      * @return mixed
      */
-    public function getIsValid()
+    public function getIs_valid()
     {
         return $this->is_valid;
     }
@@ -156,7 +156,7 @@ class Comment
      * @param mixed $is_valid
      * @return Comment
      */
-    public function setIsValid($is_valid)
+    public function setIs_valid($is_valid)
     {
         $this->is_valid = $is_valid;
         return $this;
