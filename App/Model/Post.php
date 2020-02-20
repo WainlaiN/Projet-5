@@ -72,7 +72,7 @@ class Post
      * @param int $id
      * @return Post
      */
-    public function setId(int $id): Post
+    public function setId(int $id)
     {
         $this->id = $id;
         return $this;
@@ -90,7 +90,7 @@ class Post
      * @param string $title
      * @return Post
      */
-    public function setTitle(string $title): Post
+    public function setTitle(string $title)
     {
         $this->title = $title;
         return $this;
@@ -108,7 +108,7 @@ class Post
      * @param string $chapo
      * @return Post
      */
-    public function setChapo(string $chapo): Post
+    public function setChapo(string $chapo)
     {
         $this->chapo = $chapo;
         return $this;
@@ -126,7 +126,7 @@ class Post
      * @param string $description
      * @return Post
      */
-    public function setDescription(string $description): Post
+    public function setDescription(string $description)
     {
         $this->description = $description;
         return $this;
@@ -144,7 +144,7 @@ class Post
      * @param string $author
      * @return Post
      */
-    public function setAuthor(string $author): Post
+    public function setAuthor(string $author)
     {
         $this->author = $author;
         return $this;
@@ -154,7 +154,7 @@ class Post
      * @return string
      * @throws \Exception
      */
-    public function getDateCreation()
+    public function getDate_creation()
     {
         return $this->date_creation;
     }
@@ -163,7 +163,7 @@ class Post
      * @param string $date_creation
      * @return Post
      */
-    public function setDateCreation(string $date_creation): Post
+    public function setDate_creation(string $date_creation)
     {
         $this->date_creation = $date_creation;
         return $this;
@@ -172,7 +172,7 @@ class Post
     /**
      * @return string
      */
-    public function getDateUpdate(): string
+    public function getDate_update(): string
     {
         return $this->date_update;
     }
@@ -181,7 +181,7 @@ class Post
      * @param string $date_update
      * @return Post
      */
-    public function setDateUpdate(string $date_update): Post
+    public function setDate_update(string $date_update = null)
     {
         $this->date_update = $date_update;
         return $this;

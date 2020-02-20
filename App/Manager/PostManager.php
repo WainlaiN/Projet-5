@@ -16,7 +16,7 @@ class PostManager extends Database
 
     public function getPosts()
     {
-        $posts = 'SELECT id, title, chapo, description, author, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation FROM ' . $this->table_name . ' ORDER BY date_creation DESC';
+        $posts = 'SELECT id, title, chapo, description, author, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM ' . $this->table_name . ' ORDER BY date_creation DESC';
         $result = $this->sql($posts);
 
         while ($datas = $result->fetchObject($this->model)) {

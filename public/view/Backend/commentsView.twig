@@ -1,7 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Commentaires{% endblock %}
 {% block content %}
-{{ dump(listcomments) }}
+    <p><a href="/admin">Retour à la liste des articles</a></p>
     {% set size = listcomments | length %}
 
     <div class="row justify-content-center">
@@ -23,7 +23,6 @@
             <tbody>
             {% if size > 1 %}
                 {% for comment in listcomments %}
-                    {{ dump(comment.is_valid) }}
                     <tr>
                         <td>{{ comment.username }}</td>
                         <td>{{ comment.comment_date }}</td>

@@ -76,7 +76,7 @@ class AdminController
             $result = $this->_postManager->addPost($datas);
 
             if ($result) {
-                $this->listPosts();
+                header('Location: /admin');
             }
         }
 
@@ -91,7 +91,7 @@ class AdminController
     public function deletecomment($id)
     {
         $this->_commentManager->deleteComment($id);
-        $this->listPosts();
+        header('Location:');
     }
 
     public function updatePostView($id)
