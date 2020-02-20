@@ -47,7 +47,7 @@ class CommentManager extends Database
     {
 
         $editedComments = 'UPDATE ' . $this->table_name . ' SET comment = :comment WHERE id = :id';
-        $parameters = [':comment' => $commentId, ':id' => $commentId];
+        $parameters = [':comment' => $comment, ':id' => $commentId];
         $result = $this->sql($editedComments, $parameters);
         return $result;
     }

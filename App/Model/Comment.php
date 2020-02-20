@@ -10,31 +10,31 @@ class Comment
     /**
      * @var
      */
-    private $id;
+    public $id;
     /**
      * @var
      */
-    private $author_id;
+    public $author_id;
     /**
      * @var
      */
-    private $comment;
+    public $comment;
     /**
      * @var
      */
-    private $post_id;
+    public $post_id;
     /**
      * @var
      */
-    private $comment_date;
+    public $comment_date;
     /**
      * @var
      */
-    private $is_valid;
+    public $is_valid;
     /**
      * @var
      */
-    private $username;
+    public $username;
 
     public function __construct($datas = [])
     {
