@@ -55,8 +55,15 @@ Class FrontController
         $author_id = $_POST['author'];
         $author_ = $_SESSION['auth']->getUsername();
         $description = $_POST['description'];
-        return $this->_commentManager->addComment($post_id, $author_id, $author_, $description);
+        $request = $this->_commentManager->addComment($post_id, $author_id, $author_, $description);
 
+        if ($request === false) {
+            $_SESSION['flash']['danger'] = 'Impossible d\'ajouter le commentaire !';
+        } else {
+            $_SESSION['flash']['success'] = 'Votre commentaire va être soumis à validation.';
+        }
+
+        header('Location: /post/' . $_POST['postid']);
 
     }
 

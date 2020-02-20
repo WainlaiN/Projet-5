@@ -62,7 +62,7 @@ class CommentManager extends Database
 
     public function getValidComments($postId)
     {
-        $validComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid AND post_id = :postid';
+        $validComments = 'SELECT id, author_id, comment, is_valid, post_id, username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE is_valid = :valid AND post_id = :postid';
         $parameters = [':valid' => 1, ':postid' => $postId];
         $result = $this->sql($validComments, $parameters);
         if ($result->rowCount() > 1) {
