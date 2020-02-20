@@ -32,6 +32,8 @@ try {
     $router->map('POST', '/admin/addpost', 'AdminController#addPost');
     $router->map('GET', '/admin/comments/[i:id]', 'AdminController#listComments');
     $router->map('GET', '/admin/comment/delete/[i:id]', 'AdminController#deleteComment');
+    $router->map('GET', '/admin/comment/validate/[i:id]', 'AdminController#validateComment');
+
 
 
 //login Management

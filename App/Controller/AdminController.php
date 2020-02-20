@@ -117,9 +117,10 @@ class AdminController
 
     }
 
-    public function ValidateComment()
+    public function ValidateComment($id)
     {
         $this->_commentManager->validateComment($id);
+
     }
 
 

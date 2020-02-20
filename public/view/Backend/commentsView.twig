@@ -1,7 +1,6 @@
 {% extends 'template.twig' %}
 {% block title %}Commentaires{% endblock %}
 {% block content %}
-    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 
     <p><a href="/admin">Retour à la liste des articles</a></p>
     {% set size = listcomments | length %}
@@ -31,7 +30,7 @@
                         <td>{{ comment.comment }}</td>
                         {% if comment.is_valid is null %}
                             <td>
-                                <button type="button" class="btn btn-success">Valider</button>
+                                <a href="/admin/comment/validate/{{ comment.id }}" style="color:white" class="btn btn-success">Valider</a>
                             </td>
                         {% else %}
                             <td>
@@ -44,20 +43,19 @@
                 {% endfor %}
             {% elseif size == 1 %}
                 <tr>
-                    <td>{{ listcomments.id }}</td>
+                    <td>{{ listcomments.username }}</td>
                     <td>{{ listcomments.comment_date }}</td>
                     <td>{{ listcomments.comment }}</td>
                     {% if listcomments.is_valid is null %}
                         <td>
-                            <button type="button" class="btn btn-success">Valider</button>
+                            <a href="/admin/comment/validate/{{ listcomments.id }}" style="color:white" class="btn btn-success">Valider</a>
                         </td>
                     {% else %}
                         <td>
                             <button type="button" class="btn btn-dark">OK</button>
                         </td>
                     {% endif %}
-                    <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
-                           onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
+                    <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger">Supprimer</a></td>
                 </tr>
             {% else %}
                 <div class="alert alert-dark" role="alert">
