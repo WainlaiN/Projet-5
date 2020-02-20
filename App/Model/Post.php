@@ -10,36 +10,36 @@ class Post
     /**
      * @var int $id post id
      */
-    public $id;
+    private $id;
     /**
      * @var string $title title post
      */
-    public $title;
+    private $title;
 
     /**
      * @var string $chapo chapo post
      */
-    public $chapo;
+    private $chapo;
 
     /**
      * @var string $description description post
      */
-    public $description;
+    private $description;
 
     /**
      * @var string $author author post
      */
-    public $author;
+    private $author;
 
     /**
      * @var string $date_creation post date creation
      */
-    public $date_creation;
+    private $date_creation;
 
     /**
      * @var string $date_update post date update
      */
-    public $date_update;
+    private $date_update;
 
     public function __construct($datas = [])
     {

@@ -9,27 +9,27 @@ class User
     /**
      * @var int
      */
-    public $id;
+    private $id;
 
     /**
      * @var string
      */
-    public $username;
+    private $username;
 
     /**
      * @var string
      */
-    public $mail;
+    private $mail;
 
     /**
      * @var string
      */
-    public $password;
+    private $password;
 
     /**
      * @var string
      */
-    public $user_status;
+    private $user_status;
 
     /**
      * @return mixed
