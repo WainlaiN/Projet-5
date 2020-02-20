@@ -84,7 +84,13 @@ class AdminController
 
     public function deletePost($id)
     {
-        $this->_postManager->deletePost($id);
+        $request = $this->_postManager->deletePost($id);
+        if ($request === false) {
+            $_SESSION['flash']['danger'] = 'Impossible de supprimer l\'article !';
+        } else {
+            $_SESSION['flash']['success'] = 'Votre article a été supprimé.';
+        }
+        header('Location: /admin');
 
     }
 

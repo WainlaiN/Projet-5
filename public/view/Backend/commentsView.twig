@@ -32,8 +32,7 @@
                         {% else %}
                             <td><button type="button" class="btn btn-success">Validé</button></td>
                         {% endif %}
-                        <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger"
-                               onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a></td>
+                        <td><a href="/admin/comment/delete/{{ comment.id }}" style="color:white" class="btn btn-danger">Supprimer</a></td>
                     </tr>
                 {% endfor %}
             {% elseif size == 1 %}
