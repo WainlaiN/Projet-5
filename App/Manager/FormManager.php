@@ -9,11 +9,11 @@ class FormManager
 
     public function fromTraitment($nom, $prenom, $email, $message)
     {
-        $entetemail = "From: Blog Projet OpenClassroom <julienroquai@hotmail.fr>\r\n";
-        $entetemail .= "Reply-To: julienroquai@hotmail.fr\n";
+        $entetemail = "From: Blog Projet OpenClassroom <nicodupriez@hotmail.com>\r\n";
+        $entetemail .= "Reply-To: nicodupriez@hotmail.com\n";
         $entetemail .= 'X-Mailer: PHP/'.phpversion()."\n";
         $entetemail .= "Content-Type: text/plain; charset=utf8\r\n";
-        $objet = 'Comfirmation de la récption de votre message';
+        $objet = 'Comfirmation de la réception de votre message';
         $message_email = 'Nous avons bien reçu votre message';
 
         mail($email, $objet, $message_email, $entetemail);
@@ -25,6 +25,6 @@ class FormManager
         $objet = 'Contact depuis votre Blog Boblebicoleur';
         $message_email = $message;
 
-        mail('julienroquai@hotmail.fr', $objet, $message_email, $entetemail);
+        mail('nicodupriez@hotmail.com', $objet, $message_email, $entetemail);
     }
 }

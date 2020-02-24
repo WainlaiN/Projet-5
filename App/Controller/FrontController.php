@@ -150,11 +150,11 @@ Class FrontController
     public function contactForm()
     {
 
-        if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['message']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        if (empty($_POST['name']) || empty($_POST['forename']) || empty($_POST['email']) || empty($_POST['message']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
         } else {
-            $nom = strip_tags(htmlspecialchars($_POST['nom']));
-            $prenom = strip_tags(htmlspecialchars($_POST['prenom']));
+            $nom = strip_tags(htmlspecialchars($_POST['name']));
+            $prenom = strip_tags(htmlspecialchars($_POST['forename']));
             $email = strip_tags(htmlspecialchars($_POST['email']));
             $message = strip_tags(htmlspecialchars($_POST['message']));
 
