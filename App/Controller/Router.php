@@ -8,8 +8,6 @@ namespace App\Controller;
 
 class Router extends \AltoRouter
 {
-
-
     public function routerRequest($target, $params)
     {
 

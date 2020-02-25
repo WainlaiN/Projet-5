@@ -11,10 +11,25 @@ use App\Core\TwigRenderer;
 
 Class FrontController
 {
+    /**
+     * @var PostManager
+     */
     private $postManager;
+    /**
+     * @var CommentManager
+     */
     private $commentManager;
+    /**
+     * @var LoginManager
+     */
     private $loginManager;
+    /**
+     * @var TwigRenderer
+     */
     private $renderer;
+    /**
+     * @var FormManager
+     */
     private $formManager;
 
 
@@ -31,12 +46,18 @@ Class FrontController
         }
     }
 
+    /**
+     *
+     */
     public function home()
     {
         $this->renderer->render('Frontend/homeView');
         $_SESSION['flash'] = array();
     }
 
+    /**
+     *
+     */
     public function listPosts()
     {
         $list_posts = $this->postManager->getPosts();
@@ -44,6 +65,9 @@ Class FrontController
         $_SESSION['flash'] = array();
     }
 
+    /**
+     * @param $id
+     */
     public function post($id)
     {
         $post = $this->postManager->getPost($id);
@@ -52,6 +76,9 @@ Class FrontController
         $_SESSION['flash'] = array();
     }
 
+    /**
+     *
+     */
     public function addComment()
     {
         $post_id = $_POST['postid'];
@@ -70,12 +97,18 @@ Class FrontController
 
     }
 
+    /**
+     *
+     */
     public function login()
     {
         $this->renderer->render('Frontend/loginView');
         $_SESSION['flash'] = array();
     }
 
+    /**
+     *
+     */
     public function registerView()
     {
         $this->renderer->render('Frontend/registeView');
@@ -83,6 +116,9 @@ Class FrontController
 
     }
 
+    /**
+     *
+     */
     public function connect()
     {
 
@@ -124,6 +160,9 @@ Class FrontController
 
     }
 
+    /**
+     *
+     */
     public function deconnect()
     {
         session_destroy();
@@ -133,6 +172,10 @@ Class FrontController
 
 
     //beta
+
+    /**
+     *
+     */
     public function register()
     {
         if ($this->loginManager->checkUsername()) {
@@ -147,6 +190,10 @@ Class FrontController
     }
 
     //beta
+
+    /**
+     *
+     */
     public function contactForm()
     {
 
@@ -164,6 +211,9 @@ Class FrontController
         header('Location: /');
     }
 
+    /**
+     *
+     */
     public function cvNico()
     {
 

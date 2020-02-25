@@ -32,15 +32,15 @@ class CommentManager extends Database
     {
         $req = 'SELECT * FROM comments WHERE id = :id';
         $parameters = [':id' => $id];
-        return $result = $this->sql($req, $parameters);
+        return $this->sql($req, $parameters);
     }
 
     public function addComment($postId, $author_id ,$author, $comment)
     {
         $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:author_id,:author,:comment, DATE(NOW()))';
         $parameters = [':postId' => $postId, ':author_id' => $author_id,':author' =>$author, ':comment' => $comment];
-        $result = $this->sql($newComments, $parameters);
-        return $result;
+        return$this->sql($newComments, $parameters);
+
     }
 
     public function editComment($commentId, $comment)
