@@ -21,10 +21,6 @@ try {
     $router->map('POST', '/', 'FrontController#contactForm');
     $router->map('GET', '/CV', 'FrontController#cvNico');
 
-
-
-
-
 //Admin Management
     $router->map('GET', '/admin', 'AdminController#listPosts');
     $router->map('GET', '/admin/post/[i:id]', 'AdminController#updatePostView');
