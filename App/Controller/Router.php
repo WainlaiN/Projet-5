@@ -3,10 +3,12 @@
 
 namespace App\Controller;
 
+use AltoRouter;
 
 
 
-class Router extends \AltoRouter
+
+class Router extends AltoRouter
 {
     public function routerRequest($target, $params)
     {

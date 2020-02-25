@@ -42,6 +42,7 @@ try {
     $router->routerRequest($match['target'], $match['params']);
 
 } catch (Exception $e) {
+
     $errorMessage = $e->getMessage();
     $_SESSION['errorMessage'] = $errorMessage;
     dump($errorMessage, $_SESSION);
