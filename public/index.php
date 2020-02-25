@@ -8,9 +8,11 @@ require '../vendor/autoload.php';
 $router = new router();
 
 
+
+
 try {
 
-//Front management
+    //Front management
     $router->map('GET', '/', 'FrontController#home');
     //$router->map('GET', '/home', '');
     $router->map('GET', '/posts', 'FrontController#listPosts');
@@ -21,11 +23,7 @@ try {
     $router->map('POST', '/', 'FrontController#contactForm');
     $router->map('GET', '/CV', 'FrontController#cvNico');
 
-
-
-
-
-//Admin Management
+    //Admin Management
     $router->map('GET', '/admin', 'AdminController#listPosts');
     $router->map('GET', '/admin/post/[i:id]', 'AdminController#updatePostView');
     $router->map('POST', '/admin/post/[i:id]', 'AdminController#UpdatePost');
@@ -36,9 +34,7 @@ try {
     $router->map('GET', '/admin/comment/delete/[i:id]', 'AdminController#deleteComment');
     $router->map('GET', '/admin/comment/validate/[i:id]', 'AdminController#validateComment');
 
-
-
-//login Management
+    //login Management
     $router->map('GET', '/login', 'FrontController#login');
     $router->map('POST', '/connect', 'FrontController#connect');
     $router->map('GET', '/logout', 'FrontController#deconnect');
