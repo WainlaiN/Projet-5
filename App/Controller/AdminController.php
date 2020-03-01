@@ -46,6 +46,9 @@ class AdminController
 
     }
 
+    /**
+     * Return All Posts and Render the View
+     */
     public function listPosts()
     {
         $list_posts = $this->postManager->getPosts();
@@ -54,6 +57,9 @@ class AdminController
 
     }
 
+    /**
+     * Return Comments from a post  and Render the View
+     */
     public function listComments($postId)
     {
         $comments = $this->commentManager->getComments($postId);
@@ -61,6 +67,9 @@ class AdminController
         //$_SESSION['flash'] = array();
     }
 
+    /**
+     * Render the Post View
+     */
     public function addPostView()
     {
         $this->renderer->render('Backend/addPostView');
@@ -68,6 +77,9 @@ class AdminController
 
     }
 
+    /**
+     * Add a Post using manager
+     */
     public function addPost()
     {
 
@@ -86,6 +98,9 @@ class AdminController
 
     }
 
+    /**
+     * Delete a Post from ID using manager
+     */
     public function deletePost($id)
     {
         $request = $this->postManager->deletePost($id);
@@ -98,6 +113,9 @@ class AdminController
 
     }
 
+    /**
+     * Delete a Comment from ID using manager
+     */
     public function deletecomment($id)
     {
         $request = $this->commentManager->deleteComment($id);
@@ -109,6 +127,9 @@ class AdminController
         header('Location: /admin');
     }
 
+    /**
+     * Render Update Post View
+     */
     public function updatePostView($id)
     {
         $posts = $this->postManager->getPost($id);
@@ -117,6 +138,9 @@ class AdminController
 
     }
 
+    /**
+     * Update a Post from ID using manager
+     */
     public function UpdatePost($id)
     {
         $this->postManager->updatePost($id);
@@ -125,6 +149,9 @@ class AdminController
 
     }
 
+    /**
+     * Validate a Comment from ID using manager
+     */
     public function ValidateComment($id)
     {
         $request = $this->commentManager->validateComment($id);

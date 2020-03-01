@@ -11,30 +11,13 @@ use App\Core\TwigRenderer;
 /**
  * class FrontController controller for Frontend
  */
-
 Class FrontController
 {
-    /**
-     * @var PostManager
-     */
     private $postManager;
-    /**
-     * @var CommentManager
-     */
     private $commentManager;
-    /**
-     * @var LoginManager
-     */
     private $loginManager;
-    /**
-     * @var TwigRenderer
-     */
     private $renderer;
-    /**
-     * @var FormManager
-     */
     private $formManager;
-
 
     public function __construct()
     {
@@ -50,7 +33,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Render Home
      */
     public function home()
     {
@@ -59,7 +42,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Return all Posts using manager and Render the View
      */
     public function listPosts()
     {
@@ -69,6 +52,7 @@ Class FrontController
     }
 
     /**
+     * Return a Post using manager and Render the View
      * @param $id
      */
     public function post($id)
@@ -80,7 +64,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Add a Comment using manager
      */
     public function addComment()
     {
@@ -101,7 +85,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Render the Login View
      */
     public function login()
     {
@@ -110,7 +94,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Render the Register View
      */
     public function registerView()
     {
@@ -120,7 +104,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Connect a User using manager
      */
     public function connect()
     {
@@ -164,7 +148,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Disconnect a User
      */
     public function deconnect()
     {
@@ -174,7 +158,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Register a User using manager
      */
     public function register()
     {
@@ -191,6 +175,9 @@ Class FrontController
         header('Location: /login');
     }
 
+    /**
+     * Send an email for contact form using manager
+     */
     public function contactForm()
     {
 
@@ -209,7 +196,7 @@ Class FrontController
     }
 
     /**
-     *
+     * Download the CV
      */
     public function cvNico()
     {
@@ -219,14 +206,12 @@ Class FrontController
         if (file_exists($file)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Content-Disposition: attachment; filename="' . basename($file) . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
-            header('Content-Length: '.filesize($file));
+            header('Content-Length: ' . filesize($file));
             readfile($file);
         }
     }
-
-
 }

@@ -9,6 +9,13 @@ namespace App\Manager;
 
 class FormManager
 {
+    /**
+     * Manage Home Form
+     * @param $name
+     * @param $forename
+     * @param $email
+     * @param $message
+     */
     public function fromTraitment($name, $forename, $email, $message)
     {
 
@@ -27,6 +34,11 @@ class FormManager
         $mailer->send($message);
     }
 
+    /**
+     * Manage Register Form
+     * @param $email
+     * @param $username
+     */
     public function RegisterTraitment($email, $username)
     {
 

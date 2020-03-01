@@ -15,6 +15,11 @@ class CommentManager extends Database
     protected $model = Comment::class;
     protected $table_name = 'comments';
 
+    /**
+     * Return Comments from a post
+     * @param $postId
+     * @return array|mixed
+     */
     public function getComments($postId)
     {
         $req = 'SELECT id, author_id, comment, is_valid, post_id, username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
@@ -31,6 +36,11 @@ class CommentManager extends Database
         }
     }
 
+    /**
+     * Return Comment from ID
+     * @param $id
+     * @return bool|false|\PDOStatement
+     */
     public function getComment($id)
     {
         $req = 'SELECT * FROM comments WHERE id = :id';
@@ -38,7 +48,15 @@ class CommentManager extends Database
         return $this->sql($req, $parameters);
     }
 
-    public function addComment($postId, $author_id ,$author, $comment)
+    /**
+     * Add Comment from a user
+     * @param $postId
+     * @param $author_id
+     * @param $author
+     * @param $comment
+     * @return bool|false|\PDOStatement
+     */
+    public function addComment($postId, $author_id , $author, $comment)
     {
         $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:author_id,:author,:comment, DATE(NOW()))';
         $parameters = [':postId' => $postId, ':author_id' => $author_id,':author' =>$author, ':comment' => $comment];
@@ -46,15 +64,11 @@ class CommentManager extends Database
 
     }
 
-    public function editComment($commentId, $comment)
-    {
-
-        $editedComments = 'UPDATE ' . $this->table_name . ' SET comment = :comment WHERE id = :id';
-        $parameters = [':comment' => $comment, ':id' => $commentId];
-        $result = $this->sql($editedComments, $parameters);
-        return $result;
-    }
-
+    /**
+     * Delete Comment from ID
+     * @param $id
+     * @return bool|false|\PDOStatement
+     */
     public function deleteComment($id)
     {
         $comment = 'DELETE FROM ' . $this->table_name . ' WHERE id= :id';
@@ -63,6 +77,11 @@ class CommentManager extends Database
         return $result;
     }
 
+    /**
+     * Get Only Valid Comments
+     * @param $postId
+     * @return array|mixed
+     */
     public function getValidComments($postId)
     {
         $validComments = 'SELECT id, author_id, comment, is_valid, post_id, username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE is_valid = :valid AND post_id = :postid';
@@ -78,6 +97,10 @@ class CommentManager extends Database
         }
     }
 
+    /**
+     * Get Only Invalid Comments
+     * @return array|mixed
+     */
     public function getInvalidComments()
     {
         $invalidComments = 'SELECT * FROM ' . $this->table_name . ' WHERE is_valid = :valid';
@@ -91,17 +114,19 @@ class CommentManager extends Database
         } else {
             return $result->fetchObject($this->model);
         }
-
     }
 
+    /**
+     * Validate a Comment
+     * @param $commentId
+     * @return bool|false|\PDOStatement
+     */
     public function validateComment($commentId)
     {
         $validate = 'UPDATE ' . $this->table_name . ' SET is_valid = :valid WHERE id = :id';
         $parameters = [':id' => $commentId, ':valid' => 1];
         $result = $this->sql($validate, $parameters);
         return $result;
-
-
     }
 
 }

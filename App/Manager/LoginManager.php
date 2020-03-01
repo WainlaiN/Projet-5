@@ -34,7 +34,7 @@ class LoginManager extends Database
 
 
     /**
-     * Return Status for specific user
+     * Return Status for Specific User
      * @param $username
      * @return mixed
      */
@@ -122,7 +122,7 @@ class LoginManager extends Database
     }
 
     /**
-     * Register user and send an email
+     * Register user
      *
      */
     public function registerUser()
@@ -134,7 +134,4 @@ class LoginManager extends Database
         $this->sql($sql, $parameters);
 
     }
-
-
-
 }

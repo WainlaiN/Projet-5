@@ -8,31 +8,31 @@ class Comment
 {
 
     /**
-     * @var
+     * @var int $id comment id
      */
     private $id;
     /**
-     * @var
+     * @var int $author_id author id
      */
     private $author_id;
     /**
-     * @var
+     * @var string $comment comment content
      */
     private $comment;
     /**
-     * @var
+     * @var int $post_id post id
      */
     private $post_id;
     /**
-     * @var
+     * @var string $comment_date comment date update
      */
     private $comment_date;
     /**
-     * @var
+     * @var bool $is_valid comment status
      */
     private $is_valid;
     /**
-     * @var
+     * @var string $username username
      */
     private $username;
 

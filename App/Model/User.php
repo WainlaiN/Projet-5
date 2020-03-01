@@ -7,27 +7,27 @@ namespace App\Model;
 class User
 {
     /**
-     * @var int
+     * @var int $id user ID
      */
     private $id;
 
     /**
-     * @var string
+     * @var string $username user name
      */
     private $username;
 
     /**
-     * @var string
+     * @var string $mail user email
      */
     private $mail;
 
     /**
-     * @var string
+     * @var string $password password
      */
     private $password;
 
     /**
-     * @var string
+     * @var string $user_status user status
      */
     private $user_status;
 
