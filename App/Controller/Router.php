@@ -5,8 +5,9 @@ namespace App\Controller;
 
 use AltoRouter;
 
-
-
+/**
+ * class Router controller for router
+ */
 
 class Router extends AltoRouter
 {

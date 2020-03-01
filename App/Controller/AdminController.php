@@ -7,6 +7,10 @@ use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
 
+/**
+ * class AdminController controller for Backend
+ */
+
 
 class AdminController
 {

@@ -5,6 +5,9 @@ namespace App\Manager;
 use App\Core\Database;
 use App\Model\Comment;
 
+/**
+ * CommentManager Queries for Comments
+ */
 
 class CommentManager extends Database
 {

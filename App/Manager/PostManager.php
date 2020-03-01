@@ -5,6 +5,9 @@ namespace App\Manager;
 use App\Core\Database;
 use App\Model\Post;
 
+/**
+ * PostManager Queries for Posts
+ */
 
 class PostManager extends Database
 {

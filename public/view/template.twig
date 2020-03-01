@@ -13,6 +13,11 @@
     <title>{{ title }}</title>
 
 
+    </script>
+    <script language="JavaScript" type="text/javascript" src="../js/jquery.js"></script>
+    <script language="JavaScript" type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+
     <!-- Bootstrap Core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet">
 
@@ -59,23 +64,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/CV">CV</a>
                     </li>
-                <li>
-                    <a class="nav-link" href="/admin">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">
-                        <img src="../../img/deco.png" width="20" height="20" alt="deconnexion">
-                    </a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="/admin">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <img src="../../img/deco.png" width="20" height="20" alt="deconnexion">
+                        </a>
+                    </li>
                 {% else %}
-                <li>
-                    <a class="nav-link" href="/register">S'inscrire</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">
-                        <img src="../img/deco.png" width="20" height="20" alt="connexion">
-                    </a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="/register">S'inscrire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">
+                            <img src="../img/deco.png" width="20" height="20" alt="connexion">
+                        </a>
+                    </li>
                 {% endif %}
             </ul>
         </div>

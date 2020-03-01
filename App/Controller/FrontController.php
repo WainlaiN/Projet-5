@@ -8,6 +8,9 @@ use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
 
+/**
+ * class FrontController controller for Frontend
+ */
 
 Class FrontController
 {
@@ -170,9 +173,6 @@ Class FrontController
         header('Location: /');
     }
 
-
-    //beta
-
     /**
      *
      */
@@ -182,18 +182,15 @@ Class FrontController
             if ($this->loginManager->checkEmail()) {
                 if ($this->loginManager->checkPassword()) {
                     $this->loginManager->registerUser();
+                    $this->formManager->RegisterTraitment($_POST['email'], $_POST['username']);
                 }
             }
         }
+        $_SESSION['flash']['success'] = 'Votre inscription a bien été prise en compte.';
 
         header('Location: /login');
     }
 
-    //beta
-
-    /**
-     *
-     */
     public function contactForm()
     {
 
