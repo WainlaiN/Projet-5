@@ -41,10 +41,10 @@ class CommentManager extends Database
      * @param $id
      * @return bool|false|\PDOStatement
      */
-    public function getComment($id)
+    public function getComment($commentId)
     {
         $req = 'SELECT * FROM comments WHERE id = :id';
-        $parameters = [':id' => $id];
+        $parameters = [':id' => $commentId];
         return $this->sql($req, $parameters);
     }
 
@@ -69,10 +69,10 @@ class CommentManager extends Database
      * @param $id
      * @return bool|false|\PDOStatement
      */
-    public function deleteComment($id)
+    public function deleteComment($commentId)
     {
         $comment = 'DELETE FROM ' . $this->table_name . ' WHERE id= :id';
-        $parameters = [':id' => $id];
+        $parameters = [':id' => $commentId];
         $result = $this->sql($comment, $parameters);
         return $result;
     }

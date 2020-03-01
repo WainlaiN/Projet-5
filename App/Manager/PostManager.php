@@ -38,10 +38,10 @@ class PostManager extends Database
      * @param $id
      * @return mixed
      */
-    public function getPost($id)
+    public function getPost($postId)
     {
         $post = 'SELECT id, title, chapo, description, author, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation FROM ' . $this->table_name . ' WHERE id= :postId';
-        $parameters = [':postId' => $id];
+        $parameters = [':postId' => $postId];
         $result = $this->sql($post, $parameters);
         return $result->fetchObject($this->model);
 
@@ -72,10 +72,10 @@ class PostManager extends Database
      * @param $id
      * @return bool|false|\PDOStatement
      */
-    public function deletePost($id)
+    public function deletePost($postId)
     {
         $post = 'DELETE FROM ' . $this->table_name . ' WHERE id= :id';
-        $parameters = [':id' => $id];
+        $parameters = [':id' => $postId];
         $result = $this->sql($post, $parameters);
         return $result;
     }
@@ -85,11 +85,11 @@ class PostManager extends Database
      * @param $id
      * @return bool|false|\PDOStatement
      */
-    public function updatePost($id)
+    public function updatePost($postId)
     {
         $editedPost = 'UPDATE ' . $this->table_name . ' SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE id=:id';
         $parameters = [
-            ':id' => $id,
+            ':id' => $postId,
             ':author' => $_POST['author'],
             ':title' => $_POST['title'],
             ':chapo' => $_POST['chapo'],
