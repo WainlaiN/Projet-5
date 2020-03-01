@@ -19,6 +19,7 @@ try {
     $router->map('POST', '/comment/add', 'FrontController#addComment');
     $router->map('POST', '/', 'FrontController#contactForm');
     $router->map('GET', '/CV', 'FrontController#cvNico');
+    $router->map('GET', '/CGV', 'FrontController#getCGV');
 
     //Admin Management
 

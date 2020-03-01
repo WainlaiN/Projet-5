@@ -85,6 +85,16 @@ Class FrontController
     }
 
     /**
+     * Render the CGV View
+     */
+    public function getCGV()
+    {
+        $this->renderer->render('Frontend/cgvView');
+        $_SESSION['flash'] = array();
+    }
+
+
+    /**
      * Render the Login View
      */
     public function login()
