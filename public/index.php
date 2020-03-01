@@ -39,6 +39,7 @@ try {
 
     $match = $router->match();
 
+
     $router->routerRequest($match['target'], $match['params']);
 
 } catch (Exception $e) {
