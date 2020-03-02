@@ -17,6 +17,7 @@ class CommentManager extends Database
 
     /**
      * Return Comments from a post
+     *
      * @param $postId
      * @return array|mixed
      */
@@ -38,6 +39,7 @@ class CommentManager extends Database
 
     /**
      * Return Comment from ID
+     *
      * @param $commentId
      * @return bool|false|\PDOStatement
      */
@@ -50,6 +52,7 @@ class CommentManager extends Database
 
     /**
      * Add Comment from a user
+     *
      * @param $postId
      * @param $author_id
      * @param $author
@@ -66,6 +69,7 @@ class CommentManager extends Database
 
     /**
      * Delete Comment from ID
+     *
      * @param $commentId
      * @return bool|false|\PDOStatement
      */
@@ -79,6 +83,7 @@ class CommentManager extends Database
 
     /**
      * Get Only Valid Comments
+     *
      * @param $postId
      * @return array|mixed
      */
@@ -99,6 +104,7 @@ class CommentManager extends Database
 
     /**
      * Get Only Invalid Comments
+     *
      * @return array|mixed
      */
     public function getInvalidComments()
@@ -118,6 +124,7 @@ class CommentManager extends Database
 
     /**
      * Validate a Comment
+     *
      * @param $commentId
      * @return bool|false|\PDOStatement
      */

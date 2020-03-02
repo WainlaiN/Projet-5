@@ -17,9 +17,9 @@ class LoginManager extends Database
     protected $model = User::class;
     protected $table_name = 'users';
 
-
     /**
      * Return User Information
+     *
      * @param $username
      * @return mixed
      */
@@ -29,12 +29,11 @@ class LoginManager extends Database
         $parameters = [':username' => $username];
         $result = $this->sql($req, $parameters);
         return $result->fetchObject($this->model);
-
     }
 
-
     /**
-     * Return Status for Specific User
+     * Return status for specific user
+     *
      * @param $username
      * @return mixed
      */
@@ -46,9 +45,9 @@ class LoginManager extends Database
         return $result->fetchObject($this->model);
     }
 
-
     /**
-     * Return if Username is already used
+     * Return if username is already used
+     *
      * @return bool
      */
     public function checkUsername()
@@ -73,9 +72,9 @@ class LoginManager extends Database
         }
     }
 
-
     /**
      * Return if email is already used
+     *
      * @return bool
      */
     public function checkEmail()
@@ -103,6 +102,7 @@ class LoginManager extends Database
 
     /**
      * Return if password is valid
+     *
      * @return bool
      */
     public function checkPassword()

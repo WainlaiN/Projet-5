@@ -19,6 +19,7 @@ class PostManager extends Database
 
     /**
      * Return All Posts
+     *
      * @return array
      */
     public function getPosts()
@@ -35,6 +36,7 @@ class PostManager extends Database
 
     /**
      * Return one Post from ID
+     *
      * @param $postId
      * @return mixed
      */
@@ -49,6 +51,7 @@ class PostManager extends Database
 
     /**
      * Add a Post
+     *
      * @param $post
      * @return bool|false|\PDOStatement
      */
@@ -69,6 +72,7 @@ class PostManager extends Database
 
     /**
      * Delete a Post
+     *
      * @param $postId
      * @return bool|false|\PDOStatement
      */
@@ -82,6 +86,7 @@ class PostManager extends Database
 
     /**
      * Update a Post
+     *
      * @param $postId
      * @return bool|false|\PDOStatement
      */

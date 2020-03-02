@@ -53,6 +53,7 @@ Class FrontController
 
     /**
      * Render the Post view from the post manager
+     *
      * @param $postId
      */
     public function post($postId)

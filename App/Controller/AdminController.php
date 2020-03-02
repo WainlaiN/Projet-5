@@ -58,6 +58,7 @@ class AdminController
 
     /**
      * Render the Comments view from the comment manager
+     *
      * @param $postId
      */
     public function listComments($postId)
@@ -100,6 +101,7 @@ class AdminController
 
     /**
      * Delete a Post from ID using post manager
+     *
      * @param $postId
      */
     public function deletePost($postId)
@@ -116,6 +118,7 @@ class AdminController
 
     /**
      * Delete a Comment from ID using comment manager
+     *
      * @param $commentId
      */
     public function deletecomment($commentId)

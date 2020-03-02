@@ -31,6 +31,25 @@ class User
      */
     private $user_status;
 
+    public function __construct($datas = [])
+    {
+        if (!empty($datas)) {
+            $this->hydrate($datas);
+        }
+    }
+
+    public function hydrate($datas)
+    {
+
+        foreach ($datas as $key => $value) {
+            $method = 'set' . ucfirst($key);
+
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
+
     /**
      * @return mixed
      */
@@ -120,9 +139,4 @@ class User
         $this->user_status = $status;
         return $this;
     }
-
-
-
-
-
 }
