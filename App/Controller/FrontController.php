@@ -38,7 +38,7 @@ Class FrontController
     public function home()
     {
         $this->renderer->render('Frontend/homeView');
-        $_SESSION['flash'] = array();
+
     }
 
     /**
@@ -48,7 +48,7 @@ Class FrontController
     {
         $list_posts = $this->postManager->getPosts();
         $this->renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
-        $_SESSION['flash'] = array();
+
     }
 
     /**
@@ -60,7 +60,7 @@ Class FrontController
         $post = $this->postManager->getPost($id);
         $list_comments = $this->commentManager->getValidComments($id);
         $this->renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
-        $_SESSION['flash'] = array();
+
     }
 
     /**
@@ -90,7 +90,7 @@ Class FrontController
     public function getCGV()
     {
         $this->renderer->render('Frontend/cgvView');
-        $_SESSION['flash'] = array();
+
     }
 
 
@@ -100,7 +100,7 @@ Class FrontController
     public function login()
     {
         $this->renderer->render('Frontend/loginView');
-        $_SESSION['flash'] = array();
+
     }
 
     /**
@@ -109,7 +109,7 @@ Class FrontController
     public function registerView()
     {
         $this->renderer->render('Frontend/registeView');
-        $_SESSION['flash'] = array();
+
 
     }
 
@@ -212,7 +212,6 @@ Class FrontController
     {
 
         $file = 'pdf/CV.pdf';
-        //dump($file);
         if (file_exists($file)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');

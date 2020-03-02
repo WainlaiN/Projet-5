@@ -30,6 +30,7 @@ class TwigRenderer
         if (isset($_SESSION['flash'])) {
             $this->twig->addGlobal('session', $_SESSION);
         }
+        $_SESSION['flash'] = array();
 
         try {
             echo $this->twig->render($view . '.twig', $params);
