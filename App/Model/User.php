@@ -9,7 +9,7 @@ class User
     /**
      * @var int $user_id user ID
      */
-    private $user_id;
+    private $userId;
 
     /**
      * @var string $username user name
@@ -53,18 +53,18 @@ class User
     /**
      * @return mixed
      */
-    public function getUser_id()
+    public function getUserId()
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
     /**
      * @param mixed $user_id
      * @return User
      */
-    public function setUser_id($user_id)
+    public function setUserId($user_id)
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
         return $this;
     }
 

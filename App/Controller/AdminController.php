@@ -16,14 +16,14 @@ class AdminController
     private $postManager;
     private $commentManager;
     private $_loginManager;
-    private $renderer;
+    private $_renderer;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->_loginManager = new LoginManager();
-        $this->renderer = new TwigRenderer();
+        $this->_renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -51,7 +51,7 @@ class AdminController
     public function listPosts()
     {
         $list_posts = $this->postManager->getPosts();
-        $this->renderer->render('Backend/adminView', ['listposts' => $list_posts]);
+        $this->_renderer->render('Backend/adminView', ['listposts' => $list_posts]);
         //$_SESSION['flash'] = array();
 
     }
@@ -64,7 +64,7 @@ class AdminController
     public function listComments($postId)
     {
         $comments = $this->commentManager->getComments($postId);
-        $this->renderer->render('Backend/commentsView', ['listcomments' => $comments]);
+        $this->_renderer->render('Backend/commentsView', ['listcomments' => $comments]);
         //$_SESSION['flash'] = array();
     }
 
@@ -73,7 +73,7 @@ class AdminController
      */
     public function addPostView()
     {
-        $this->renderer->render('Backend/addPostView');
+        $this->_renderer->render('Backend/addPostView');
         //$_SESSION['flash'] = array();
 
     }
@@ -138,7 +138,7 @@ class AdminController
     public function updatePostView($postId)
     {
         $posts = $this->postManager->getPost($postId);
-        $this->renderer->render('Backend/editPostView', ['listpost' => $posts]);
+        $this->_renderer->render('Backend/editPostView', ['listpost' => $posts]);
 
 
     }
