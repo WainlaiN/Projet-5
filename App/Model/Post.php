@@ -10,7 +10,7 @@ class Post
     /**
      * @var int $post_id post id
      */
-    private $post_id;
+    private $postId;
     /**
      * @var string $title title post
      */
@@ -34,12 +34,12 @@ class Post
     /**
      * @var string $date_creation post date creation
      */
-    private $date_creation;
+    private $dateCreation;
 
     /**
      * @var string $date_update post date update
      */
-    private $date_update;
+    private $dateUpdate;
 
     public function __construct($datas = [])
     {
@@ -63,18 +63,18 @@ class Post
     /**
      * @return int
      */
-    public function getPost_id(): int
+    public function getPostId(): int
     {
-        return $this->post_id;
+        return $this->$postId;
     }
 
     /**
-     * @param int $post_id
+     * @param int $postId
      * @return Post
      */
-    public function setPost_id(int $post_id)
+    public function setPostId(int $postId)
     {
-        $this->post_id = $post_id;
+        $this->post_id = $postId;
         return $this;
     }
 
@@ -154,36 +154,36 @@ class Post
      * @return string
      * @throws \Exception
      */
-    public function getDate_creation()
+    public function getDateCreation()
     {
-        return $this->date_creation;
+        return $this->dateCreation;
     }
 
     /**
-     * @param string $date_creation
+     * @param string $dateCreation
      * @return Post
      */
-    public function setDate_creation(string $date_creation)
+    public function setDateCreation(string $dateCreation)
     {
-        $this->date_creation = $date_creation;
+        $this->dateCreation = $dateCreation;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getDate_update(): string
+    public function getDateUpdate(): string
     {
-        return $this->date_update;
+        return $this->dateUpdate;
     }
 
     /**
-     * @param string $date_update
+     * @param string $dateUpdate
      * @return Post
      */
-    public function setDate_update(string $date_update = null)
+    public function setDateUpdate(string $dateUpdate = null)
     {
-        $this->date_update = $date_update;
+        $this->dateUpdate = $dateUpdate;
         return $this;
     }
 

@@ -10,11 +10,11 @@ class Comment
     /**
      * @var int $comment_id comment id
      */
-    private $comment_id;
+    private $commentId;
     /**
-     * @var int $author_id author id
+     * @var int $authorId author id
      */
-    private $author_id;
+    private $authorId;
     /**
      * @var string $comment comment content
      */
@@ -22,15 +22,15 @@ class Comment
     /**
      * @var int $post_id post id
      */
-    private $post_id;
+    private $postId;
     /**
      * @var string $comment_date comment date update
      */
-    private $comment_date;
+    private $commentDate;
     /**
      * @var bool $is_valid comment status
      */
-    private $is_valid;
+    private $isValid;
     /**
      * @var string $username username
      */
@@ -55,38 +55,38 @@ class Comment
     }
 
     /**
-     * @param int $comment_id
+     * @param int $commentId
      * @return Comment
      */
-    public function setComment_id(int $comment_id)
+    public function setCommentId(int $commentId)
     {
-        $this->comment_id = $comment_id;
+        $this->commentId = $commentId;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getComment_id(): int
+    public function getCommentId(): int
     {
-        return $this->comment_id;
+        return $this->commentId;
     }
 
     /**
      * @return int
      */
-    public function getAuthor_id(): int
+    public function getAuthorId(): int
     {
-        return $this->author_id;
+        return $this->authorId;
     }
 
     /**
      * @param int $author
      * @return Comment
      */
-    public function setAuthor_id(int $author)
+    public function setAuthorId(int $author)
     {
-        $this->author_id = $author;
+        $this->authorId = $author;
         return $this;
     }
 
@@ -113,52 +113,52 @@ class Comment
      */
     public function getPostId(): int
     {
-        return $this->post_id;
+        return $this->postId;
     }
 
     /**
-     * @param string $post_id
+     * @param string $postId
      * @return Comment
      */
-    public function setPostId(int $post_id)
+    public function setPostId(int $postId)
     {
-        $this->post_id = $post_id;
+        $this->postId = $postId;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getComment_date()
+    public function getCommentDate()
     {
-        return $this->comment_date;
+        return $this->commentDate;
     }
 
     /**
-     * @param string $comment_date
+     * @param string $commentDate
      * @return Comment
      */
-    public function setComment_date(string $comment_date)
+    public function setCommentDate(string $commentDate)
     {
-        $this->comment_date = $comment_date;
+        $this->commentDate = $commentDate;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getIs_valid()
+    public function getIsValid()
     {
-        return $this->is_valid;
+        return $this->isValid;
     }
 
     /**
-     * @param mixed $is_valid
+     * @param mixed $isValid
      * @return Comment
      */
-    public function setIs_valid($is_valid)
+    public function setIsValid($isValid)
     {
-        $this->is_valid = $is_valid;
+        $this->isValid = $isValid;
         return $this;
     }
 
