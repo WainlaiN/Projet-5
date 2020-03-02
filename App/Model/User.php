@@ -7,9 +7,9 @@ namespace App\Model;
 class User
 {
     /**
-     * @var int $id user ID
+     * @var int $user_id user ID
      */
-    private $id;
+    private $user_id;
 
     /**
      * @var string $username user name
@@ -34,18 +34,18 @@ class User
     /**
      * @return mixed
      */
-    public function getId()
+    public function getUser_id()
     {
-        return $this->id;
+        return $this->user_id;
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $user_id
      * @return User
      */
-    public function setId($id)
+    public function setUser_id($user_id)
     {
-        $this->id = $id;
+        $this->user_id = $user_id;
         return $this;
     }
 

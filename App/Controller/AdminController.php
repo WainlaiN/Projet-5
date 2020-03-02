@@ -8,23 +8,22 @@ use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
 
 /**
- * class AdminController controller for Backend
+ * Class AdminController controller for Backend
  */
-
 
 class AdminController
 {
-    private $postManager;
-    private $commentManager;
-    private $loginManager;
-    private $renderer;
+    private $_postManager;
+    private $_commentManager;
+    private $_loginManager;
+    private $_renderer;
 
     public function __construct()
     {
-        $this->postManager = new PostManager();
-        $this->commentManager = New CommentManager();
-        $this->loginManager = new LoginManager();
-        $this->renderer = new TwigRenderer();
+        $this->_postManager = new PostManager();
+        $this->_commentManager = New CommentManager();
+        $this->_loginManager = new LoginManager();
+        $this->_renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -51,19 +50,20 @@ class AdminController
      */
     public function listPosts()
     {
-        $list_posts = $this->postManager->getPosts();
-        $this->renderer->render('Backend/adminView', ['listposts' => $list_posts]);
+        $list_posts = $this->_postManager->getPosts();
+        $this->_renderer->render('Backend/adminView', ['listposts' => $list_posts]);
         //$_SESSION['flash'] = array();
 
     }
 
     /**
      * Render the Comments view from the comment manager
+     * @param $postId
      */
     public function listComments($postId)
     {
-        $comments = $this->commentManager->getComments($postId);
-        $this->renderer->render('Backend/commentsView', ['listcomments' => $comments]);
+        $comments = $this->_commentManager->getComments($postId);
+        $this->_renderer->render('Backend/commentsView', ['listcomments' => $comments]);
         //$_SESSION['flash'] = array();
     }
 
@@ -72,7 +72,7 @@ class AdminController
      */
     public function addPostView()
     {
-        $this->renderer->render('Backend/addPostView');
+        $this->_renderer->render('Backend/addPostView');
         //$_SESSION['flash'] = array();
 
     }
@@ -89,7 +89,7 @@ class AdminController
             $datas['chapo'] = $_POST['chapo'];
             $datas['description'] = $_POST['description'];
 
-            $result = $this->postManager->addPost($datas);
+            $result = $this->_postManager->addPost($datas);
 
             if ($result) {
                 header('Location: /admin');
@@ -100,10 +100,11 @@ class AdminController
 
     /**
      * Delete a Post from ID using post manager
+     * @param $postId
      */
-    public function deletePost($id)
+    public function deletePost($postId)
     {
-        $request = $this->postManager->deletePost($id);
+        $request = $this->_postManager->deletePost($postId);
         if ($request === false) {
             $_SESSION['flash']['danger'] = 'Impossible de supprimer l\'article !';
         } else {
@@ -115,10 +116,11 @@ class AdminController
 
     /**
      * Delete a Comment from ID using comment manager
+     * @param $commentId
      */
-    public function deletecomment($id)
+    public function deletecomment($commentId)
     {
-        $request = $this->commentManager->deleteComment($id);
+        $request = $this->_commentManager->deleteComment($commentId);
         if ($request === false) {
             $_SESSION['flash']['success'] = "Impossible de supprimer le commentaire";
         } else {
@@ -130,10 +132,10 @@ class AdminController
     /**
      * Render Update Post View
      */
-    public function updatePostView($id)
+    public function updatePostView($postId)
     {
-        $posts = $this->postManager->getPost($id);
-        $this->renderer->render('Backend/editPostView', ['listpost' => $posts]);
+        $posts = $this->_postManager->getPost($postId);
+        $this->_renderer->render('Backend/editPostView', ['listpost' => $posts]);
 
 
     }
@@ -141,20 +143,20 @@ class AdminController
     /**
      * Update a Post from ID using post manager
      */
-    public function UpdatePost($id)
+    public function updatePost($postId)
     {
-        $this->postManager->updatePost($id);
+        $this->_postManager->updatePost($postId);
         $_SESSION['flash']['success'] = "Votre article a bien été modifié!";
-        $this->updatePostView($id);
+        $this->updatePostView($postId);
 
     }
 
     /**
      * Validate a Comment from ID using comment manager
      */
-    public function ValidateComment($id)
+    public function validateComment($commentId)
     {
-        $request = $this->commentManager->validateComment($id);
+        $request = $this->_commentManager->validateComment($commentId);
         if ($request === false) {
             $_SESSION['flash']['success'] = "Impossible de valider le commentaire";
         } else {

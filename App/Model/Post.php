@@ -8,9 +8,9 @@ use DateTime;
 class Post
 {
     /**
-     * @var int $id post id
+     * @var int $post_id post id
      */
-    private $id;
+    private $post_id;
     /**
      * @var string $title title post
      */
@@ -63,18 +63,18 @@ class Post
     /**
      * @return int
      */
-    public function getId(): int
+    public function getPost_id(): int
     {
-        return $this->id;
+        return $this->post_id;
     }
 
     /**
-     * @param int $id
+     * @param int $post_id
      * @return Post
      */
-    public function setId(int $id)
+    public function setPost_id(int $post_id)
     {
-        $this->id = $id;
+        $this->post_id = $post_id;
         return $this;
     }
 

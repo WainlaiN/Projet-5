@@ -39,7 +39,7 @@ class FormManager
      * @param $email
      * @param $username
      */
-    public function RegisterTraitment($email, $username)
+    public function registerTraitment($email, $username)
     {
 
         $data = require __DIR__ . './../Config/mail.php';

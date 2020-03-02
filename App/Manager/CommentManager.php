@@ -38,7 +38,7 @@ class CommentManager extends Database
 
     /**
      * Return Comment from ID
-     * @param $id
+     * @param $commentId
      * @return bool|false|\PDOStatement
      */
     public function getComment($commentId)
@@ -66,7 +66,7 @@ class CommentManager extends Database
 
     /**
      * Delete Comment from ID
-     * @param $id
+     * @param $commentId
      * @return bool|false|\PDOStatement
      */
     public function deleteComment($commentId)

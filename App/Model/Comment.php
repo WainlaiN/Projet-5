@@ -8,9 +8,9 @@ class Comment
 {
 
     /**
-     * @var int $id comment id
+     * @var int $comment_id comment id
      */
-    private $id;
+    private $comment_id;
     /**
      * @var int $author_id author id
      */
@@ -55,21 +55,21 @@ class Comment
     }
 
     /**
-     * @param int $id
+     * @param int $comment_id
      * @return Comment
      */
-    public function setId(int $id)
+    public function setComment_id(int $comment_id)
     {
-        $this->id = $id;
+        $this->comment_id = $comment_id;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getComment_id(): int
     {
-        return $this->id;
+        return $this->comment_id;
     }
 
     /**

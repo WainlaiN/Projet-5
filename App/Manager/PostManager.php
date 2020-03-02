@@ -35,7 +35,7 @@ class PostManager extends Database
 
     /**
      * Return one Post from ID
-     * @param $id
+     * @param $postId
      * @return mixed
      */
     public function getPost($postId)
@@ -69,7 +69,7 @@ class PostManager extends Database
 
     /**
      * Delete a Post
-     * @param $id
+     * @param $postId
      * @return bool|false|\PDOStatement
      */
     public function deletePost($postId)
@@ -82,7 +82,7 @@ class PostManager extends Database
 
     /**
      * Update a Post
-     * @param $id
+     * @param $postId
      * @return bool|false|\PDOStatement
      */
     public function updatePost($postId)
