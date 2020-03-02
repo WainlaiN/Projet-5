@@ -13,19 +13,19 @@ use App\Core\TwigRenderer;
  */
 Class FrontController
 {
-    private $_postManager;
-    private $_commentManager;
-    private $_loginManager;
-    private $_renderer;
-    private $_formManager;
+    private $postManager;
+    private $commentManager;
+    private $loginManager;
+    private $renderer;
+    private $formManager;
 
     public function __construct()
     {
-        $this->_postManager = new PostManager();
-        $this->_commentManager = New CommentManager();
-        $this->_loginManager = new LoginManager();
-        $this->_renderer = new TwigRenderer();
-        $this->_formManager = new FormManager();
+        $this->postManager = new PostManager();
+        $this->commentManager = New CommentManager();
+        $this->loginManager = new LoginManager();
+        $this->renderer = new TwigRenderer();
+        $this->formManager = new FormManager();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -37,7 +37,7 @@ Class FrontController
      */
     public function home()
     {
-        $this->_renderer->render('Frontend/homeView');
+        $this->renderer->render('Frontend/homeView');
 
     }
 
@@ -46,8 +46,8 @@ Class FrontController
      */
     public function listPosts()
     {
-        $list_posts = $this->_postManager->getPosts();
-        $this->_renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
+        $list_posts = $this->postManager->getPosts();
+        $this->renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
 
     }
 
@@ -58,9 +58,9 @@ Class FrontController
      */
     public function post($postId)
     {
-        $post = $this->_postManager->getPost($postId);
-        $list_comments = $this->_commentManager->getValidComments($postId);
-        $this->_renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
+        $post = $this->postManager->getPost($postId);
+        $list_comments = $this->commentManager->getValidComments($postId);
+        $this->renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
 
     }
 
@@ -73,7 +73,7 @@ Class FrontController
         $author_id = $_POST['author'];
         $author_ = $_SESSION['auth']->getUsername();
         $description = $_POST['description'];
-        $request = $this->_commentManager->addComment($post_id, $author_id, $author_, $description);
+        $request = $this->commentManager->addComment($post_id, $author_id, $author_, $description);
 
         if ($request === false) {
             $_SESSION['flash']['danger'] = 'Impossible d\'ajouter le commentaire !';
@@ -90,7 +90,7 @@ Class FrontController
      */
     public function getCGV()
     {
-        $this->_renderer->render('Frontend/cgvView');
+        $this->renderer->render('Frontend/cgvView');
 
     }
 
@@ -100,7 +100,7 @@ Class FrontController
      */
     public function login()
     {
-        $this->_renderer->render('Frontend/loginView');
+        $this->renderer->render('Frontend/loginView');
 
     }
 
@@ -109,7 +109,7 @@ Class FrontController
      */
     public function registerView()
     {
-        $this->_renderer->render('Frontend/registeView');
+        $this->renderer->render('Frontend/registeView');
 
 
     }
@@ -131,7 +131,7 @@ Class FrontController
             $username = strip_tags(htmlspecialchars($_POST['username']));
             $password = strip_tags(htmlspecialchars($_POST['password']));
 
-            $user = $this->_loginManager->getLogin($username);
+            $user = $this->loginManager->getLogin($username);
 
             if (!$user) {
                 $_SESSION['flash']['danger'] = 'Mauvais identifiant';
@@ -173,11 +173,11 @@ Class FrontController
      */
     public function register()
     {
-        if ($this->_loginManager->checkUsername()) {
-            if ($this->_loginManager->checkEmail()) {
-                if ($this->_loginManager->checkPassword()) {
-                    $this->_loginManager->registerUser();
-                    $this->_formManager->registerTraitment($_POST['email'], $_POST['username']);
+        if ($this->loginManager->checkUsername()) {
+            if ($this->loginManager->checkEmail()) {
+                if ($this->loginManager->checkPassword()) {
+                    $this->loginManager->registerUser();
+                    $this->formManager->registerTraitment($_POST['email'], $_POST['username']);
                 }
             }
         }
@@ -202,7 +202,7 @@ Class FrontController
             $email = strip_tags(htmlspecialchars($_POST['email']));
             $message = strip_tags(htmlspecialchars($_POST['message']));
 
-            $this->_formManager->fromTraitment($nom, $prenom, $email, $message);
+            $this->formManager->fromTraitment($nom, $prenom, $email, $message);
             $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
         }
         header('Location: /');
