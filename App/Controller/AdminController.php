@@ -47,7 +47,7 @@ class AdminController
     }
 
     /**
-     * Return All Posts and Render the View
+     * Render the Posts view from the post manager
      */
     public function listPosts()
     {
@@ -58,7 +58,7 @@ class AdminController
     }
 
     /**
-     * Return Comments from a post  and Render the View
+     * Render the Comments view from the comment manager
      */
     public function listComments($postId)
     {
@@ -78,7 +78,7 @@ class AdminController
     }
 
     /**
-     * Add a Post using manager
+     * Add a Post using post manager
      */
     public function addPost()
     {
@@ -99,7 +99,7 @@ class AdminController
     }
 
     /**
-     * Delete a Post from ID using manager
+     * Delete a Post from ID using post manager
      */
     public function deletePost($id)
     {
@@ -114,7 +114,7 @@ class AdminController
     }
 
     /**
-     * Delete a Comment from ID using manager
+     * Delete a Comment from ID using comment manager
      */
     public function deletecomment($id)
     {
@@ -139,7 +139,7 @@ class AdminController
     }
 
     /**
-     * Update a Post from ID using manager
+     * Update a Post from ID using post manager
      */
     public function UpdatePost($id)
     {
@@ -150,7 +150,7 @@ class AdminController
     }
 
     /**
-     * Validate a Comment from ID using manager
+     * Validate a Comment from ID using comment manager
      */
     public function ValidateComment($id)
     {

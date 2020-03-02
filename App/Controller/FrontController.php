@@ -42,7 +42,7 @@ Class FrontController
     }
 
     /**
-     * Return all Posts using manager and Render the View
+     * Render the Posts view from the post manager
      */
     public function listPosts()
     {
@@ -52,7 +52,7 @@ Class FrontController
     }
 
     /**
-     * Return a Post using manager and Render the View
+     * Render the Post view from the post manager
      * @param $id
      */
     public function post($id)
@@ -64,7 +64,7 @@ Class FrontController
     }
 
     /**
-     * Add a Comment using manager
+     * Add a Comment using comment manager
      */
     public function addComment()
     {
@@ -168,7 +168,7 @@ Class FrontController
     }
 
     /**
-     * Register a User using manager
+     * Register a User using login manager
      */
     public function register()
     {
@@ -191,7 +191,8 @@ Class FrontController
     public function contactForm()
     {
 
-        if (empty($_POST['name']) || empty($_POST['forename']) || empty($_POST['email']) || empty($_POST['message']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        if (empty($_POST['name']) || empty($_POST['forename']) || empty($_POST['email']) || empty($_POST['message']) || !filter_var($_POST['email'],
+                FILTER_VALIDATE_EMAIL)) {
             $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
         } else {
             $nom = strip_tags(htmlspecialchars($_POST['name']));
