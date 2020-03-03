@@ -42,7 +42,7 @@ class PostManager extends Database
      */
     public function getPost($postId)
     {
-        $post = 'SELECT id, title, chapo, description, author, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation FROM ' . $this->table_name . ' WHERE id= :postId';
+        $post = 'SELECT id, title, chapo, description, author, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM ' . $this->table_name . ' WHERE id= :postId';
         $parameters = [':postId' => $postId];
         $result = $this->sql($post, $parameters);
         return $result->fetchObject($this->model);

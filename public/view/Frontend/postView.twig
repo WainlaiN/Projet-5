@@ -1,6 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
+    {{ dump(listpost) }}
 
     {% set size = listcomments | length %}
 
@@ -9,7 +10,13 @@
         <div class="news">
             <h3>
                 {{ post.title }}
-                <em>le {{ post.date_creation }}</em>
+                <em>le
+                    {% if post.date_update %}
+                        {{ post.date_update }}
+                    {% else %}
+                        {{ post.date_creation }}
+                    {% endif %}
+                </em> par {{ post.author }}
             </h3>
             <p>
                 {{ post.description }}
