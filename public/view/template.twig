@@ -43,7 +43,7 @@
 <!-- Navigation -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="./">
             <img src="/public/img/php.png" width="30px" height="30px" alt="Logo">
             <img src="/public/img/symfony.png" width="30px" height="30px" alt="Logo">
         </a>
@@ -56,29 +56,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="./">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Blog</a>
+                    <a class="nav-link" href="./posts">Blog</a>
                 </li>
                 {% if session is defined  and session.auth.status == 1 %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/CV">CV</a>
+                        <a class="nav-link" href="./CV">CV</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/admin">Admin</a>
+                        <a class="nav-link" href="./admin">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">
+                        <a class="nav-link" href="./logout">
                             <i class="fa fa-power-off"></i>
                         </a>
                     </li>
                 {% else %}
                     <li>
-                        <a class="nav-link" href="/register">S'inscrire</a>
+                        <a class="nav-link" href="./register">S'inscrire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">
+                        <a class="nav-link" href="./login">
                             <i class="fa fa-power-off"></i></a>
                         </a>
                     </li>
@@ -126,7 +126,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="/CGV" data-target="#mentions" style="color:white"><h5>Mentions légales</h5></a>
+                    <a href="./CGV" data-target="#mentions" style="color:white"><h5>Mentions légales</h5></a>
                 </div>
             </div>
         </div>
