@@ -3,11 +3,7 @@
 
 use App\Controller\Router;
 
-require '../vendor/autoload.php';
-
-if (empty($_GET['url'])) {
-    $_GET['url'] = '/';
-}
+require 'vendor/autoload.php';
 
 $router = new router();
 
