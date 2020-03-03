@@ -59,10 +59,10 @@ class User
     }
 
     /**
-     * @param mixed $user_id
+     * @param mixed $userId
      * @return User
      */
-    public function setUserId($user_id)
+    public function setUserId($userId)
     {
         $this->userId = $userId;
         return $this;
