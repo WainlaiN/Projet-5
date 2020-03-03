@@ -9,7 +9,7 @@ class User
     /**
      * @var int $user_id user ID
      */
-    private $userId;
+    private $userid;
 
     /**
      * @var string $username user name
@@ -19,7 +19,7 @@ class User
     /**
      * @var string $mail user email
      */
-    private $mail;
+    private $email;
 
     /**
      * @var string $password password
@@ -53,18 +53,18 @@ class User
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getUserid()
     {
-        return $this->userId;
+        return $this->userid;
     }
 
     /**
-     * @param mixed $userId
+     * @param mixed $userid
      * @return User
      */
-    public function setUserId($userId)
+    public function setUserid($userid)
     {
-        $this->userId = $userId;
+        $this->userid = $userid;
         return $this;
     }
 
@@ -89,18 +89,18 @@ class User
     /**
      * @return mixed
      */
-    public function getMail()
+    public function getEmail()
     {
-        return $this->mail;
+        return $this->email;
     }
 
     /**
-     * @param mixed $mail
+     * @param mixed $email
      * @return User
      */
-    public function setMail($mail)
+    public function setEmail($email)
     {
-        $this->mail = $mail;
+        $this->mail = $email;
         return $this;
     }
 

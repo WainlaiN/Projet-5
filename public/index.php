@@ -11,7 +11,6 @@ try {
 
     //Front management
     $router->map('GET', '/', 'FrontController#home');
-    //$router->map('GET', '/home', '');
     $router->map('GET', '/posts', 'FrontController#listPosts');
     $router->map('GET', '/post/[i:id]', 'FrontController#post');
     $router->map('GET', '/register', 'FrontController#registerView');
@@ -48,8 +47,7 @@ try {
     $errorMessage = $e->getMessage();
     $_SESSION['errorMessage'] = $errorMessage;
     dump($errorMessage, $_SESSION);
-    header('HTTP/1.1 404 Not Found');
-    header('Location: /404');
+
 }
 
 ?>

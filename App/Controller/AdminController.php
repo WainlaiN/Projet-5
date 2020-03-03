@@ -10,7 +10,6 @@ use App\Core\TwigRenderer;
 /**
  * Class AdminController controller for Backend
  */
-
 class AdminController
 {
     private $postManager;
@@ -85,6 +84,7 @@ class AdminController
     {
 
         if (!empty($_POST)) {
+            $datas['author_id'] = $_POST['author_id'];
             $datas['author'] = $_POST['author'];
             $datas['title'] = $_POST['title'];
             $datas['chapo'] = $_POST['chapo'];
@@ -92,11 +92,13 @@ class AdminController
 
             $result = $this->postManager->addPost($datas);
 
-            if ($result) {
-                header('Location: /admin');
+            if ($request === false) {
+                $_SESSION['flash']['danger'] = 'Impossible d\'ajouter l\'article !';
+            } else {
+                $_SESSION['flash']['success'] = 'Votre article a été ajouté.';
             }
+            header('Location: /admin');
         }
-
     }
 
     /**

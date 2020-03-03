@@ -59,7 +59,7 @@ class LoginManager extends Database
         } else {
             $username = htmlspecialchars($_POST['username']);
 
-            $sql = 'SELECT id FROM users WHERE username = :username';
+            $sql = 'SELECT userid FROM users WHERE username = :username';
             $parameters = ['username' => $username];
             $req = $this->sql($sql, $parameters);
             $user = $req->fetchObject();
@@ -85,7 +85,7 @@ class LoginManager extends Database
             return false;
         } else {
             $email = $_POST['email'];
-            $sql = 'SELECT id from ' . $this->table_name . ' WHERE email = ?';
+            $sql = 'SELECT userid from ' . $this->table_name . ' WHERE email = ?';
             $parameters = [$email];
             $result = $this->sql($sql, $parameters);
             $user = $result->fetchObject($this->model);

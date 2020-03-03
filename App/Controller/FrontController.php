@@ -69,11 +69,11 @@ Class FrontController
      */
     public function addComment()
     {
-        $post_id = $_POST['postid'];
-        $author_id = $_POST['author'];
-        $author_ = $_SESSION['auth']->getUsername();
+        $postId = $_POST['postid'];
+        $authorId = $_POST['author'];
+        $author = $_SESSION['auth']->getUsername();
         $description = $_POST['description'];
-        $request = $this->commentManager->addComment($post_id, $author_id, $author_, $description);
+        $request = $this->commentManager->addComment($postId, $authorId, $author, $description);
 
         if ($request === false) {
             $_SESSION['flash']['danger'] = 'Impossible d\'ajouter le commentaire !';
