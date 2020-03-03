@@ -7,7 +7,7 @@ require '../vendor/autoload.php';
 
 $router = new router();
 
-try {
+
 
     //Front management
     $router->map('GET', '/', 'FrontController#home');
@@ -42,13 +42,7 @@ try {
 
     $router->routerRequest($match['target'], $match['params']);
 
-} catch (Exception $e) {
 
-    $errorMessage = $e->getMessage();
-    $_SESSION['errorMessage'] = $errorMessage;
-    dump($errorMessage, $_SESSION);
-
-}
 
 ?>
 

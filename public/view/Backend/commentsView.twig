@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-        <table class="table table-striped">s
+        <table class="table table-striped">
             <thead>
             <th>Auteur</th>
             <th>Date</th>
@@ -30,7 +30,7 @@
                         <td>{{ comment.comment }}</td>
                         {% if comment.is_valid is null %}
                             <td>
-                                <a href="/admin/comment/validate/{{ comment.id }}" style="color:white" class="btn btn-success">Valider</a>
+                                <a href="/admin/comment/validate/{{ comment.id }}" style="color:white" class="btn btn-success">Validez</a>
                             </td>
                         {% else %}
                             <td>
@@ -48,7 +48,7 @@
                     <td>{{ listcomments.comment }}</td>
                     {% if listcomments.is_valid is null %}
                         <td>
-                            <a href="/admin/comment/validate/{{ listcomments.id }}" style="color:white" class="btn btn-success">Valider</a>
+                            <a href="/admin/comment/validate/{{ listcomments.id }}" style="color:white" class="btn btn-success">Validez</a>
                         </td>
                     {% else %}
                         <td>

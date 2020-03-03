@@ -24,6 +24,7 @@ class TwigRenderer
             'debug' => true,]
         );
         $this->_twig->addGlobal('_session', $_SESSION);
+        $this->_twig->addGlobal('_server', $_SERVER);
         $this->_twig->addGlobal('_post', $_POST);
         $this->_twig->addGlobal('_get', $_GET);
         $this->_twig->addExtension(new DebugExtension());
