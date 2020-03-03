@@ -22,22 +22,26 @@
             <tbody>
             {% for listpost in listposts %}
 
-            <tr>
-                <td>{{ listpost.id }}</td>
-                <td>{{ listpost.title }}</td>
-                <td>{{ listpost.date_creation }}</td>
-                <td>
-                    <a href="./admin/post/{{ listpost.id }}" style="color:white" class="btn btn-primary">Editer</a>
-                </td>
-                <td>
-                    <a href="./admin/comments/{{ listpost.id }}" style="color:white" class="btn btn-primary">Commentaires</a>
-                </td>
-                <td>
-                    <a href="./admin/post/delete/{{ listpost.id }}" style="color:white" class="btn btn-danger"
-                       onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
+                <tr>
+                    <td>{{ listpost.id }}</td>
+                    <td>{{ listpost.title }}</td>
+                    {% if listpost.date_update %}
+                        <td>{{ listpost.date_update }}</td>
+                    {% else %}
+                        <td>{{ listpost.date_creation }}</td>
+                    {% endif %}
+                    <td>
+                        <a href="./admin/post/{{ listpost.id }}" style="color:white" class="btn btn-primary">Editer</a>
+                    </td>
+                    <td>
+                        <a href="./admin/comments/{{ listpost.id }}" style="color:white" class="btn btn-primary">Commentaires</a>
+                    </td>
+                    <td>
+                        <a href="./admin/post/delete/{{ listpost.id }}" style="color:white" class="btn btn-danger"
+                           onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
 
-                </td>
-            </tr>
+                    </td>
+                </tr>
 
             {% endfor %}
             </tbody>
