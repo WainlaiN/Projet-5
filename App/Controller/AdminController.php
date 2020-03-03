@@ -6,6 +6,7 @@ use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AdminController controller for Backend
@@ -16,6 +17,7 @@ class AdminController
     private $commentManager;
     private $loginManager;
     private $renderer;
+    private $request;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class AdminController
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
         $this->renderer = new TwigRenderer();
+
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -81,12 +84,15 @@ class AdminController
      */
     public function addPost()
     {
-        if (!empty($_POST)) {
-            $datas['author_id'] = $_POST['author_id'];
-            $datas['author'] = $_POST['author'];
-            $datas['title'] = $_POST['title'];
-            $datas['chapo'] = $_POST['chapo'];
-            $datas['description'] = $_POST['description'];
+        $request = Request::createFromGlobals();
+        $request->request->all();
+
+        if (!empty($request->request->all())) {
+            $datas['author_id'] = $request->get('author_id');
+            $datas['author'] = $request->get('author');;
+            $datas['title'] = $request->get('title');
+            $datas['chapo'] = $request->get('chapo');
+            $datas['description'] = $request->get('description');
 
             $result = $this->postManager->addPost($datas);
 
