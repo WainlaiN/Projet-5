@@ -93,15 +93,16 @@ class PostManager extends Database
      * @param $postId
      * @return bool|false|\PDOStatement
      */
-    public function updatePost($postId)
+    public function updatePost($postId, $datas)
     {
+
         $editedPost = 'UPDATE ' . $this->table_name . ' SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE id=:id';
         $parameters = [
             ':id' => $postId,
-            ':author' => $_POST['author'],
-            ':title' => $_POST['title'],
-            ':chapo' => $_POST['chapo'],
-            ':description' => $_POST['description'],
+            ':author' => $datas['author'],
+            ':title' => $datas['title'],
+            ':chapo' => $datas['chapo'],
+            ':description' => $datas['description'],
 
         ];
         $result = $this->sql($editedPost, $parameters);

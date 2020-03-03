@@ -55,7 +55,6 @@ class AdminController
         $list_posts = $this->postManager->getPosts();
         $this->renderer->render('Backend/adminView', ['listposts' => $list_posts]);
 
-
     }
 
     /**
@@ -85,7 +84,6 @@ class AdminController
     public function addPost()
     {
         $request = Request::createFromGlobals();
-        $request->request->all();
 
         if (!empty($request->request->all())) {
             $datas['author_id'] = $request->get('author_id');
@@ -153,10 +151,24 @@ class AdminController
      */
     public function updatePost($postId)
     {
-        $this->postManager->updatePost($postId);
-        $_SESSION['flash']['success'] = "Votre article a bien été modifié!";
-        $this->updatePostView($postId);
+        $request = Request::createFromGlobals();
 
+        if (!empty($request->request->all())) {
+            $datas['author_id'] = $request->get('author_id');
+            $datas['author'] = $request->get('author');;
+            $datas['title'] = $request->get('title');
+            $datas['chapo'] = $request->get('chapo');
+            $datas['description'] = $request->get('description');
+
+            $result = $this->postManager->updatePost($postId, $datas);
+
+            if ($result === false) {
+                $_SESSION['flash']['danger'] = 'Impossible de modifier l\'article !';
+            } else {
+                $_SESSION['flash']['success'] = 'Votre article a bien été modifié.';
+            }
+            $this->updatePostView($postId);
+        }
     }
 
     /**
