@@ -8,7 +8,6 @@ require '../vendor/autoload.php';
 $router = new router();
 
 
-
     //Front management
     $router->map('GET', '/', 'FrontController#home');
     $router->map('GET', '/posts', 'FrontController#listPosts');
