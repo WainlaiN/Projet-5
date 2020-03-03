@@ -214,7 +214,7 @@ Class FrontController
     public function cvNico()
     {
 
-        $file = 'pdf/CV.pdf';
+        $file = 'public/pdf/CV.pdf';
         if (file_exists($file)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
