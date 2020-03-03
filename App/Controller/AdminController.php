@@ -14,15 +14,15 @@ class AdminController
 {
     private $postManager;
     private $commentManager;
-    private $_loginManager;
-    private $_renderer;
+    private $loginManager;
+    private $renderer;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
-        $this->_loginManager = new LoginManager();
-        $this->_renderer = new TwigRenderer();
+        $this->loginManager = new LoginManager();
+        $this->renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -50,7 +50,7 @@ class AdminController
     public function listPosts()
     {
         $list_posts = $this->postManager->getPosts();
-        $this->_renderer->render('Backend/adminView', ['listposts' => $list_posts]);
+        $this->renderer->render('Backend/adminView', ['listposts' => $list_posts]);
 
 
     }
@@ -63,7 +63,7 @@ class AdminController
     public function listComments($postId)
     {
         $comments = $this->commentManager->getComments($postId);
-        $this->_renderer->render('Backend/commentsView', ['listcomments' => $comments]);
+        $this->renderer->render('Backend/commentsView', ['listcomments' => $comments]);
 
     }
 
@@ -72,7 +72,7 @@ class AdminController
      */
     public function addPostView()
     {
-        $this->_renderer->render('Backend/addPostView');
+        $this->renderer->render('Backend/addPostView');
 
     }
 
@@ -138,7 +138,7 @@ class AdminController
     public function updatePostView($postId)
     {
         $posts = $this->postManager->getPost($postId);
-        $this->_renderer->render('Backend/editPostView', ['listpost' => $posts]);
+        $this->renderer->render('Backend/editPostView', ['listpost' => $posts]);
 
     }
 
