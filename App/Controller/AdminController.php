@@ -74,7 +74,6 @@ class AdminController
     {
         $this->_renderer->render('Backend/addPostView');
 
-
     }
 
     /**
@@ -82,7 +81,6 @@ class AdminController
      */
     public function addPost()
     {
-
         if (!empty($_POST)) {
             $datas['author_id'] = $_POST['author_id'];
             $datas['author'] = $_POST['author'];
@@ -92,7 +90,7 @@ class AdminController
 
             $result = $this->postManager->addPost($datas);
 
-            if ($request === false) {
+            if ($result === false) {
                 $_SESSION['flash']['danger'] = 'Impossible d\'ajouter l\'article !';
             } else {
                 $_SESSION['flash']['success'] = 'Votre article a été ajouté.';
@@ -142,7 +140,6 @@ class AdminController
         $posts = $this->postManager->getPost($postId);
         $this->_renderer->render('Backend/editPostView', ['listpost' => $posts]);
 
-
     }
 
     /**
@@ -170,6 +167,5 @@ class AdminController
         header('Location: /admin');
 
     }
-
 
 }
