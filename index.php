@@ -6,6 +6,7 @@ use App\Controller\Router;
 require 'vendor/autoload.php';
 
 $router = new router();
+//$router->setBasePath('/monblog');
 
 
     //Front management
