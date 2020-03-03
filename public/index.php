@@ -5,6 +5,10 @@ use App\Controller\Router;
 
 require '../vendor/autoload.php';
 
+if (empty($_GET['url'])) {
+    $_GET['url'] = '/';
+}
+
 $router = new router();
 
 
