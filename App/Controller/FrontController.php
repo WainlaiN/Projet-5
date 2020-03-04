@@ -7,6 +7,7 @@ use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class FrontController controller for Frontend
@@ -18,6 +19,7 @@ Class FrontController
     private $loginManager;
     private $renderer;
     private $formManager;
+    private $request;
 
     public function __construct()
     {
@@ -69,20 +71,24 @@ Class FrontController
      */
     public function addComment()
     {
-        $postId = $_POST['postid'];
-        $authorId = $_POST['author'];
-        $author = $_SESSION['auth']->getUsername();
-        $description = $_POST['description'];
-        $request = $this->commentManager->addComment($postId, $authorId, $author, $description);
+        $request = Request::createFromGlobals();
 
-        if ($request === false) {
-            $_SESSION['flash']['danger'] = 'Impossible d\'ajouter le commentaire !';
-        } else {
-            $_SESSION['flash']['success'] = 'Votre commentaire va être soumis à validation.';
+        if (!empty($request->request->all())) {
+            $postId = $request->get('postid');
+            $authorId = $request->get('authorid');
+            $author = $request->get('authorname');
+            $description = $request->get('description');
+
+            $request = $this->commentManager->addComment($postId, $authorId, $author, $description);
+
+            if ($request === false) {
+                $_SESSION['flash']['danger'] = 'Impossible d\'ajouter le commentaire !';
+            } else {
+                $_SESSION['flash']['success'] = 'Votre commentaire va être soumis à validation.';
+            }
+
+            header('Location: /post/' . $postId);
         }
-
-        header('Location: /post/' . $_POST['postid']);
-
     }
 
     /**

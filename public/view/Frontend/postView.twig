@@ -98,12 +98,12 @@
                                         <div class="form-group">
                                             <input type="hidden" value="{{ post.id }}" id="postid" name="postid"/>
                                             <input type="text" id="authorname" name="authorname"
-                                                   value="{{ session.auth.username }}" class="form-control" disabled/>
-                                            <input type="text" id="author" name="author"
-                                                   value="{{ session.auth.id }}" class="form-control" hidden/>
+                                                   value="{{ session.auth.username }}" class="form-control" readonly/>
+                                            <input type="hidden" id="authorid" name="authorid"
+                                                   value="{{ session.auth.userid }}" class="form-control"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="comment">Votre commentaire</label><br/>
+                                            <label for="description">Votre commentaire</label><br/>
                                             <textarea id="description" name="description" rows="7"
                                                       class="form-control"></textarea>
                                         </div>

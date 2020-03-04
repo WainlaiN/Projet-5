@@ -59,11 +59,12 @@ class CommentManager extends Database
      * @param $comment
      * @return bool|false|\PDOStatement
      */
-    public function addComment($postId, $author_id , $author, $comment)
+    public function addComment($postId, $authorId , $author, $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:author_id,:author,:comment, DATE(NOW()))';
-        $parameters = [':postId' => $postId, ':author_id' => $author_id,':author' =>$author, ':comment' => $comment];
-        return$this->sql($newComments, $parameters);
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:authorId,:author,:comment, DATE(NOW()))';
+        $parameters = [':postId' => $postId, ':authorId' => $authorId,':author' =>$author, ':comment' => $comment];
+
+        return $this->sql($newComments, $parameters);
 
     }
 
