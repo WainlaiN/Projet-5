@@ -11,16 +11,16 @@
         </div>
         <div class="form-group">
             <label for="author">Titre</label><br/>
-            <input type="text" id="title" name="title" value="{{ listpost.title }}" class="form-control"/>
+            <input type="text" id="title" name="title" value="{{ listpost.title }}" class="form-control" required/>
         </div>
         <div class="form-group">
             <label for="author">Chapo</label><br/>
-            <input type="text" id="chapo" name="chapo" value="{{ listpost.chapo }}" class="form-control"/>
+            <input type="text" id="chapo" name="chapo" value="{{ listpost.chapo }}" class="form-control" required/>
         </div>
         <div class="form-group">
             <label for="comment">Description</label><br/>
             <textarea id="description" name="description" rows="10"
-                      class="form-control">{{ listpost.description }}</textarea>
+                      class="form-control" required>{{ listpost.description }}</textarea>
         </div>
         <div class="form-group">
             <input type="submit" value="Modifier">
