@@ -41,7 +41,6 @@ Class FrontController
     public function home()
     {
         $this->renderer->render('Frontend/homeView');
-
     }
 
     /**
@@ -51,7 +50,6 @@ Class FrontController
     {
         $list_posts = $this->postManager->getPosts();
         $this->renderer->render('Frontend/listPostView', ['listposts' => $list_posts]);
-
     }
 
     /**
@@ -64,7 +62,6 @@ Class FrontController
         $post = $this->postManager->getPost($postId);
         $list_comments = $this->commentManager->getValidComments($postId);
         $this->renderer->render('Frontend/postView', ['post' => $post, 'listcomments' => $list_comments]);
-
     }
 
     /**
@@ -78,7 +75,7 @@ Class FrontController
             $postId = FormValidator::purify($request->get('postid'));
             $authorId = FormValidator::purify($request->get('authorid'));
             $author = FormValidator::purify($request->get('authorname'));
-            $description = FormValidator::purify($request->get('description'));
+            $description = FormValidator::purifyContent($request->get('description'));
 
             $request = $this->commentManager->addComment($postId, $authorId, $author, $description);
 
@@ -98,9 +95,7 @@ Class FrontController
     public function getCGV()
     {
         $this->renderer->render('Frontend/cgvView');
-
     }
-
 
     /**
      * Render the Login View
@@ -108,7 +103,6 @@ Class FrontController
     public function login()
     {
         $this->renderer->render('Frontend/loginView');
-
     }
 
     /**
@@ -117,8 +111,6 @@ Class FrontController
     public function registerView()
     {
         $this->renderer->render('Frontend/registeView');
-
-
     }
 
     /**
@@ -126,18 +118,19 @@ Class FrontController
      */
     public function connect()
     {
+        $request = Request::createFromGlobals();
+        $username = FormValidator::purify($request->get('username'));
+        $password = FormValidator::purify($request->get('password'));
 
-        if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
-            $_SESSION['flash']['danger'] = 'Votre pseudo ' . $_POST['username'] . 'n\est pas valide';
+        if (empty($username) || !FormValidator::is_alphanum($username)) {
+            $_SESSION['flash']['danger'] = 'Votre pseudo ' . $username . ' n\'est pas valide';
             header('location: /login');
 
-        } elseif (empty($_POST['password']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['password'])) {
+        } elseif (empty($password) || !FormValidator::is_alphanum($password)) {
             $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
             header('location: /login');
-        } else {
-            $username = strip_tags(htmlspecialchars($_POST['username']));
-            $password = strip_tags(htmlspecialchars($_POST['password']));
 
+        } else {
             $user = $this->loginManager->getLogin($username);
 
             if (!$user) {
@@ -145,7 +138,6 @@ Class FrontController
                 header('location: /login');
             } else {
                 $isPasswordCorrect = password_verify($password, $user->getPassword());
-
 
                 if ($isPasswordCorrect == false) {
                     $_SESSION['flash']['danger'] = 'Mot de passe incorrect !';
@@ -180,57 +172,72 @@ Class FrontController
      */
     public function register()
     {
-        if ($this->loginManager->checkUsername()) {
-            if ($this->loginManager->checkEmail()) {
-                if ($this->loginManager->checkPassword()) {
-                    $this->loginManager->registerUser();
-                    $this->formManager->registerTraitment($_POST['email'], $_POST['username']);
+        $request = Request::createFromGlobals();
+        $email = FormValidator::purify($request->get('email'));
+        $username = FormValidator::purify($request->get('username'));
+
+        if (empty($username) || !FormValidator::is_alphanum($username)) {
+            $_SESSION['flash']['danger'] = 'Votre pseudo ' . $username . ' n\'est pas valide';
+            header('location: /login');
+
+        } elseif (empty($password) || !FormValidator::is_alphanum($password)) {
+            $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
+            header('location: /login');
+
+        } else {
+
+            if ($this->loginManager->checkUsername($username)) {
+                if ($this->loginManager->checkEmail()) {
+                    if ($this->loginManager->checkPassword()) {
+                        $this->loginManager->registerUser();
+                        $this->formManager->registerTraitment($email, $username);
+                    }
                 }
             }
-        }
-        $_SESSION['flash']['success'] = 'Votre inscription a bien été prise en compte.';
+            $_SESSION['flash']['success'] = 'Votre inscription a bien été prise en compte.';
 
-        header('Location: /login');
-    }
-
-    /**
-     * Send an email for contact form using manager
-     */
-    public function contactForm()
-    {
-
-        if (empty($_POST['name']) || empty($_POST['forename']) || empty($_POST['email']) || empty($_POST['message']) || !filter_var($_POST['email'],
-                FILTER_VALIDATE_EMAIL)
-        ) {
-            $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
-        } else {
-            $nom = strip_tags(htmlspecialchars($_POST['name']));
-            $prenom = strip_tags(htmlspecialchars($_POST['forename']));
-            $email = strip_tags(htmlspecialchars($_POST['email']));
-            $message = strip_tags(htmlspecialchars($_POST['message']));
-
-            $this->formManager->fromTraitment($nom, $prenom, $email, $message);
-            $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
-        }
-        header('Location: /');
-    }
-
-    /**
-     * Download the CV
-     */
-    public function cvNico()
-    {
-
-        $file = 'public/pdf/CV.pdf';
-        if (file_exists($file)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            readfile($file);
+            header('Location: /login');
         }
     }
-}
+
+        /**
+         * Send an email for contact form using manager
+         */
+        public
+        function contactForm()
+        {
+            $request = Request::createFromGlobals();
+            $name = FormValidator::purify($request->get('name'));
+            $forename = FormValidator::purify($request->get('forename'));
+            $message = FormValidator::purify($request->get('message'));
+            $email = FormValidator::purify($request->get('email'));
+
+            if (empty($name) || empty($forename) || empty($email) || empty($message) || !FormValidator::is_email($email)) {
+                $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
+            } else {
+
+                $this->formManager->fromTraitment($name, $forename, $email, $message);
+                $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
+            }
+            header('Location: /');
+        }
+
+        /**
+         * Download the CV
+         */
+        public
+        function cvNico()
+        {
+            $file = 'public/pdf/CV.pdf';
+            if (file_exists($file)) {
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($file));
+                readfile($file);
+            }
+        }
+    }

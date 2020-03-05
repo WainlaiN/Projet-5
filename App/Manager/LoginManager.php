@@ -9,7 +9,6 @@ use App\Model\User;
 /**
  * LoginManager Queries for Users
  */
-
 class LoginManager extends Database
 
 {
@@ -50,27 +49,20 @@ class LoginManager extends Database
      *
      * @return bool
      */
-    public function checkUsername()
+    public function checkUsername($username)
     {
-        if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
-            $_SESSION['flash']['danger'] = 'Votre pseudo n\'est pas valide (alphanumérique)';
-
+        $sql = 'SELECT userid FROM users WHERE username = :username';
+        $parameters = ['username' => $username];
+        $req = $this->sql($sql, $parameters);
+        $user = $req->fetchObject();
+        if ($user) {
+            $_SESSION['flash']['danger'] = 'Ce pseudo est dejà utilisé';
             return false;
         } else {
-            $username = htmlspecialchars($_POST['username']);
-
-            $sql = 'SELECT userid FROM users WHERE username = :username';
-            $parameters = ['username' => $username];
-            $req = $this->sql($sql, $parameters);
-            $user = $req->fetchObject();
-            if ($user) {
-                $_SESSION['flash']['danger'] = 'Ce pseudo est dejà utilisé';
-                return false;
-            } else {
-                return true;
-            }
+            return true;
         }
     }
+
 
     /**
      * Return if email is already used

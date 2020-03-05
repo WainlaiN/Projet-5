@@ -7,7 +7,7 @@ namespace App\Core;
 class FormValidator
 {
     /**
-     * Check is not empty and purify
+     * Check if is not empty and purify
      *
      * @param mixed $param
      *
@@ -28,6 +28,13 @@ class FormValidator
         }
     }
 
+    /**
+     * Check if is not emoty
+     *
+     * @param $data
+     *
+     * @return bool
+     */
     public static function purifyContent($data)
     {
         if (isset($data) && ($data != '')) {
@@ -39,14 +46,36 @@ class FormValidator
         }
     }
 
+    /**
+     * Check if is alpha
+     *
+     * @param $value
+     *
+     * @return bool
+     */
     public static function is_alpha($value){
-        if(filter_var($value, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z]+$/")))) return true;
+        if (preg_match('/^[a-zA-Z]+$/', $value)) return true;
+
     }
 
+    /**
+     * Check if alphanumeric
+     *
+     * @param $value
+     *
+     * @return bool
+     */
     public static function is_alphanum($value){
-        if(filter_var($value, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z0-9]+$/")))) return true;
+        if(preg_match('/^[a-zA-Z0-9_]+$/', $value)) return true;
     }
 
+    /**
+     * Check if is email
+     *
+     * @param $value
+     *
+     * @return bool
+     */
     public static function is_email($value){
         if(filter_var($value, FILTER_VALIDATE_EMAIL)) return true;
     }
