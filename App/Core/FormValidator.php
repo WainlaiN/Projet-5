@@ -23,13 +23,13 @@ class FormValidator
             return $data;
         } else {
             return false;
-            //$_SESSION['flash']['danger'] = 'Les champs ne sont pas remplis';
-            //header('Location: /admin');
+            $_SESSION['flash']['danger'] = 'Les champs ne sont pas remplis';
+            header('Location: /admin');
         }
     }
 
     /**
-     * Check if is not emoty
+     * Check if is not empty
      *
      * @param $data
      *
@@ -41,8 +41,8 @@ class FormValidator
             return $data;
         } else {
             return false;
-            //$_SESSION['flash']['danger'] = 'Les champs ne sont pas remplis';
-            //header('Location: /admin');
+            $_SESSION['flash']['danger'] = 'Les champs ne sont pas remplis';
+            header('Location: /admin');
         }
     }
 
@@ -54,7 +54,7 @@ class FormValidator
      * @return bool
      */
     public static function is_alpha($value){
-        if (preg_match('/^[a-zA-Z]+$/', $value)) return true;
+        if (preg_match('/^[a-zA-Z]+$/', $value) && !empty($value) ) return true;
 
     }
 
@@ -66,7 +66,7 @@ class FormValidator
      * @return bool
      */
     public static function is_alphanum($value){
-        if(preg_match('/^[a-zA-Z0-9_]+$/', $value)) return true;
+        if(preg_match('/^[a-zA-Z0-9_]+$/', $value) && !empty($value)) return true;
     }
 
     /**
@@ -77,6 +77,6 @@ class FormValidator
      * @return bool
      */
     public static function is_email($value){
-        if(filter_var($value, FILTER_VALIDATE_EMAIL)) return true;
+        if(filter_var($value, FILTER_VALIDATE_EMAIL) && !empty($value)) return true;
     }
 }

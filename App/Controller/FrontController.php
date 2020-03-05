@@ -122,11 +122,11 @@ Class FrontController
         $username = FormValidator::purify($request->get('username'));
         $password = FormValidator::purify($request->get('password'));
 
-        if (empty($username) || !FormValidator::is_alphanum($username)) {
+        if (!FormValidator::is_alphanum($username)) {
             $_SESSION['flash']['danger'] = 'Votre pseudo ' . $username . ' n\'est pas valide';
             header('location: /login');
 
-        } elseif (empty($password) || !FormValidator::is_alphanum($password)) {
+        } elseif (!FormValidator::is_alphanum($password)) {
             $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
             header('location: /login');
 
@@ -142,7 +142,6 @@ Class FrontController
                 if ($isPasswordCorrect == false) {
                     $_SESSION['flash']['danger'] = 'Mot de passe incorrect !';
                     header('location: /login');
-
                 } else {
                     $_SESSION['auth'] = $user;
 
@@ -154,7 +153,6 @@ Class FrontController
                 }
             }
         }
-
     }
 
     /**
@@ -176,13 +174,20 @@ Class FrontController
         $email = FormValidator::purify($request->get('email'));
         $username = FormValidator::purify($request->get('username'));
 
-        if (empty($username) || !FormValidator::is_alphanum($username)) {
+        if (!FormValidator::is_alphanum($username)) {
             $_SESSION['flash']['danger'] = 'Votre pseudo ' . $username . ' n\'est pas valide';
             header('location: /login');
 
-        } elseif (empty($password) || !FormValidator::is_alphanum($password)) {
+        } elseif (!FormValidator::is_alphanum($password)) {
             $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
             header('location: /login');
+
+        } elseif (!FormValidator::is_email($email)) {
+            $_SESSION['flash']['danger'] = "Votre email n'est pas valide";
+            header('location: /login');
+
+
+
 
         } else {
 

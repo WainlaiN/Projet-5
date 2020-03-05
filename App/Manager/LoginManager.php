@@ -93,7 +93,7 @@ class LoginManager extends Database
 
 
     /**
-     * Return if password is valid
+     * Return if password and password confirmation are the same
      *
      * @return bool
      */
