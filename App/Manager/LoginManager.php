@@ -49,7 +49,6 @@ class LoginManager extends Database
      *
      * @param $username
      * @param $email
-     *
      * @return bool|false|\PDOStatement
      */
     public function isMemberExists($username, $email)
