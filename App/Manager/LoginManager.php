@@ -45,52 +45,24 @@ class LoginManager extends Database
     }
 
     /**
-     * Return if username is already used
+     * Return if User already exist
      *
-     * @return bool
+     * @param $username
+     * @param $email
+     *
+     * @return bool|false|\PDOStatement
      */
-    public function checkUsername($username)
+    public function isMemberExists($username, $email)
     {
-        $sql = 'SELECT userid FROM users WHERE username = :username';
-        $parameters = ['username' => $username];
-        $req = $this->sql($sql, $parameters);
-        $user = $req->fetchObject();
-        if ($user) {
-            $_SESSION['flash']['danger'] = 'Ce pseudo est dejà utilisé';
+        $sql = 'SELECT * FROM ' . $this->table_name . ' WHERE username = :username OR email = :email';
+        $parameters = [':username' => $username, ':email' => $email];
+        $result = $this->sql($sql, $parameters);
+        if ($result->rowCount() >= 1) {
             return false;
         } else {
             return true;
         }
     }
-
-
-    /**
-     * Return if email is already used
-     *
-     * @return bool
-     */
-    public function checkEmail()
-    {
-        if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['flash']['danger'] = 'Email invalide';
-
-            return false;
-        } else {
-            $email = $_POST['email'];
-            $sql = 'SELECT userid from ' . $this->table_name . ' WHERE email = ?';
-            $parameters = [$email];
-            $result = $this->sql($sql, $parameters);
-            $user = $result->fetchObject($this->model);
-
-            if ($user) {
-                $_SESSION['flash']['danger'] = 'Cet email est déjà utilisé.';
-                return false;
-            } else {
-                return true;
-            }
-        }
-    }
-
 
     /**
      * Return if password and password confirmation are the same
@@ -100,12 +72,8 @@ class LoginManager extends Database
     public function checkPassword($password, $passwordConfirm)
     {
         if ($password != $passwordConfirm) {
-            $_SESSION['flash']['danger'] = 'Mot de passe différent';
-
             return false;
-
         } else {
-
             return true;
         }
     }
@@ -114,12 +82,11 @@ class LoginManager extends Database
      * Register user
      *
      */
-    public function registerUser()
+    public function registerUser($username, $password, $email)
     {
-        $status = 2;
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO ' . $this->table_name . ' SET username = ?, password = ?, email = ?, user_status = ?';
-        $parameters = [$_POST['username'], $password, $_POST['email'], $status];
+        $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = 'INSERT INTO ' . $this->table_name . ' SET username = :username, password = :password, email = :email, user_status = 2';
+        $parameters = [':username' =>$username , ':password' => $hashedpassword, ':email' => $email];
         $this->sql($sql, $parameters);
 
     }

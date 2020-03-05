@@ -124,31 +124,30 @@ Class FrontController
 
         if (!FormValidator::is_alphanum($username)) {
             $_SESSION['flash']['danger'] = 'Votre pseudo ' . $username . ' n\'est pas valide';
-            header('location: /login');
-
+            $this->login();
         } elseif (!FormValidator::is_alphanum($password)) {
             $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
-            header('location: /login');
+            $this->login();
 
         } else {
             $user = $this->loginManager->getLogin($username);
 
             if (!$user) {
                 $_SESSION['flash']['danger'] = 'Mauvais identifiant';
-                header('location: /login');
+                $this->login();
             } else {
                 $isPasswordCorrect = password_verify($password, $user->getPassword());
 
                 if ($isPasswordCorrect == false) {
                     $_SESSION['flash']['danger'] = 'Mot de passe incorrect !';
-                    header('location: /login');
+                    $this->login();
                 } else {
                     $_SESSION['auth'] = $user;
 
                     if ($_SESSION['auth']->getStatus() == 1) {
                         header('location: /admin');
                     } else {
-                        header('Location: /');
+                        $this->home();
                     }
                 }
             }
@@ -162,7 +161,7 @@ Class FrontController
     {
         session_destroy();
         session_unset();
-        $this->home();
+        header('location: /');
     }
 
     /**
@@ -190,60 +189,64 @@ Class FrontController
 
         } else {
 
-            if ($this->loginManager->checkUsername($username)) {
-                if ($this->loginManager->checkEmail()) {
-                    if ($this->loginManager->checkPassword($password, $passwordConfirm)) {
-                        $this->loginManager->registerUser();
+            if ($this->loginManager->isMemberExists($username, $email)) {
+                if ($this->loginManager->checkPassword($password, $passwordConfirm)) {
 
-                        $this->formManager->registerTraitment($email, $username);
-                        $_SESSION['flash']['success'] = 'Votre inscription a bien été prise en compte.';
-                        $this->login();
-                    }
+                    $this->loginManager->registerUser($username, $password, $email);
+                    $this->formManager->registerTraitment($email, $username);
+                    $_SESSION['flash']['success'] = 'Votre inscription a bien été prise en compte.';
+                    $this->login();
+
+                } else {
+                    $_SESSION['flash']['danger'] = "Les mots de passe sont différents";
+                    $this->registerView();
                 }
+
             } else {
+                $_SESSION['flash']['danger'] = "Cet utilisateur existe déjà";
                 $this->registerView();
             }
         }
     }
 
-    /**
-     * Send an email for contact form using manager
-     */
-    public
-    function contactForm()
-    {
-        $request = Request::createFromGlobals();
-        $name = FormValidator::purify($request->get('name'));
-        $forename = FormValidator::purify($request->get('forename'));
-        $message = FormValidator::purify($request->get('message'));
-        $email = FormValidator::purify($request->get('email'));
+/**
+ * Send an email for contact form using manager
+ */
+public
+function contactForm()
+{
+    $request = Request::createFromGlobals();
+    $name = FormValidator::purify($request->get('name'));
+    $forename = FormValidator::purify($request->get('forename'));
+    $message = FormValidator::purify($request->get('message'));
+    $email = FormValidator::purify($request->get('email'));
 
-        if (empty($name) || empty($forename) || empty($email) || empty($message) || !FormValidator::is_email($email)) {
-            $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
-        } else {
+    if (empty($name) || empty($forename) || empty($email) || empty($message) || !FormValidator::is_email($email)) {
+        $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
+    } else {
 
-            $this->formManager->fromTraitment($name, $forename, $email, $message);
-            $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
-        }
-        $this->home();
+        $this->formManager->fromTraitment($name, $forename, $email, $message);
+        $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
     }
+    $this->home();
+}
 
-    /**
-     * Download the CV
-     */
-    public
-    function cvNico()
-    {
-        $file = 'public/pdf/CV.pdf';
-        if (file_exists($file)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            readfile($file);
-        }
+/**
+ * Download the CV
+ */
+public
+function cvNico()
+{
+    $file = 'public/pdf/CV.pdf';
+    if (file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
     }
+}
 }

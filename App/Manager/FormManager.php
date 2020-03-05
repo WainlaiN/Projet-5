@@ -53,7 +53,7 @@ class FormManager
         $message = (new \Swift_Message('Confirmation de votre inscription ' . $username))
             ->setFrom($email)
             ->setTo($data['email'])
-            ->setBody($message);
+            ->setBody('Votre inscription a bien été prise en compte');
 
         $mailer->send($message);
     }
