@@ -72,7 +72,6 @@ class PostManager extends Database
 
     }
 
-
     /**
      * Delete a Post
      *

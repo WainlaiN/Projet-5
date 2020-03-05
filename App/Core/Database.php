@@ -32,20 +32,13 @@ class Database
      * @param null $binds
      * @return bool|false|\PDOStatement
      */
-    protected function sql($sql, $parameters = null, $binds = null)
+    protected function sql($sql, $parameters = null)
     {
 
-        if ($parameters || $binds) {
+        if ($parameters) {
             $result = $this->dbConnect()->prepare($sql);
 
-            if ($binds) {
-                foreach ($binds as $bind) {
-                    $result->bindParam($bind[0], $bind[1], $bind[2]);
-                }
-                $result->execute();
-            } else {
                 $result->execute($parameters);
-            }
 
             return $result;
         } else {
