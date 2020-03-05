@@ -97,16 +97,13 @@ class LoginManager extends Database
      *
      * @return bool
      */
-    public function checkPassword()
+    public function checkPassword($password, $passwordConfirm)
     {
-        if (empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
+        if ($password != $passwordConfirm) {
             $_SESSION['flash']['danger'] = 'Mot de passe différent';
 
             return false;
-        } elseif (empty($_POST['password']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['password'])) {
-            $_SESSION['flash']['danger'] = 'Votre mot de passe n\'est pas valide';
 
-            return false;
         } else {
 
             return true;
