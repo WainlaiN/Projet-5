@@ -8,6 +8,7 @@ use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
 use Symfony\Component\HttpFoundation\Request;
+use App\Core\FormValidator;
 
 /**
  * Class FrontController controller for Frontend
@@ -74,10 +75,10 @@ Class FrontController
         $request = Request::createFromGlobals();
 
         if (!empty($request->request->all())) {
-            $postId = $request->get('postid');
-            $authorId = $request->get('authorid');
-            $author = $request->get('authorname');
-            $description = $request->get('description');
+            $postId = FormValidator::purify($request->get('postid'));
+            $authorId = FormValidator::purify($request->get('authorid'));
+            $author = FormValidator::purify($request->get('authorname'));
+            $description = FormValidator::purify($request->get('description'));
 
             $request = $this->commentManager->addComment($postId, $authorId, $author, $description);
 
