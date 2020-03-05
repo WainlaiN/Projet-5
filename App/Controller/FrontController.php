@@ -210,7 +210,7 @@ Class FrontController
     }
 
     /**
-     * Send an email for contact form using manager
+     * Send an email from contact form using manager
      */
     public function contactForm()
     {
