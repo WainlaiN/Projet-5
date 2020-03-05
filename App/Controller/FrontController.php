@@ -209,44 +209,43 @@ Class FrontController
         }
     }
 
-/**
- * Send an email for contact form using manager
- */
-public
-function contactForm()
-{
-    $request = Request::createFromGlobals();
-    $name = FormValidator::purify($request->get('name'));
-    $forename = FormValidator::purify($request->get('forename'));
-    $message = FormValidator::purify($request->get('message'));
-    $email = FormValidator::purify($request->get('email'));
+    /**
+     * Send an email for contact form using manager
+     */
+    public function contactForm()
+    {
+        $request = Request::createFromGlobals();
+        $name = FormValidator::purify($request->get('name'));
+        $forename = FormValidator::purify($request->get('forename'));
+        $message = FormValidator::purify($request->get('message'));
+        $email = FormValidator::purify($request->get('email'));
 
-    if (empty($name) || empty($forename) || empty($email) || empty($message) || !FormValidator::is_email($email)) {
-        $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
-    } else {
+        if (empty($name) || empty($forename) || empty($email) || empty($message) || !FormValidator::is_email($email)) {
+            $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
+        } else {
 
-        $this->formManager->fromTraitment($name, $forename, $email, $message);
-        $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
+            $this->formManager->fromTraitment($name, $forename, $email, $message);
+            $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
+        }
+        $this->home();
     }
-    $this->home();
-}
 
-/**
- * Download the CV
- */
-public
-function cvNico()
-{
-    $file = 'public/pdf/CV.pdf';
-    if (file_exists($file)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($file));
-        readfile($file);
+    /**
+     * Download the CV
+     */
+    public
+    function cvNico()
+    {
+        $file = 'public/pdf/CV.pdf';
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+        }
     }
-}
 }
