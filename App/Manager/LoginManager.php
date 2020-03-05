@@ -19,7 +19,7 @@ class LoginManager extends Database
     /**
      * Return User Information
      *
-     * @param $username
+     * @param  $username
      * @return mixed
      */
     public function getLogin($username)
@@ -33,7 +33,7 @@ class LoginManager extends Database
     /**
      * Return status for specific user
      *
-     * @param $username
+     * @param  $username
      * @return mixed
      */
     public function getStatus($username)
@@ -47,8 +47,8 @@ class LoginManager extends Database
     /**
      * Return if User already exist
      *
-     * @param $username
-     * @param $email
+     * @param  $username
+     * @param  $email
      * @return bool|false|\PDOStatement
      */
     public function isMemberExists($username, $email)
