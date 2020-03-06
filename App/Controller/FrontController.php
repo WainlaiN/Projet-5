@@ -33,15 +33,18 @@ Class FrontController
         $this->renderer = new TwigRenderer();
         $this->formManager = new FormManager();
 
+
         if (session_status() == PHP_SESSION_NONE) {
             $this->session = new Session\Session();
             $this->session->start();
         }
+        $this->session->remove('warning');
+        $this->session->remove('success');
     }
 
     public function __destruct()
     {
-        $this->session->clear();
+        $this->session->getFlashBag()->clear();
     }
 
     /**
@@ -90,9 +93,9 @@ Class FrontController
             $request = $this->commentManager->addComment($postId, $authorId, $author, $description);
 
             if ($request === false) {
-                $_SESSION['flash']['danger'] = 'Impossible d\'ajouter le commentaire !';
+                $this->session->set('warning', "Impossible d'ajouter le commentaire");
             } else {
-                $_SESSION['flash']['success'] = 'Votre commentaire va être soumis à validation.';
+                $this->session->set('success', "Votre commentaire va être soumis à validation.");
             }
 
             $this->post($postId);
@@ -174,6 +177,7 @@ Class FrontController
     public function deconnect()
     {
         $this->session->clear();
+        $this->home();
     }
 
     /**

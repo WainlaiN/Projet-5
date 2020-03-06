@@ -85,27 +85,27 @@
                                 <h3 class="panel-title">
                                     Ajouter un commentaire</h3>
                             </li>
-                            {% if not session.auth %}
+                            {% if not session._sf2_attributes.auth %}
                                 <li class="list-group-item">
                                     <div class="alert alert-danger py-3" role="alert">
                                         Vous devez être connecté pour ajouter un commentaire
                                     </div>
                                 </li>
                             {% endif %}
-                            {% if session.auth %}
+                            {% if session._sf2_attributes.auth %}
                                 <li class="list-group-item">
                                     <form action="/comment/add" method="post">
                                         <div class="form-group">
                                             <input type="hidden" value="{{ post.id }}" id="postid" name="postid"/>
                                             <input type="text" id="authorname" name="authorname"
-                                                   value="{{ session.auth.username }}" class="form-control" readonly/>
+                                                   value="{{ session._sf2_attributes.auth.username }}" class="form-control" readonly/>
                                             <input type="hidden" id="authorid" name="authorid"
-                                                   value="{{ session.auth.userid }}" class="form-control"/>
+                                                   value="{{ session._sf2_attributes.auth.userid }}" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Votre commentaire</label><br/>
                                             <textarea id="description" name="description" rows="7"
-                                                      class="form-control"></textarea>
+                                                      class="form-control" required></textarea>
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" value="Ajouter" class="btn btn-primary">

@@ -28,30 +28,29 @@ class AdminController
         $this->loginManager = new LoginManager();
         $this->renderer = new TwigRenderer();
 
-
         if (session_status() == PHP_SESSION_NONE) {
             $this->session = new Session\Session();
             $this->session->start();
         }
 
-        /**if (!isset($_SESSION['auth'])) {
-            $_SESSION['flash']['danger'] = 'Connectez-vous pour accéder à cette page';
+        if (!$this->session->get('auth')) {
+            $this->session->set('warning', "Connectez-vous pour accéder à cette page");
             header('Location: /login');
-
-
         }
-        if (isset($_SESSION['auth'])) {
-            if ($_SESSION['auth']->getStatus() != 1) {
-                $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
-                header('Location: /Admin');
 
+        if ($this->session->get('auth')) {
+            if ($this->session->get('auth')->getStatus() != 1) {
+                $this->session->set('warning', "Vous n'avez pas le droit d'accéder à cette page");
+                header('Location: /Admin');
             }
-        }**/
+        }
+        //$this->session->remove('warning');
+        //$this->session->remove('success');
     }
 
     public function __destruct()
     {
-        $this->session->clear();
+        $this->session->getFlashBag()->clear();
     }
 
     /**
@@ -99,9 +98,9 @@ class AdminController
             $result = $this->postManager->addPost($datas);
 
             if ($result === false) {
-                $_SESSION['flash']['danger'] = 'Impossible d\'ajouter l\'article !';
+                $this->session->set('warning', "Impossible d'ajouter l'article !");
             } else {
-                $_SESSION['flash']['success'] = 'Votre article a été ajouté.';
+                $this->session->set('success', "Votre article a été ajouté.");
             }
             header('Location: /admin');
         }
@@ -116,9 +115,9 @@ class AdminController
     {
         $request = $this->postManager->deletePost($postId);
         if ($request === false) {
-            $_SESSION['flash']['danger'] = 'Impossible de supprimer l\'article !';
+            $this->session->set('warning', "Impossible de supprimer l'article !");
         } else {
-            $_SESSION['flash']['success'] = 'Votre article a été supprimé.';
+            $this->session->set('success', "Votre article a été supprimé.");
         }
         header('Location: /admin');
     }
@@ -132,9 +131,9 @@ class AdminController
     {
         $request = $this->commentManager->deleteComment($commentId);
         if ($request === false) {
-            $_SESSION['flash']['success'] = "Impossible de supprimer le commentaire";
+            $this->session->set('warning', "Impossible de supprimer le commentaire !");
         } else {
-            $_SESSION['flash']['success'] = 'Votre commentaire a été supprimé.';
+            $this->session->set('success', "Votre commentaire a été supprimé.");
         }
         header('Location: /admin');
     }
@@ -165,9 +164,9 @@ class AdminController
             $result = $this->postManager->updatePost($postId, $datas);
 
             if ($result === false) {
-                $_SESSION['flash']['danger'] = 'Impossible de modifier l\'article !';
+                $this->session->set('warning', "Impossible de modifier l'article !");
             } else {
-                $_SESSION['flash']['success'] = 'Votre article a bien été modifié.';
+                $this->session->set('success', "Votre article a bien été modifié.");
             }
             $this->updatePostView($postId);
         }
@@ -180,9 +179,9 @@ class AdminController
     {
         $request = $this->commentManager->validateComment($commentId);
         if ($request === false) {
-            $_SESSION['flash']['success'] = "Impossible de valider le commentaire";
+            $this->session->set('warning', "Impossible de valider le commentaire !");
         } else {
-            $_SESSION['flash']['success'] = 'Le commentaire a été validé.';
+            $this->session->set('success', "Le commentaire a été validé.");
         }
         header('Location: /admin');
     }

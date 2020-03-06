@@ -62,13 +62,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/posts">Blog</a>
                 </li>
-                {% if session is defined  and session.auth.status == 1 %}
+
+                {% if session._sf2_attributes.auth.getstatus == 1 %}
                     <li class="nav-item">
                         <a class="nav-link" href="/CV">CV</a>
                     </li>
                     <li>
                         <a class="nav-link" href="/admin">Admin</a>
                     </li>
+                {% endif %}
+                {% if session._sf2_attributes.auth is defined %}
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">
                             <i class="fa fa-power-off"></i>
@@ -81,7 +84,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/login">
                             <i class="fa fa-power-off"></i></a>
-                        </a>
                     </li>
                 {% endif %}
             </ul>
@@ -125,9 +127,16 @@
                     </ul>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="/CGV" data-target="#mentions" style="color:white"><h5>Mentions légales</h5></a>
+            <div class="row col-md-12">
+                <div class="footer-col col-md-12">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="/CGV" data-target="#mentions" style="color:white"><h5>Mentions légales</h5></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/admin" data-target="#admin" style="color:white"><h5>Administration</h5></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
