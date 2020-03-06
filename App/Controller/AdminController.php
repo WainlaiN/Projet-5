@@ -7,6 +7,7 @@ use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
 
 /**
  * Class AdminController controller for Backend
@@ -18,6 +19,7 @@ class AdminController
     private $loginManager;
     private $renderer;
     private $request;
+    private $session;
 
     public function __construct()
     {
@@ -28,10 +30,11 @@ class AdminController
 
 
         if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+            $this->session = new Session\Session();
+            $this->session->start();
         }
 
-        if (!isset($_SESSION['auth'])) {
+        /**if (!isset($_SESSION['auth'])) {
             $_SESSION['flash']['danger'] = 'Connectez-vous pour accéder à cette page';
             header('Location: /login');
 
@@ -43,8 +46,12 @@ class AdminController
                 header('Location: /Admin');
 
             }
-        }
+        }**/
+    }
 
+    public function __destruct()
+    {
+        $this->session->clear();
     }
 
     /**

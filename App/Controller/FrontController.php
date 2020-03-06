@@ -7,8 +7,10 @@ use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\TwigRenderer;
-use Symfony\Component\HttpFoundation\Request;
 use App\Core\FormValidator;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
+
 
 /**
  * Class FrontController controller for Frontend
@@ -21,6 +23,7 @@ Class FrontController
     private $renderer;
     private $formManager;
     private $request;
+    private $session;
 
     public function __construct()
     {
@@ -31,8 +34,14 @@ Class FrontController
         $this->formManager = new FormManager();
 
         if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+            $this->session = new Session\Session();
+            $this->session->start();
         }
+    }
+
+    public function __destruct()
+    {
+        $this->session->clear();
     }
 
     /**
@@ -72,6 +81,7 @@ Class FrontController
         $request = Request::createFromGlobals();
 
         if (!empty($request->request->all())) {
+
             $postId = FormValidator::purify($request->get('postid'));
             $authorId = FormValidator::purify($request->get('authorid'));
             $author = FormValidator::purify($request->get('authorname'));
@@ -123,28 +133,32 @@ Class FrontController
         $password = FormValidator::purify($request->get('password'));
 
         if (!FormValidator::is_alphanum($username)) {
-            $_SESSION['flash']['danger'] = 'Votre pseudo ' . $username . ' n\'est pas valide';
+            $this->session->set('warning', "Votre pseudo $username n'est pas valide");
             $this->login();
+
         } elseif (!FormValidator::is_alphanum($password)) {
-            $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
+            $this->session->set('warning', "Votre mot de passe n'est pas valide");
             $this->login();
 
         } else {
             $user = $this->loginManager->getLogin($username);
 
             if (!$user) {
-                $_SESSION['flash']['danger'] = 'Mauvais identifiant';
+                $this->session->set('warning', "Cette identifiant n'existe pas");
                 $this->login();
+
             } else {
                 $isPasswordCorrect = password_verify($password, $user->getPassword());
 
                 if ($isPasswordCorrect == false) {
-                    $_SESSION['flash']['danger'] = 'Mot de passe incorrect !';
+                    $this->session->set('warning', "Mot de passe incorrect");
                     $this->login();
-                } else {
-                    $_SESSION['auth'] = $user;
 
-                    if ($_SESSION['auth']->getStatus() == 1) {
+                } else {
+                    $this->session->set('auth', $user);
+
+                    if ($this->session->get('auth')->getStatus() == '1') {
+
                         header('location: /admin');
                     } else {
                         $this->home();
@@ -159,9 +173,7 @@ Class FrontController
      */
     public function deconnect()
     {
-        session_destroy();
-        session_unset();
-        header('location: /');
+        $this->session->clear();
     }
 
     /**
@@ -176,15 +188,15 @@ Class FrontController
         $passwordConfirm = FormValidator::purify($request->get('password_confirm'));
 
         if (!FormValidator::is_alphanum($username)) {
-            $_SESSION['flash']['danger'] = 'Votre pseudo ' . $username . ' n\'est pas valide';
+            $this->session->set('warning', "Votre pseudo n'est pas valide");
             $this->registerView();
 
         } elseif (!FormValidator::is_alphanum($password) || !FormValidator::is_alphanum($passwordConfirm)) {
-            $_SESSION['flash']['danger'] = "Votre mot de passe n'est pas valide";
+            $this->session->set('warning', "Votre mot de passe n'est pas valide");
             $this->registerView();
 
         } elseif (!FormValidator::is_email($email)) {
-            $_SESSION['flash']['danger'] = "Votre email n'est pas valide";
+            $this->session->set('warning', "Votre email n'est pas valide");
             $this->registerView();
 
         } else {
@@ -194,16 +206,16 @@ Class FrontController
 
                     $this->loginManager->registerUser($username, $password, $email);
                     $this->formManager->registerTraitment($email, $username);
-                    $_SESSION['flash']['success'] = 'Votre inscription a bien été prise en compte.';
+                    $this->session->set('success', "Votre inscription a bien été prise en compte");
                     $this->login();
 
                 } else {
-                    $_SESSION['flash']['danger'] = "Les mots de passe sont différents";
+                    $this->session->set('warning', "Les mots de passe ne sont pas identiques");
                     $this->registerView();
                 }
 
             } else {
-                $_SESSION['flash']['danger'] = "Cet utilisateur existe déjà";
+                $this->session->set('warning', "Cet utilisateur existe déjà");
                 $this->registerView();
             }
         }
@@ -220,12 +232,12 @@ Class FrontController
         $message = FormValidator::purify($request->get('message'));
         $email = FormValidator::purify($request->get('email'));
 
-        if (empty($name) || empty($forename) || empty($email) || empty($message) || !FormValidator::is_email($email)) {
-            $_SESSION['flash']['danger'] = 'Tous les champs ne sont pas remplis ou corrects.';
+        if (!isset($name) || !isset($forename) || !isset($email) || !isset($message) || !FormValidator::is_email($email)) {
+            $this->session->set('warning', "Tous les champs ne sont pas remplis ou corrects.");
         } else {
 
             $this->formManager->fromTraitment($name, $forename, $email, $message);
-            $_SESSION['flash']['success'] = 'Votre formulaire a bien été envoyé.';
+            $this->session->set('success', "Votre formulaire a bien été envoyé.");
         }
         $this->home();
     }

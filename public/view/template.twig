@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+{{ dump(session) }}
 
 <head>
 
@@ -87,14 +88,14 @@
         </div>
     </div>
 </nav>
-{% if session.flash.danger is defined %}
+{% if session._sf2_attributes.warning is defined %}
     <div class="alert alert-danger" role="alert">
-        <h6>{{ session.flash.danger }}</h6>
+        <h6>{{ session._sf2_attributes.warning }}</h6>
     </div>
 {% endif %}
-{% if session.flash.success is defined %}
+{% if session._sf2_attributes.success is defined %}
     <div class="alert alert-success" role="alert">
-        <h6>{{ session.flash.success }}</h6>
+        <h6>{{ session._sf2_attributes.success }}</h6>
     </div>
 {% endif %}
 <div class="container">
