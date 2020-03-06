@@ -61,7 +61,6 @@ class AdminController
     {
         $list_posts = $this->postManager->getPosts();
         $this->renderer->render('Backend/adminView', ['listposts' => $list_posts]);
-
     }
 
     /**
@@ -73,7 +72,6 @@ class AdminController
     {
         $comments = $this->commentManager->getComments($postId);
         $this->renderer->render('Backend/commentsView', ['listcomments' => $comments]);
-
     }
 
     /**
@@ -82,7 +80,6 @@ class AdminController
     public function addPostView()
     {
         $this->renderer->render('Backend/addPostView');
-
     }
 
     /**
@@ -124,7 +121,6 @@ class AdminController
             $_SESSION['flash']['success'] = 'Votre article a été supprimé.';
         }
         header('Location: /admin');
-
     }
 
     /**
@@ -150,7 +146,6 @@ class AdminController
     {
         $posts = $this->postManager->getPost($postId);
         $this->renderer->render('Backend/editPostView', ['listpost' => $posts]);
-
     }
 
     /**
@@ -190,7 +185,6 @@ class AdminController
             $_SESSION['flash']['success'] = 'Le commentaire a été validé.';
         }
         header('Location: /admin');
-
     }
 
 }
