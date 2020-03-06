@@ -38,13 +38,13 @@ Class FrontController
             $this->session = new Session\Session();
             $this->session->start();
         }
-        $this->session->remove('warning');
-        $this->session->remove('success');
     }
 
     public function __destruct()
     {
         $this->session->getFlashBag()->clear();
+        $this->session->remove('warning');
+        $this->session->remove('success');
     }
 
     /**
@@ -94,10 +94,10 @@ Class FrontController
 
             if ($request === false) {
                 $this->session->set('warning', "Impossible d'ajouter le commentaire");
+
             } else {
                 $this->session->set('success', "Votre commentaire va être soumis à validation.");
             }
-
             $this->post($postId);
         }
     }

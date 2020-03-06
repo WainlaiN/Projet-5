@@ -44,8 +44,6 @@ class AdminController
                 header('Location: /Admin');
             }
         }
-        //$this->session->remove('warning');
-        //$this->session->remove('success');
     }
 
     public function __destruct()
