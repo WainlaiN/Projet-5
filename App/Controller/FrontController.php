@@ -107,7 +107,7 @@ Class FrontController
      */
     public function getCGV()
     {
-        $this->renderer->render('Frontend/cgvView');
+        $this->renderer->render('Frontend/MentionsView');
     }
 
     /**
