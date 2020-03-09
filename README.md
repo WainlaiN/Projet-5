@@ -39,7 +39,7 @@ Administrateur:
 <li>Suppression utilisateur.</li>
 </ul>
 
-##Informations
+## Informations
 
 Un thème de base a été choisi pour réaliser ce projet, il s'agit du thème Bootstrap Freelancer.
 
@@ -58,14 +58,14 @@ Administrateur:
 <li>Mot de passe: xxxxx</li>
 </ul>
 
-##Prérequis
+## Prérequis
 Php ainsi que Composer doivent être installés sur votre ordinateur afin de pouvoir correctement lancé le blog.
 
-##Installation
+## Installation
 
-##Outils utilisés
+## Outils utilisés
 
-##Auteur
+## Auteur
 
 Dupriez Nicolas
 
