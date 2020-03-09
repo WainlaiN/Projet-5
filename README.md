@@ -63,7 +63,7 @@ Php ainsi que Composer doivent être installés sur votre ordinateur afin de pou
 
 ## Installation
 
-## Librairies utilisés
+## Librairies utilisées
 <ul>
 <li>altorouter</li>
 <li>swiftmailer</li>
