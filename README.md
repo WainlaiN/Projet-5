@@ -84,6 +84,6 @@ Php ainsi que Composer doivent être installés sur votre serveur afin de pouvoi
 
 ## Auteur
 
-Dupriez Nicolas
+**Dupriez Nicolas** - Étudiant à Openclassrooms Parcours suivi Développeur d'application PHP/Symfony
 
 
