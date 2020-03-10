@@ -43,19 +43,19 @@ Administrateur:
 
 Un thème de base a été choisi pour réaliser ce projet, il s'agit du thème Bootstrap Freelancer.
 
-Une version en ligne est disponible. Pour y accéder, cliquez ici.
+La version en ligne n'est pas encore disponible.
 
 Vous pouvez directement vous identifier en tant qu'utilisateur ou administrateur:
 
 Utilisateur:
 <ul>
-<li>Identifiant: xxxxx</li>
-<li>Mot de passe: xxxxx</li>
+<li>Identifiant: Jean</li>
+<li>Mot de passe: 12345</li>
 </ul> 
 Administrateur:
 <ul>
-<li>Identifiant: xxxxx</li>
-<li>Mot de passe: xxxxx</li>
+<li>Identifiant: Nicolas</li>
+<li>Mot de passe: 1234</li>
 </ul>
 
 ## Prérequis
