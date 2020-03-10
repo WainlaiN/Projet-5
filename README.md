@@ -59,7 +59,7 @@ Administrateur:
 </ul>
 
 ## Prérequis
-Php ainsi que Composer doivent être installés sur votre ordinateur afin de pouvoir correctement lancé le blog.
+Php ainsi que Composer doivent être installés sur votre serveur afin de pouvoir correctement lancé le blog.
 
 ## Installation
 
