@@ -1,0 +1,6 @@
+# ignore config files
+App/Config/config.php
+App/Config/mail.php
+vendor
+.idea
+blog.sql

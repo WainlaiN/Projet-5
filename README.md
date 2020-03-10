@@ -63,6 +63,12 @@ Php ainsi que Composer doivent être installés sur votre ordinateur afin de pou
 
 ## Installation
 
+**Etape 1 :** Cloner le Repositary sur votre serveur.
+**Etape 2 :** Créer une base de données sur votre SGBD et importer le fichier blog.example.sql
+**Etape 3 :** Remplir le fichier App/Config/config.exemple.php avec les accès à votre BDD.
+**Etape 4 :** Remplir le fichier App/Config/mail.exemple.php avec les accès à votre compte email.
+**Etape 4 :** Votre blog est désormais fonctionnel, vous pouvez utiliser les accès visiteur et administrateur.
+
 ## Librairies utilisées
 <ul>
 <li>altorouter</li>
