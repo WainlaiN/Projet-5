@@ -53,7 +53,7 @@ class User
     /**
      * @return mixed
      */
-    public function getUserid()
+    public function getUserId()
     {
         return $this->userid;
     }
@@ -62,7 +62,7 @@ class User
      * @param mixed $userid
      * @return User
      */
-    public function setUserid($userid)
+    public function setUserId($userid)
     {
         $this->userid = $userid;
         return $this;

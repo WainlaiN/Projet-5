@@ -74,7 +74,7 @@ class Post
      */
     public function setPostId(int $postId)
     {
-        $this->post_id = $postId;
+        $this->postId = $postId;
         return $this;
     }
 
