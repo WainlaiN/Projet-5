@@ -2,6 +2,7 @@
 {% block title %}Ajouter un article{% endblock %}
 {% block content %}
 
+<div class="container">
     <div class="row justify-content-center">
         <h1>Administration</h1>
     </div>
@@ -31,10 +32,10 @@
                         <td>{{ listpost.date_creation }}</td>
                     {% endif %}
                     <td>
-                        <a href="./admin/post/{{ listpost.id }}" style="color:white" class="btn btn-primary">Editer</a>
+                        <a href="/admin/post/{{ listpost.id }}" style="color:white" class="btn btn-primary">Editer</a>
                     </td>
                     <td>
-                        <a href="./admin/comments/{{ listpost.id }}" style="color:white" class="btn btn-primary">Commentaires</a>
+                        <a href="/admin/comments/{{ listpost.id }}" style="color:white" class="btn btn-primary">Commentaires</a>
                     </td>
                     <td>
                         <a href="./admin/post/delete/{{ listpost.id }}" style="color:white" class="btn btn-danger"
@@ -48,8 +49,9 @@
         </table>
 
         <div class="row py-3">
-            <a href="./admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
+            <a href="/admin/add" style="color:white" class="btn btn-primary">Ajouter un Article</a>
         </div>
     </div>
+</div>
 
 {% endblock %}
