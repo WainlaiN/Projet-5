@@ -23,7 +23,7 @@ class TwigRenderer
             'cache' => false, // __DIR__ . /tmp',
             'debug' => true,]
         );
-        $this->twig->addGlobal('_session', $_SESSION);
+        //$this->twig->addGlobal('_session', $_SESSION);
         $this->twig->addGlobal('_server', $_SERVER);
         $this->twig->addGlobal('_post', $_POST);
         $this->twig->addGlobal('_get', $_GET);
@@ -31,7 +31,6 @@ class TwigRenderer
         if (isset($_SESSION['flash'])) {
             $this->twig->addGlobal('session', $_SESSION);
         }
-        $_SESSION['flash'] = array();
 
         try {
             echo $this->twig->render($view . '.twig', $params);
