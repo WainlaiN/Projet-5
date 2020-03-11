@@ -13,9 +13,9 @@
     <div class="row">
         <table class="table table-striped">
             <thead>
-            <th>ID</th>
+            <th class="idcommentaire">ID</th>
             <th>Titre</th>
-            <th>Date</th>
+            <th class="datecommentaire">Date</th>
             <th>Editer</th>
             <th>Voir les commentaires</th>
             <th>Supprimer</th>
@@ -24,12 +24,12 @@
             {% for listpost in listposts %}
 
                 <tr>
-                    <td>{{ listpost.id }}</td>
+                    <td class="idcommentaire">{{ listpost.id }}</td>
                     <td>{{ listpost.title }}</td>
                     {% if listpost.date_update %}
-                        <td>{{ listpost.date_update }}</td>
+                        <td  class="datecommentaire">{{ listpost.date_update }}</td>
                     {% else %}
-                        <td>{{ listpost.date_creation }}</td>
+                        <td  class="datecommentaire">{{ listpost.date_creation }}</td>
                     {% endif %}
                     <td>
                         <a href="/admin/post/{{ listpost.id }}" style="color:white" class="btn btn-primary">Editer</a>
