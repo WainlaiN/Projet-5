@@ -21,7 +21,7 @@ class AdminController
     private $renderer;
     private $request;
     private $session;
-    private $formManager;
+
 
 
     public function __construct()
