@@ -9,7 +9,7 @@ class User
     /**
      * @var int $user_id user ID
      */
-    private $userid;
+    private $userId;
 
     /**
      * @var string $username user name
@@ -17,7 +17,7 @@ class User
     private $username;
 
     /**
-     * @var string $mail user email
+     * @var string $mail user eemail
      */
     private $email;
 
@@ -29,7 +29,7 @@ class User
     /**
      * @var string $user_status user status
      */
-    private $user_status;
+    private $userStatus;
 
     public function __construct($datas = [])
     {
@@ -42,6 +42,7 @@ class User
     {
 
         foreach ($datas as $key => $value) {
+            $key = lcfirst(str_replace('_', '', ucwords($key, '_')));
             $method = 'set' . ucfirst($key);
 
             if (method_exists($this, $method)) {
@@ -55,7 +56,7 @@ class User
      */
     public function getUserId()
     {
-        return $this->userid;
+        return $this->userId;
     }
 
     /**
@@ -64,7 +65,7 @@ class User
      */
     public function setUserId($userid)
     {
-        $this->userid = $userid;
+        $this->userId = $userid;
         return $this;
     }
 
@@ -125,18 +126,18 @@ class User
     /**
      * @return string
      */
-    public function getStatus()
+    public function getUserStatus()
     {
-        return $this->user_status;
+        return $this->userStatus;
     }
 
     /**
      * @param string $status
      * @return User
      */
-    public function setStatus(string $status)
+    public function setUserStatus(string $status)
     {
-        $this->user_status = $status;
+        $this->userStatus = $status;
         return $this;
     }
 }

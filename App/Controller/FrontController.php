@@ -160,7 +160,7 @@ Class FrontController
                 } else {
                     $this->session->set('auth', $user);
 
-                    if ($this->session->get('auth')->getStatus() == '1') {
+                    if ($this->session->get('auth')->getUserStatus() == '1') {
 
                         header('location: /admin');
                     } else {

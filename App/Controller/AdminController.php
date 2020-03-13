@@ -39,7 +39,7 @@ class AdminController
         }
 
         if ($this->session->get('auth')) {
-            if ($this->session->get('auth')->getStatus() != 1) {
+            if ($this->session->get('auth')->getUserstatus() != 1) {
                 $this->session->set('warning', "Vous n'avez pas le droit d'accéder à cette page");
                 header('Location: /Admin');
             }

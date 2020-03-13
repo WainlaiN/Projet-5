@@ -14,7 +14,6 @@ class LoginManager extends Database
 {
 
     protected $model = User::class;
-    protected $table_name = 'users';
 
     /**
      * Return User Information
@@ -24,10 +23,12 @@ class LoginManager extends Database
      */
     public function getLogin($username)
     {
-        $req = 'SELECT * FROM ' . $this->table_name . ' WHERE username= :username ';
+        $req = 'SELECT * FROM users WHERE username= :username ';
         $parameters = [':username' => $username];
         $result = $this->sql($req, $parameters);
-        return $result->fetchObject($this->model);
+        $data = $result->fetch(\PDO::FETCH_ASSOC);
+        return new User($data);
+
     }
 
     /**
@@ -38,10 +39,12 @@ class LoginManager extends Database
      */
     public function getStatus($username)
     {
-        $req = 'SELECT user_status FROM ' . $this->table_name . ' WHERE username= :username ';
+        $req = 'SELECT user_status FROM users WHERE username= :username ';
         $parameters = [':username' => $username];
         $result = $this->sql($req, $parameters);
-        return $result->fetchObject($this->model);
+        $data = $result->fetch(\PDO::FETCH_ASSOC);
+        return new User($data);
+
     }
 
     /**
@@ -53,7 +56,7 @@ class LoginManager extends Database
      */
     public function isMemberExists($username, $email)
     {
-        $sql = 'SELECT * FROM ' . $this->table_name . ' WHERE username = :username OR email = :email';
+        $sql = 'SELECT * FROM users WHERE username = :username OR email = :email';
         $parameters = [':username' => $username, ':email' => $email];
         $result = $this->sql($sql, $parameters);
         if ($result->rowCount() >= 1) {
@@ -84,7 +87,7 @@ class LoginManager extends Database
     public function registerUser($username, $password, $email)
     {
         $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO ' . $this->table_name . ' SET username = :username, password = :password, email = :email, user_status = 2';
+        $sql = 'INSERT INTO users SET username = :username, password = :password, email = :email, user_status = 2';
         $parameters = [':username' =>$username , ':password' => $hashedpassword, ':email' => $email];
         $this->sql($sql, $parameters);
 
