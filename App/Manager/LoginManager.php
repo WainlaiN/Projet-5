@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Manager;
 
 use App\Core\Database;
@@ -10,12 +9,9 @@ use App\Model\User;
  * LoginManager Queries for Users
  */
 class LoginManager extends Database
-
 {
 
-    protected $model = User::class;
-
-    /**
+     /**
      * Return User Information
      *
      * @param  $username

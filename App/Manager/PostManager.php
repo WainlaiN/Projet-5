@@ -11,9 +11,6 @@ use App\Model\Post;
 class PostManager extends Database
 {
 
-
-    private $model = Post::class;
-
     /**
      * Return All Posts
      *

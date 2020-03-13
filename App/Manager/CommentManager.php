@@ -8,11 +8,8 @@ use App\Model\Comment;
 /**
  * CommentManager Queries for Comments
  */
-
 class CommentManager extends Database
 {
-
-    protected $model = Comment::class;
 
     /**
      * Return Comments from a post
