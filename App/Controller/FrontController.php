@@ -81,7 +81,7 @@ Class FrontController extends Controller
     public function addComment()
     {
         $request = Request::createFromGlobals();
-        dump($this->session->getBag('token'));
+        dump($this->session->get('token'));
 
         if ($_GET['token'] == $this->session->get('token')) {
 
@@ -163,7 +163,7 @@ Class FrontController extends Controller
 
                 } else {
                     $this->session->set('auth', $user);
-                    $this->session->set('token', bin2hex(random_bytes(16)));
+                    //$this->session->set('token', bin2hex(random_bytes(16)));
 
                     if ($this->session->get('auth')->getUserStatus() == '1') {
 

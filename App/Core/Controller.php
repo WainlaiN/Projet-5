@@ -6,6 +6,8 @@ namespace App\Core;
 use App\Core\TwigRenderer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
 
 
 class Controller
@@ -20,7 +22,8 @@ class Controller
         $this->renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
-            $this->session = new Session\Session();
+            $this->session = new Session\Session(new NativeSessionStorage(), new AttributeBag());
+            $this->session->set('token', bin2hex(random_bytes(16)));
             $this->session->start();
         }
     }
@@ -32,26 +35,4 @@ class Controller
         $this->session->remove('success');
 
     }
-
-    private function setToken()
-    {
-        if (!isset($_SESSION['token']) OR empty($_SESSION['token'])) {
-            $_SESSION['token'] = md5(bin2hex(openssl_random_pseudo_bytes(6)));
-        }
-    }
-
-    /**Permet de controler la validité du jeton de securité reçu
-     * @return bool
-     */
-    protected function tokenVerify()
-    {
-        if (isset($_SESSION['token'])) {
-            if ($this->request->getToken() == $_SESSION['token']){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
 }
