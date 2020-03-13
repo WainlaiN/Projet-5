@@ -163,7 +163,7 @@ Class FrontController extends Controller
 
                 } else {
                     $this->session->set('auth', $user);
-                    //$this->session->set('token', bin2hex(random_bytes(16)));
+                    $this->session->set('token', bin2hex(random_bytes(16)));
 
                     if ($this->session->get('auth')->getUserStatus() == '1') {
 

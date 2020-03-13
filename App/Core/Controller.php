@@ -23,7 +23,7 @@ class Controller
 
         if (session_status() == PHP_SESSION_NONE) {
             $this->session = new Session\Session(new NativeSessionStorage(), new AttributeBag());
-            $this->session->set('token', bin2hex(random_bytes(16)));
+            //$this->session->set('token', bin2hex(random_bytes(16)));
             $this->session->start();
         }
     }
