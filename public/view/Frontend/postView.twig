@@ -2,8 +2,6 @@
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
 
-    {{ dump(listcomments) }}
-
 
     {% set size = listcomments | length %}
 
@@ -98,11 +96,11 @@
                                 <li class="list-group-item">
                                     <form action="/comment/add" method="post">
                                         <div class="form-group">
-                                            <input type="hidden" value="{{ post.id }}" id="postid" name="postid"/>
+                                            <input type="hidden" value="{{ post.postId }}" id="postid" name="postid"/>
                                             <input type="text" id="authorname" name="authorname"
                                                    value="{{ session._sf2_attributes.auth.username }}" class="form-control" readonly/>
                                             <input type="hidden" id="authorid" name="authorid"
-                                                   value="{{ session._sf2_attributes.auth.userid }}" class="form-control"/>
+                                                   value="{{ session._sf2_attributes.auth.userId }}" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Votre commentaire</label><br/>
