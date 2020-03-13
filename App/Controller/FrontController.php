@@ -21,7 +21,7 @@ Class FrontController extends Controller
     private $postManager;
     private $commentManager;
     private $loginManager;
-    private $renderer;
+    //private $renderer;
     private $formManager;
     private $request;
     //private $session;

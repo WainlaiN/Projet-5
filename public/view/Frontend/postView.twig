@@ -40,7 +40,7 @@
                                     <h3 class="panel-title">
                                         Commentaires Récents</h3>
                             </li>
-                            {% if size > 1 %}
+                            {% if listcomments %}
                                 {% for comment in listcomments %}
                                     <li class="list-group-item">
                                         <div class="row">
@@ -58,22 +58,6 @@
                                         </div>
                                     </li>
                                 {% endfor %}
-                            {% elseif size == 1 %}
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-xs-10 col-md-11">
-                                            <div>
-                                                <div class="mic-info">
-                                                    De : {{ listcomments.username }}
-                                                    le {{ listcomments.commentDate }}
-                                                </div>
-                                            </div>
-                                            <div class="comment-text py-2">
-                                                {{ listcomments.comment }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
                             {% else %}
                                 <div class="alert alert-dark" role="alert">
                                     Pas encore de commentaires pour cet article!
@@ -97,9 +81,11 @@
                                         <div class="form-group">
                                             <input type="hidden" value="{{ post.postId }}" id="postid" name="postid"/>
                                             <input type="text" id="authorname" name="authorname"
-                                                   value="{{ session._sf2_attributes.auth.username }}" class="form-control" readonly/>
+                                                   value="{{ session._sf2_attributes.auth.username }}"
+                                                   class="form-control" readonly/>
                                             <input type="hidden" id="authorid" name="authorid"
-                                                   value="{{ session._sf2_attributes.auth.userId }}" class="form-control"/>
+                                                   value="{{ session._sf2_attributes.auth.userId }}"
+                                                   class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Votre commentaire</label><br/>

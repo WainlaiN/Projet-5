@@ -19,7 +19,7 @@ class AdminController extends Controller
     private $postManager;
     private $commentManager;
     private $loginManager;
-    private $renderer;
+    //private $renderer;
     private $request;
     //private $session;
 
