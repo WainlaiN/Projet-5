@@ -31,7 +31,10 @@ class Comment
      * @var bool $is_valid comment status
      */
     private $isValid;
-
+    /**
+     * @var string $username comment username
+     */
+    private $username;
 
     public function __construct($datas = [])
     {
@@ -157,6 +160,24 @@ class Comment
     public function setIsValid($isValid)
     {
         $this->isValid = $isValid;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     * @return Comment
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
         return $this;
     }
 

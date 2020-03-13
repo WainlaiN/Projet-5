@@ -95,6 +95,7 @@ class CommentManager extends Database
         while ($datas = $result->fetch(\PDO::FETCH_ASSOC)) {
             array_push($custom_array, New Comment($datas));
         }
+
         return $custom_array;
     }
 

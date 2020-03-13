@@ -8,7 +8,6 @@ use App\Model\Post;
 /**
  * PostManager Queries for Posts
  */
-
 class PostManager extends Database
 {
 
@@ -42,7 +41,8 @@ class PostManager extends Database
      */
     public function getPost($postId)
     {
-        $post = 'SELECT post_id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.user_id WHERE post_id= :postId';
+        $post = 'SELECT post_id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update 
+                FROM posts INNER JOIN users ON posts.author_id = users.user_id WHERE post_id= :postId';
         $parameters = [':postId' => $postId];
         $result = $this->sql($post, $parameters);
         $data = $result->fetch(\PDO::FETCH_ASSOC);
