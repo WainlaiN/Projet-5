@@ -41,6 +41,11 @@ class Post
      */
     private $dateUpdate;
 
+    /**
+     * @var string $username post username
+     */
+    private $username;
+
     public function __construct($datas = [])
     {
         if (!empty($datas)) {
@@ -185,6 +190,24 @@ class Post
     public function setdateUpdate(string $dateUpdate = null)
     {
         $this->dateUpdate = $dateUpdate;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     * @return Post
+     */
+    public function setUsername(string $username): Post
+    {
+        $this->username = $username;
         return $this;
     }
 
