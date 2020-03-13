@@ -25,15 +25,13 @@ class CommentManager extends Database
         $req = 'SELECT comment_id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.user_id WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
+        $custom_array = [];
 
-        if ($result->rowCount() > 1) {
-            while ($datas = $result->fetchObject($this->model)) {
-                $custom_array[] = $datas;
+            while ($datas = $result->fetch(\PDO::FETCH_ASSOC)) {
+                array_push($custom_array, New Comment($datas));
             }
             return $custom_array;
-        } else {
-            return $result->fetchObject($this->model);
-        }
+
     }
 
     /**
@@ -89,17 +87,15 @@ class CommentManager extends Database
      */
     public function getValidComments($postId)
     {
-        $validComments = 'SELECT comment_id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.userid WHERE is_valid = :valid AND post_id = :postid';
+        $validComments = 'SELECT comment_id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.user_id WHERE is_valid = :valid AND post_id = :postid';
         $parameters = [':valid' => 1, ':postid' => $postId];
         $result = $this->sql($validComments, $parameters);
-        if ($result->rowCount() > 1) {
-            while ($datas = $result->fetchObject($this->model)) {
-                $custom_array[] = $datas;
-            }
-            return $custom_array;
-        } else {
-            return $result->fetchObject($this->model);
+        $custom_array = [];
+
+        while ($datas = $result->fetch(\PDO::FETCH_ASSOC)) {
+            array_push($custom_array, New Comment($datas));
         }
+        return $custom_array;
     }
 
     /**
@@ -112,14 +108,12 @@ class CommentManager extends Database
         $invalidComments = 'SELECT * FROM comments WHERE is_valid = :valid';
         $parameters = [':valid' => 0];
         $result = $this->sql($invalidComments, $parameters);
-        if ($result->rowCount() > 1) {
-            while ($datas = $result->fetchObject($this->model)) {
-                $custom_array[] = $datas;
-            }
-            return $custom_array;
-        } else {
-            return $result->fetchObject($this->model);
+        $custom_array = [];
+
+        while ($datas = $result->fetch(\PDO::FETCH_ASSOC)) {
+            array_push($custom_array, New Comment($datas));
         }
+        return $custom_array;
     }
 
     /**
