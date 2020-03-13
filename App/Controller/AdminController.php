@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
+use App\Core\FormValidator;
 use App\Core\TwigRenderer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
@@ -20,6 +21,8 @@ class AdminController
     private $renderer;
     private $request;
     private $session;
+    private $formManager;
+
 
     public function __construct()
     {
@@ -27,6 +30,7 @@ class AdminController
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
         $this->renderer = new TwigRenderer();
+
 
         if (session_status() == PHP_SESSION_NONE) {
             $this->session = new Session\Session();
@@ -83,11 +87,11 @@ class AdminController
         $request = Request::createFromGlobals();
 
         if (!empty($request->request->all())) {
-            $datas['author_id'] = $request->get('author_id');
-            $datas['author'] = $request->get('author');;
-            $datas['title'] = $request->get('title');
-            $datas['chapo'] = $request->get('chapo');
-            $datas['description'] = $request->get('description');
+            $datas['author_id'] = FormValidator::purify($request->get('author_id'));
+            $datas['author'] = FormValidator::purify($request->get('author'));
+            $datas['title'] = FormValidator::purify($request->get('title'));
+            $datas['chapo'] = FormValidator::purify($request->get('chapo'));
+            $datas['description'] = FormValidator::purifyContent($request->get('description'));
 
             $result = $this->postManager->addPost($datas);
 
@@ -149,11 +153,10 @@ class AdminController
         $request = Request::createFromGlobals();
 
         if (!empty($request->request->all())) {
-            $datas['authorid'] = $request->get('authorid');
-            //$datas['author'] = $request->get('author');;
-            $datas['title'] = $request->get('title');
-            $datas['chapo'] = $request->get('chapo');
-            $datas['description'] = $request->get('description');
+            $datas['authorid'] = FormValidator::purify($request->get('authorid'));
+            $datas['title'] = FormValidator::purify($request->get('title'));
+            $datas['chapo'] = FormValidator::purify($request->get('chapo'));
+            $datas['description'] = FormValidator::purifyContent($request->get('description'));
 
             $result = $this->postManager->updatePost($postId, $datas);
 
