@@ -27,9 +27,9 @@ class Post
     private $description;
 
     /**
-     * @var string $author author post
+     * @var int $authorid author post
      */
-    private $author;
+    private $authorId;
 
     /**
      * @var string $date_creation post date creation
@@ -135,18 +135,18 @@ class Post
     /**
      * @return string
      */
-    public function getAuthor(): string
+    public function getAuthorId(): int
     {
-        return $this->author;
+        return $this->authorId;
     }
 
     /**
      * @param string $author
      * @return Post
      */
-    public function setAuthor(string $author)
+    public function setAuthorId(int $authorid)
     {
-        $this->author = $author;
+        $this->authorId = $authorid;
         return $this;
     }
 

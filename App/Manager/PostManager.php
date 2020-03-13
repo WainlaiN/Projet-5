@@ -14,8 +14,6 @@ class PostManager extends Database
 
 
     private $model = Post::class;
-    private $table_name = 'posts';
-
 
     /**
      * Return All Posts
@@ -24,7 +22,7 @@ class PostManager extends Database
      */
     public function getPosts()
     {
-        $posts = 'SELECT id, title, chapo, description, author, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM ' . $this->table_name . ' ORDER BY date_creation DESC';
+        $posts = 'SELECT posts.id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.userid ORDER BY date_creation DESC';
         $result = $this->sql($posts);
 
         while ($datas = $result->fetchObject($this->model)) {
@@ -42,7 +40,7 @@ class PostManager extends Database
      */
     public function getPost($postId)
     {
-        $post = 'SELECT id, title, chapo, description, author, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM ' . $this->table_name . ' WHERE id= :postId';
+        $post = 'SELECT posts.id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.userid WHERE id= :postId';
         $parameters = [':postId' => $postId];
         $result = $this->sql($post, $parameters);
         return $result->fetchObject($this->model);
@@ -57,12 +55,11 @@ class PostManager extends Database
      */
     public function addPost($post)
     {
-        $newPost = 'INSERT INTO ' . $this->table_name . '( title, chapo, description, author, date_creation, author_id) VALUES (:title, :chapo, :description, :author, NOW(), :author_id)';
+        $newPost = 'INSERT INTO posts( title, chapo, description, date_creation, author_id) VALUES (:title, :chapo, :description, NOW(), :author_id)';
         $parameters = [
             ':title' => $post['title'],
             ':chapo' => $post['chapo'],
             ':description' => $post['description'],
-            ':author' => $post['author'],
             ':author_id' => $post['author_id'],
 
         ];
@@ -80,7 +77,7 @@ class PostManager extends Database
      */
     public function deletePost($postId)
     {
-        $post = 'DELETE FROM ' . $this->table_name . ' WHERE id= :id';
+        $post = 'DELETE FROM posts WHERE id= :id';
         $parameters = [':id' => $postId];
         $result = $this->sql($post, $parameters);
         return $result;
@@ -95,7 +92,7 @@ class PostManager extends Database
     public function updatePost($postId, $datas)
     {
 
-        $editedPost = 'UPDATE ' . $this->table_name . ' SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE id=:id';
+        $editedPost = 'UPDATE posts SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE id=:id';
         $parameters = [
             ':id' => $postId,
             ':author' => $datas['author'],
