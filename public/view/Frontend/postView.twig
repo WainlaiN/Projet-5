@@ -2,6 +2,8 @@
 {% block title %}Mon article {{ post.title }}{% endblock %}
 {% block content %}
 
+    {{ dump(listposts) }}
+
 
     {% set size = listcomments | length %}
 

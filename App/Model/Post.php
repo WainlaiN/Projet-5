@@ -155,7 +155,7 @@ class Post
      * @return string
      * @throws \Exception
      */
-    public function getDateCreation()
+    public function getdateCreation()
     {
         return $this->dateCreation;
     }
@@ -164,7 +164,7 @@ class Post
      * @param string $dateCreation
      * @return Post
      */
-    public function setDateCreation(string $dateCreation)
+    public function setdateCreation(string $dateCreation = null)
     {
         $this->dateCreation = $dateCreation;
         return $this;
@@ -173,7 +173,7 @@ class Post
     /**
      * @return string
      */
-    public function getDateUpdate(): string
+    public function getdateUpdate()
     {
         return $this->dateUpdate;
     }
@@ -182,7 +182,7 @@ class Post
      * @param string $dateUpdate
      * @return Post
      */
-    public function setDateUpdate(string $dateUpdate = null)
+    public function setdateUpdate(string $dateUpdate = null)
     {
         $this->dateUpdate = $dateUpdate;
         return $this;

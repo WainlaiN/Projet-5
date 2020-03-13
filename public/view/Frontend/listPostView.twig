@@ -2,6 +2,8 @@
 {% block title %}Mes Articles{% endblock %}
 {% block content %}
 
+    {{ dump(listposts) }}
+
     <section id="blog">
         <div class="row">
             <div class="col-lg-12 col-lg-offset-3 text-center">
@@ -26,12 +28,12 @@
                                 <h6 class="card-subtitle mb-2 text-muted">{{ listpost.chapo }}</h6>
                                 <p class="card-text">{{ listpost.description|striptags|slice(0, 40) }}</p>
                                 <p class="card-text"><small class="text-muted">Mis à jour le
-                                        {% if listpost.date_update %}
-                                            <td>{{ listpost.date_update }}</td>
+                                        {% if listpost.dateUpdate is not null %}
+                                            <td>{{ listpost.dateUpdate }}</td>
                                         {% else %}
-                                            <td>{{ listpost.date_creation }}</td>
+                                            <td>{{ listpost.dateCreation }}</td>
                                         {% endif %}</small></p>
-                                <a class="btn btn-primary" href="post/{{ listpost.id }}">Plus...</a>
+                                <a class="btn btn-primary" href="post/{{ listpost.postId }}">Plus...</a>
                             </div>
                         </div>
                     </div>
