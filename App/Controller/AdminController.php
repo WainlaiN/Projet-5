@@ -20,7 +20,7 @@ class AdminController extends Controller
     private $commentManager;
     private $loginManager;
     //private $renderer;
-    private $request;
+    //private $request;
     //private $session;
 
     public function __construct()
@@ -29,7 +29,7 @@ class AdminController extends Controller
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
-        $this->renderer = new TwigRenderer();
+        //$this->renderer = new TwigRenderer();
 
 
 

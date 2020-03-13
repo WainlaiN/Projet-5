@@ -20,10 +20,11 @@ Class FrontController extends Controller
 {
     private $postManager;
     private $commentManager;
+    private $formManager;
     private $loginManager;
     //private $renderer;
-    private $formManager;
-    private $request;
+
+    //private $request;
     //private $session;
 
     public function __construct()
@@ -32,18 +33,18 @@ Class FrontController extends Controller
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
-
         $this->formManager = new FormManager();
+        //$this->renderer = new TwigRenderer();
 
 
     }
 
     /**public function __destruct()
-    {
-        //$this->session->getFlashBag()->clear();
-        $this->session->remove('warning');
-        $this->session->remove('success');
-    }**/
+     * {
+     * //$this->session->getFlashBag()->clear();
+     * $this->session->remove('warning');
+     * $this->session->remove('success');
+     * }**/
 
     /**
      * Render Home
@@ -80,24 +81,29 @@ Class FrontController extends Controller
     public function addComment()
     {
         $request = Request::createFromGlobals();
+        dump($this->session->getBag('token'));
 
-        if (!empty($request->request->all())) {
+        if ($_GET['token'] == $this->session->get('token')) {
 
-            $postId = FormValidator::purify($request->get('postid'));
-            $authorId = FormValidator::purify($request->get('authorid'));
-            //$author = FormValidator::purify($request->get('authorname'));
-            $description = FormValidator::purifyContent($request->get('description'));
+            if (!empty($request->request->all())) {
 
-            $request = $this->commentManager->addComment($postId, $authorId, $description);
+                $postId = FormValidator::purify($request->get('postid'));
+                $authorId = FormValidator::purify($request->get('authorid'));
+                //$author = FormValidator::purify($request->get('authorname'));
+                $description = FormValidator::purifyContent($request->get('description'));
 
-            if ($request === false) {
-                $this->session->set('warning', "Impossible d'ajouter le commentaire");
+                $request = $this->commentManager->addComment($postId, $authorId, $description);
 
-            } else {
-                $this->session->set('success', "Votre commentaire va être soumis à validation.");
+                if ($request === false) {
+                    $this->session->set('warning', "Impossible d'ajouter le commentaire");
+
+                } else {
+                    $this->session->set('success', "Votre commentaire va être soumis à validation.");
+                }
+                $this->post($postId);
             }
-            $this->post($postId);
         }
+        $this->session->set('warning', "Veuillez vous identifier de nouveau");
     }
 
     /**
@@ -157,6 +163,7 @@ Class FrontController extends Controller
 
                 } else {
                     $this->session->set('auth', $user);
+                    $this->session->set('token', bin2hex(random_bytes(16)));
 
                     if ($this->session->get('auth')->getUserStatus() == '1') {
 

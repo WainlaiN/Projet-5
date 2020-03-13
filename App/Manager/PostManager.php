@@ -94,7 +94,6 @@ class PostManager extends Database
      */
     public function updatePost($postId, $datas)
     {
-
         $editedPost = 'UPDATE posts SET author_id=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE post_id=:id';
         $parameters = [
             ':id' => $postId,
