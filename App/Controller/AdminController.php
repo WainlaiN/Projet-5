@@ -46,10 +46,6 @@ class AdminController
         }
     }
 
-    public function __destruct()
-    {
-        $this->session->getFlashBag()->clear();
-    }
 
     /**
      * Render the Posts view from the post manager

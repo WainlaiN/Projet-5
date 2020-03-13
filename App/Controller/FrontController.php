@@ -42,7 +42,7 @@ Class FrontController
 
     public function __destruct()
     {
-        $this->session->getFlashBag()->clear();
+        //$this->session->getFlashBag()->clear();
         $this->session->remove('warning');
         $this->session->remove('success');
     }
