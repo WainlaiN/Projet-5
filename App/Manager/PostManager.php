@@ -22,7 +22,7 @@ class PostManager extends Database
      */
     public function getPosts()
     {
-        $posts = 'SELECT posts.id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.userid ORDER BY date_creation DESC';
+        $posts = 'SELECT post_id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.userid ORDER BY date_creation DESC';
         $result = $this->sql($posts);
 
         while ($datas = $result->fetchObject($this->model)) {
@@ -40,7 +40,7 @@ class PostManager extends Database
      */
     public function getPost($postId)
     {
-        $post = 'SELECT posts.id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.userid WHERE id= :postId';
+        $post = 'SELECT post_id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.userid WHERE post_id= :postId';
         $parameters = [':postId' => $postId];
         $result = $this->sql($post, $parameters);
         return $result->fetchObject($this->model);
@@ -77,7 +77,7 @@ class PostManager extends Database
      */
     public function deletePost($postId)
     {
-        $post = 'DELETE FROM posts WHERE id= :id';
+        $post = 'DELETE FROM posts WHERE post_id= :id';
         $parameters = [':id' => $postId];
         $result = $this->sql($post, $parameters);
         return $result;
@@ -92,7 +92,7 @@ class PostManager extends Database
     public function updatePost($postId, $datas)
     {
 
-        $editedPost = 'UPDATE posts SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE id=:id';
+        $editedPost = 'UPDATE posts SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE post_id=:id';
         $parameters = [
             ':id' => $postId,
             ':author' => $datas['author'],

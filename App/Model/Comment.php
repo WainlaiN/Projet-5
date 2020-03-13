@@ -10,27 +10,27 @@ class Comment
     /**
      * @var int $comment_id comment id
      */
-    private $commentId;
+    public $commentId;
     /**
      * @var int $authorId author id
      */
-    private $authorId;
+    public $authorId;
     /**
      * @var string $comment comment content
      */
-    private $comment;
+    public $comment;
     /**
      * @var int $post_id post id
      */
-    private $postId;
+    public $postId;
     /**
      * @var string $comment_date comment date update
      */
-    private $commentDate;
+    public $commentDate;
     /**
      * @var bool $is_valid comment status
      */
-    private $isValid;
+    public $isValid;
 
 
     public function __construct($datas = [])
@@ -43,6 +43,7 @@ class Comment
     public function hydrate($datas)
     {
         foreach ($datas as $key => $value) {
+            $key = lcfirst(str_replace('_', '', ucwords($key, '_')));
             $method = 'set' . ucfirst($key);
 
             if (method_exists($this, $method)) {

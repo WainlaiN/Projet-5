@@ -10,36 +10,36 @@ class Post
     /**
      * @var int $post_id post id
      */
-    private $postId;
+    public $postId;
     /**
      * @var string $title title post
      */
-    private $title;
+    public $title;
 
     /**
      * @var string $chapo chapo post
      */
-    private $chapo;
+    public $chapo;
 
     /**
      * @var string $description description post
      */
-    private $description;
+    public $description;
 
     /**
      * @var int $authorid author post
      */
-    private $authorId;
+    public $authorId;
 
     /**
      * @var string $date_creation post date creation
      */
-    private $dateCreation;
+    public $dateCreation;
 
     /**
      * @var string $date_update post date update
      */
-    private $dateUpdate;
+    public $dateUpdate;
 
     public function __construct($datas = [])
     {
@@ -52,6 +52,7 @@ class Post
     {
 
         foreach ($datas as $key => $value) {
+            $key = lcfirst(str_replace('_', '', ucwords($key, '_')));
             $method = 'set' . ucfirst($key);
 
             if (method_exists($this, $method)) {

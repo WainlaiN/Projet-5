@@ -24,7 +24,7 @@
             {% for listpost in listposts %}
 
                 <tr>
-                    <td class="idcommentaire">{{ listpost.id }}</td>
+                    <td class="idcommentaire">{{ listpost.post_id }}</td>
                     <td>{{ listpost.title }}</td>
                     {% if listpost.date_update %}
                         <td  class="datecommentaire">{{ listpost.date_update }}</td>
@@ -32,13 +32,13 @@
                         <td  class="datecommentaire">{{ listpost.date_creation }}</td>
                     {% endif %}
                     <td>
-                        <a href="/admin/post/{{ listpost.id }}" style="color:white" class="btn btn-primary">Editer</a>
+                        <a href="/admin/post/{{ listpost.post_id }}" style="color:white" class="btn btn-primary">Editer</a>
                     </td>
                     <td>
-                        <a href="/admin/comments/{{ listpost.id }}" style="color:white" class="btn btn-primary">Commentaires</a>
+                        <a href="/admin/comments/{{ listpost.post_id }}" style="color:white" class="btn btn-primary">Commentaires</a>
                     </td>
                     <td>
-                        <a href="./admin/post/delete/{{ listpost.id }}" style="color:white" class="btn btn-danger"
+                        <a href="./admin/post/delete/{{ listpost.post_id }}" style="color:white" class="btn btn-danger"
                            onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
 
                     </td>

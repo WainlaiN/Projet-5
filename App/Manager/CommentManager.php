@@ -22,7 +22,7 @@ class CommentManager extends Database
      */
     public function getComments($postId)
     {
-        $req = 'SELECT comments.id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.userid WHERE post_id = :postId ORDER BY comment_date DESC';
+        $req = 'SELECT comment_id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.userid WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
 
@@ -44,7 +44,7 @@ class CommentManager extends Database
      */
     public function getComment($commentId)
     {
-        $req = 'SELECT comments.id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.userid WHERE comments.id = :id';
+        $req = 'SELECT comment_id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.userid WHERE comments.id = :id';
         $parameters = [':id' => $commentId];
         return $this->sql($req, $parameters);
     }
@@ -75,7 +75,7 @@ class CommentManager extends Database
      */
     public function deleteComment($commentId)
     {
-        $comment = 'DELETE FROM comments WHERE id= :id';
+        $comment = 'DELETE FROM comments WHERE comment_id= :id';
         $parameters = [':id' => $commentId];
         $result = $this->sql($comment, $parameters);
         return $result;
@@ -89,7 +89,7 @@ class CommentManager extends Database
      */
     public function getValidComments($postId)
     {
-        $validComments = 'SELECT comments.id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.userid WHERE is_valid = :valid AND post_id = :postid';
+        $validComments = 'SELECT comment_id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.userid WHERE is_valid = :valid AND post_id = :postid';
         $parameters = [':valid' => 1, ':postid' => $postId];
         $result = $this->sql($validComments, $parameters);
         if ($result->rowCount() > 1) {
@@ -130,7 +130,7 @@ class CommentManager extends Database
      */
     public function validateComment($commentId)
     {
-        $validate = 'UPDATE comments SET is_valid = :valid WHERE id = :id';
+        $validate = 'UPDATE comments SET is_valid = :valid WHERE comment_id = :id';
         $parameters = [':id' => $commentId, ':valid' => 1];
         $result = $this->sql($validate, $parameters);
         return $result;

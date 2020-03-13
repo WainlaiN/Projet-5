@@ -1,6 +1,7 @@
 {% extends 'template.twig' %}
 {% block title %}Editer un article{% endblock %}
 {% block content %}
+    {{ dump(listpost) }}
 
     <p><a href="/admin">Retour à la liste des billets</a></p>
     <form action="" method="post">
