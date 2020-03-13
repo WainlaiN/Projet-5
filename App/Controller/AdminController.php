@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Core\Controller;
 use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
@@ -13,29 +14,24 @@ use Symfony\Component\HttpFoundation\Session;
 /**
  * Class AdminController controller for Backend
  */
-class AdminController
+class AdminController extends Controller
 {
     private $postManager;
     private $commentManager;
     private $loginManager;
     private $renderer;
     private $request;
-    private $session;
-
-
+    //private $session;
 
     public function __construct()
     {
+        parent::__construct();
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
         $this->renderer = new TwigRenderer();
 
 
-        if (session_status() == PHP_SESSION_NONE) {
-            $this->session = new Session\Session();
-            $this->session->start();
-        }
 
         if (!$this->session->get('auth')) {
             $this->session->set('warning', "Connectez-vous pour accéder à cette page");
