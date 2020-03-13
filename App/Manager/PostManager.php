@@ -58,7 +58,7 @@ class PostManager extends Database
      */
     public function addPost($post)
     {
-        $newPost = 'INSERT INTO posts( title, chapo, description, date_creation,date_update, author_id) VALUES (:title, :chapo, :description, NOW(),NOW(), :author_id)';
+        $newPost = 'INSERT INTO posts( title, chapo, description, date_creation, date_update, author_id) VALUES (:title, :chapo, :description, NOW(),NOW(), :author_id)';
         $parameters = [
             ':title' => $post['title'],
             ':chapo' => $post['chapo'],
@@ -105,6 +105,7 @@ class PostManager extends Database
 
         ];
         $result = $this->sql($editedPost, $parameters);
+
         return $result;
     }
 }
