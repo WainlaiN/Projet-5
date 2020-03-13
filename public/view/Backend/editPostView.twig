@@ -8,6 +8,8 @@
     <form action="" method="post">
 
         <div class="form-group">
+
+            <input type="hidden" id="authorid" name="authorid" value="{{ listpost.authorId }}" class="form-control"/>
             <label for="author">Auteur</label><br/>
             <input type="text" id="author" name="author" value="{{ listpost.username }}" class="form-control"/>
         </div>

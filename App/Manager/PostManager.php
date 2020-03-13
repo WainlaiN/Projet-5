@@ -21,7 +21,8 @@ class PostManager extends Database
      */
     public function getPosts()
     {
-        $posts = 'SELECT post_id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update FROM posts INNER JOIN users ON posts.author_id = users.user_id ORDER BY date_creation DESC';
+        $posts = 'SELECT post_id, title, chapo, description, author_id, users.username, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, DATE_FORMAT(date_update, \'%d/%m/%Y\') AS date_update 
+        FROM posts INNER JOIN users ON posts.author_id = users.user_id ORDER BY date_creation DESC';
         $result = $this->sql($posts);
         $custom_array = [];
 
@@ -60,7 +61,7 @@ class PostManager extends Database
      */
     public function addPost($post)
     {
-        $newPost = 'INSERT INTO posts( title, chapo, description, date_creation, author_id) VALUES (:title, :chapo, :description, NOW(), :author_id)';
+        $newPost = 'INSERT INTO posts( title, chapo, description, date_creation,date_update, author_id) VALUES (:title, :chapo, :description, NOW(),NOW(), :author_id)';
         $parameters = [
             ':title' => $post['title'],
             ':chapo' => $post['chapo'],
@@ -97,10 +98,10 @@ class PostManager extends Database
     public function updatePost($postId, $datas)
     {
 
-        $editedPost = 'UPDATE posts SET author=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE post_id=:id';
+        $editedPost = 'UPDATE posts SET author_id=:author, title=:title, chapo=:chapo, description=:description, date_update=NOW() WHERE post_id=:id';
         $parameters = [
             ':id' => $postId,
-            ':author' => $datas['author'],
+            ':author' => $datas['authorid'],
             ':title' => $datas['title'],
             ':chapo' => $datas['chapo'],
             ':description' => $datas['description'],

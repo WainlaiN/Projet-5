@@ -15,7 +15,7 @@
             <thead>
             <th class="idcommentaire">ID</th>
             <th>Titre</th>
-            <th class="datecommentaire">Date</th>
+            <th class="datecommentaire">Date MAJ</th>
             <th>Editer</th>
             <th>Voir les commentaires</th>
             <th>Supprimer</th>
@@ -26,7 +26,7 @@
                 <tr>
                     <td class="idcommentaire">{{ listpost.postId }}</td>
                     <td>{{ listpost.title }}</td>
-                    {% if listpost.date_update %}
+                    {% if listpost.dateUpdate %}
                         <td  class="datecommentaire">{{ listpost.dateUpdate }}</td>
                     {% else %}
                         <td  class="datecommentaire">{{ listpost.dateCreation }}</td>

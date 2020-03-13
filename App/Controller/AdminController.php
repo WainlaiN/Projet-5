@@ -153,8 +153,8 @@ class AdminController
         $request = Request::createFromGlobals();
 
         if (!empty($request->request->all())) {
-            $datas['author_id'] = $request->get('author_id');
-            $datas['author'] = $request->get('author');;
+            $datas['authorid'] = $request->get('authorid');
+            //$datas['author'] = $request->get('author');;
             $datas['title'] = $request->get('title');
             $datas['chapo'] = $request->get('chapo');
             $datas['description'] = $request->get('description');
