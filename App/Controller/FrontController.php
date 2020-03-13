@@ -87,10 +87,10 @@ Class FrontController
 
             $postId = FormValidator::purify($request->get('postid'));
             $authorId = FormValidator::purify($request->get('authorid'));
-            $author = FormValidator::purify($request->get('authorname'));
+            //$author = FormValidator::purify($request->get('authorname'));
             $description = FormValidator::purifyContent($request->get('description'));
 
-            $request = $this->commentManager->addComment($postId, $authorId, $author, $description);
+            $request = $this->commentManager->addComment($postId, $authorId, $description);
 
             if ($request === false) {
                 $this->session->set('warning', "Impossible d'ajouter le commentaire");

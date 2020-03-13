@@ -23,7 +23,7 @@ class CommentManager extends Database
      */
     public function getComments($postId)
     {
-        $req = 'SELECT id, author_id, comment, is_valid, post_id, username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE post_id = :postId ORDER BY comment_date DESC';
+        $req = 'SELECT comments.id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' INNER JOIN users on comments.author_id=users.userid WHERE post_id = :postId ORDER BY comment_date DESC';
         $parameters = [':postId' => $postId];
         $result = $this->sql($req, $parameters);
 
@@ -45,7 +45,7 @@ class CommentManager extends Database
      */
     public function getComment($commentId)
     {
-        $req = 'SELECT * FROM comments WHERE id = :id';
+        $req = 'SELECT comments.id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' INNER JOIN users on comments.author_id=users.userid WHERE comments.id = :id';
         $parameters = [':id' => $commentId];
         return $this->sql($req, $parameters);
     }
@@ -59,10 +59,10 @@ class CommentManager extends Database
      * @param $comment
      * @return bool|false|\PDOStatement
      */
-    public function addComment($postId, $authorId , $author, $comment)
+    public function addComment($postId, $authorId , $comment)
     {
-        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, username, comment, comment_date) VALUES (:postId,:authorId,:author,:comment, DATE(NOW()))';
-        $parameters = [':postId' => $postId, ':authorId' => $authorId,':author' =>$author, ':comment' => $comment];
+        $newComments = 'INSERT INTO ' . $this->table_name . '(post_id, author_id, comment, comment_date) VALUES (:postId,:authorId,:comment, DATE(NOW()))';
+        $parameters = [':postId' => $postId, ':authorId' => $authorId, ':comment' => $comment];
 
         return $this->sql($newComments, $parameters);
 
@@ -90,7 +90,7 @@ class CommentManager extends Database
      */
     public function getValidComments($postId)
     {
-        $validComments = 'SELECT id, author_id, comment, is_valid, post_id, username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' WHERE is_valid = :valid AND post_id = :postid';
+        $validComments = 'SELECT comments.id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM ' . $this->table_name . ' INNER JOIN users on comments.author_id=users.userid WHERE is_valid = :valid AND post_id = :postid';
         $parameters = [':valid' => 1, ':postid' => $postId];
         $result = $this->sql($validComments, $parameters);
         if ($result->rowCount() > 1) {
