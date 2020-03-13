@@ -141,8 +141,9 @@ class AdminController
      */
     public function updatePostView($postId)
     {
-        $posts = $this->postManager->getPost($postId);
-        $this->renderer->render('Backend/editPostView', ['listpost' => $posts]);
+        $post = $this->postManager->getPost($postId);
+        dump($post);
+        $this->renderer->render('Backend/editPostView', ['listpost' => $post]);
     }
 
     /**

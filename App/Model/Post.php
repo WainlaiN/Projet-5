@@ -10,36 +10,36 @@ class Post
     /**
      * @var int $post_id post id
      */
-    public $postId;
+    private $postId;
     /**
      * @var string $title title post
      */
-    public $title;
+    private $title;
 
     /**
      * @var string $chapo chapo post
      */
-    public $chapo;
+    private $chapo;
 
     /**
      * @var string $description description post
      */
-    public $description;
+    private $description;
 
     /**
      * @var int $authorid author post
      */
-    public $authorId;
+    private $authorId;
 
     /**
      * @var string $date_creation post date creation
      */
-    public $dateCreation;
+    private $dateCreation;
 
     /**
      * @var string $date_update post date update
      */
-    public $dateUpdate;
+    private $dateUpdate;
 
     public function __construct($datas = [])
     {
@@ -66,7 +66,7 @@ class Post
      */
     public function getPostId(): int
     {
-        return $this->$postId;
+        return $this->postId;
     }
 
     /**

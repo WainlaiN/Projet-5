@@ -10,27 +10,27 @@ class Comment
     /**
      * @var int $comment_id comment id
      */
-    public $commentId;
+    private $commentId;
     /**
      * @var int $authorId author id
      */
-    public $authorId;
+    private $authorId;
     /**
      * @var string $comment comment content
      */
-    public $comment;
+    private $comment;
     /**
      * @var int $post_id post id
      */
-    public $postId;
+    private $postId;
     /**
      * @var string $comment_date comment date update
      */
-    public $commentDate;
+    private $commentDate;
     /**
      * @var bool $is_valid comment status
      */
-    public $isValid;
+    private $isValid;
 
 
     public function __construct($datas = [])
