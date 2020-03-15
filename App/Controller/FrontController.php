@@ -11,7 +11,6 @@ use App\Core\FormValidator;
 use Symfony\Component\HttpFoundation\Request;
 
 
-
 /**
  * Class FrontController controller for Frontend
  */
@@ -21,10 +20,8 @@ Class FrontController extends Controller
     private $commentManager;
     private $formManager;
     private $loginManager;
+    private $request;
 
-
-    //private $request;
-    //private $session;
 
     public function __construct()
     {
@@ -33,7 +30,6 @@ Class FrontController extends Controller
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
         $this->formManager = new FormManager();
-
 
 
     }

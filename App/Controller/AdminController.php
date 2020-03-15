@@ -18,9 +18,8 @@ class AdminController extends Controller
     private $postManager;
     private $commentManager;
     private $loginManager;
+    private $request;
 
-    //private $request;
-    //private $session;
 
     public function __construct()
     {
@@ -28,8 +27,6 @@ class AdminController extends Controller
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
-
-
 
 
         if (!$this->session->get('auth')) {
@@ -81,23 +78,30 @@ class AdminController extends Controller
     {
         $request = Request::createFromGlobals();
 
-        if (!empty($request->request->all())) {
-            $datas['author_id'] = FormValidator::purify($request->get('author_id'));
-            $datas['author'] = FormValidator::purify($request->get('author'));
-            $datas['title'] = FormValidator::purify($request->get('title'));
-            $datas['chapo'] = FormValidator::purify($request->get('chapo'));
-            $datas['description'] = FormValidator::purifyContent($request->get('description'));
+        if ($request->get('formtoken') == $this->session->get('token')) {
 
-            $result = $this->postManager->addPost($datas);
+            if (!empty($request->request->all())) {
+                $datas['author_id'] = FormValidator::purify($request->get('author_id'));
+                $datas['author'] = FormValidator::purify($request->get('author'));
+                $datas['title'] = FormValidator::purify($request->get('title'));
+                $datas['chapo'] = FormValidator::purify($request->get('chapo'));
+                $datas['description'] = FormValidator::purifyContent($request->get('description'));
 
-            if ($result === false) {
-                $this->session->set('warning', "Impossible d'ajouter l'article !");
-            } else {
-                $this->session->set('success', "Votre article a été ajouté.");
+                $result = $this->postManager->addPost($datas);
+
+                if ($result === false) {
+                    $this->session->set('warning', "Impossible d'ajouter l'article !");
+                } else {
+                    $this->session->set('success', "Votre article a été ajouté.");
+                }
+                header('Location: /admin');
             }
-            header('Location: /admin');
+        } else {
+            $this->session->set('warning', "Problème de token, veuillez vous reconnecter");
+            header('Location: /logout');
         }
     }
+
 
     /**
      * Delete a Post from ID using post manager
@@ -106,13 +110,19 @@ class AdminController extends Controller
      */
     public function deletePost($postId)
     {
-        $request = $this->postManager->deletePost($postId);
-        if ($request === false) {
-            $this->session->set('warning', "Impossible de supprimer l'article !");
+        if ($request->get('formtoken') == $this->session->get('token')) {
+
+            $request = $this->postManager->deletePost($postId);
+            if ($request === false) {
+                $this->session->set('warning', "Impossible de supprimer l'article !");
+            } else {
+                $this->session->set('success', "Votre article a été supprimé.");
+            }
+            header('Location: /admin');
         } else {
-            $this->session->set('success', "Votre article a été supprimé.");
+            $this->session->set('warning', "Problème de token, veuillez vous reconnecter");
+            header('Location: /logout');
         }
-        header('Location: /admin');
     }
 
     /**
@@ -120,8 +130,10 @@ class AdminController extends Controller
      *
      * @param $commentId
      */
-    public function deletecomment($commentId)
-    {
+    public
+    function deletecomment(
+        $commentId
+    ) {
         $request = $this->commentManager->deleteComment($commentId);
         if ($request === false) {
             $this->session->set('warning', "Impossible de supprimer le commentaire !");
@@ -134,8 +146,10 @@ class AdminController extends Controller
     /**
      * Render Update Post View
      */
-    public function updatePostView($postId)
-    {
+    public
+    function updatePostView(
+        $postId
+    ) {
         $post = $this->postManager->getPost($postId);
         $this->renderer->render('Backend/editPostView', ['listpost' => $post]);
     }
@@ -143,8 +157,10 @@ class AdminController extends Controller
     /**
      * Update a Post from ID using post manager
      */
-    public function updatePost($postId)
-    {
+    public
+    function updatePost(
+        $postId
+    ) {
         $request = Request::createFromGlobals();
 
         if (!empty($request->request->all())) {
@@ -167,8 +183,10 @@ class AdminController extends Controller
     /**
      * Validate a Comment from ID using comment manager
      */
-    public function validateComment($commentId)
-    {
+    public
+    function validateComment(
+        $commentId
+    ) {
         $request = $this->commentManager->validateComment($commentId);
         if ($request === false) {
             $this->session->set('warning', "Impossible de valider le commentaire !");

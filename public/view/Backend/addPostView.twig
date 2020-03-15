@@ -14,6 +14,7 @@
     <div class="form-group">
         <label for="author">Auteur</label><br/>
         <input type="text" id="author_id" name="author_id" value="{{ session._sf2_attributes.auth.userid }}" class="form-control" hidden/>
+        <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken" name="formtoken"/>
         <input type="text" id="author" name="author" value="{{ session._sf2_attributes.auth.username }}" class="form-control" readonly="readonly"/>
     </div>
     <div class="form-group">
