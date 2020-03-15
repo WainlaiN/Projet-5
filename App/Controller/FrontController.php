@@ -7,10 +7,9 @@ use App\Manager\FormManager;
 use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
-use App\Core\TwigRenderer;
 use App\Core\FormValidator;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session;
+
 
 
 /**
@@ -22,7 +21,7 @@ Class FrontController extends Controller
     private $commentManager;
     private $formManager;
     private $loginManager;
-    //private $renderer;
+
 
     //private $request;
     //private $session;
@@ -34,7 +33,7 @@ Class FrontController extends Controller
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
         $this->formManager = new FormManager();
-        //$this->renderer = new TwigRenderer();
+
 
 
     }
@@ -81,7 +80,6 @@ Class FrontController extends Controller
     public function addComment()
     {
         $request = Request::createFromGlobals();
-        dump($this->session->get('token'), $request->get('token'));
 
         if ($request->get('formtoken') == $this->session->get('token')) {
 
@@ -101,6 +99,10 @@ Class FrontController extends Controller
                 }
                 $this->post($postId);
             }
+        } else {
+            $this->session->set('warning', "Veuillez pour reconnecter");
+            $this->login();
+
         }
     }
 

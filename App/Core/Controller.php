@@ -22,8 +22,7 @@ class Controller
         $this->renderer = new TwigRenderer();
 
         if (session_status() == PHP_SESSION_NONE) {
-            $this->session = new Session\Session(new NativeSessionStorage(), new AttributeBag());
-            //$this->session->set('token', bin2hex(random_bytes(16)));
+            $this->session = new Session\Session;
             $this->session->start();
         }
     }
@@ -31,8 +30,8 @@ class Controller
     public function __destruct()
     {
         //$this->session->getFlashBag()->clear();
-        $this->session->remove('warning');
-        $this->session->remove('success');
+        //$this->session->remove('warning');
+        //$this->session->remove('success');
 
     }
 }

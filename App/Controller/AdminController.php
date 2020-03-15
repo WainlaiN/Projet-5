@@ -7,9 +7,8 @@ use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\FormValidator;
-use App\Core\TwigRenderer;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session;
+
 
 /**
  * Class AdminController controller for Backend
@@ -19,7 +18,7 @@ class AdminController extends Controller
     private $postManager;
     private $commentManager;
     private $loginManager;
-    //private $renderer;
+
     //private $request;
     //private $session;
 
@@ -29,7 +28,7 @@ class AdminController extends Controller
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
-        //$this->renderer = new TwigRenderer();
+
 
 
 
