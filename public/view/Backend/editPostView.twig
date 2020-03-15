@@ -9,6 +9,7 @@
         <div class="form-group">
 
             <input type="hidden" id="authorid" name="authorid" value="{{ listpost.authorId }}" class="form-control"/>
+            <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken" name="formtoken"/>
             <label for="author">Auteur</label><br/>
             <input type="text" id="author" name="author" value="{{ listpost.username }}" class="form-control" readonly/>
         </div>

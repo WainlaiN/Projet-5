@@ -130,10 +130,8 @@ class AdminController extends Controller
      *
      * @param $commentId
      */
-    public
-    function deletecomment(
-        $commentId
-    ) {
+    public function deletecomment($commentId)
+    {
         $request = $this->commentManager->deleteComment($commentId);
         if ($request === false) {
             $this->session->set('warning', "Impossible de supprimer le commentaire !");
@@ -146,10 +144,8 @@ class AdminController extends Controller
     /**
      * Render Update Post View
      */
-    public
-    function updatePostView(
-        $postId
-    ) {
+    public function updatePostView($postId)
+    {
         $post = $this->postManager->getPost($postId);
         $this->renderer->render('Backend/editPostView', ['listpost' => $post]);
     }
@@ -157,36 +153,39 @@ class AdminController extends Controller
     /**
      * Update a Post from ID using post manager
      */
-    public
-    function updatePost(
-        $postId
-    ) {
+    public function updatePost($postId)
+    {
         $request = Request::createFromGlobals();
 
-        if (!empty($request->request->all())) {
-            $datas['authorid'] = FormValidator::purify($request->get('authorid'));
-            $datas['title'] = FormValidator::purify($request->get('title'));
-            $datas['chapo'] = FormValidator::purify($request->get('chapo'));
-            $datas['description'] = FormValidator::purifyContent($request->get('description'));
 
-            $result = $this->postManager->updatePost($postId, $datas);
+        if ($request->get('formtoken') == $this->session->get('token')) {
 
-            if ($result === false) {
-                $this->session->set('warning', "Impossible de modifier l'article !");
-            } else {
-                $this->session->set('success', "Votre article a bien été modifié.");
+            if (!empty($request->request->all())) {
+                $datas['authorid'] = FormValidator::purify($request->get('authorid'));
+                $datas['title'] = FormValidator::purify($request->get('title'));
+                $datas['chapo'] = FormValidator::purify($request->get('chapo'));
+                $datas['description'] = FormValidator::purifyContent($request->get('description'));
+
+                $result = $this->postManager->updatePost($postId, $datas);
+
+                if ($result === false) {
+                    $this->session->set('warning', "Impossible de modifier l'article !");
+                } else {
+                    $this->session->set('success', "Votre article a bien été modifié.");
+                }
+                $this->updatePostView($postId);
             }
-            $this->updatePostView($postId);
+        } else {
+            $this->session->set('warning', "Problème de token, veuillez vous reconnecter");
+            header('Location: /logout');
         }
     }
 
     /**
      * Validate a Comment from ID using comment manager
      */
-    public
-    function validateComment(
-        $commentId
-    ) {
+    public function validateComment($commentId)
+    {
         $request = $this->commentManager->validateComment($commentId);
         if ($request === false) {
             $this->session->set('warning', "Impossible de valider le commentaire !");
