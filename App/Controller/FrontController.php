@@ -81,15 +81,14 @@ Class FrontController extends Controller
     public function addComment()
     {
         $request = Request::createFromGlobals();
-        dump($this->session->get('token'));
+        dump($this->session->get('token'), $request->get('token'));
 
-        if ($_GET['token'] == $this->session->get('token')) {
+        if ($request->get('formtoken') == $this->session->get('token')) {
 
             if (!empty($request->request->all())) {
 
                 $postId = FormValidator::purify($request->get('postid'));
                 $authorId = FormValidator::purify($request->get('authorid'));
-                //$author = FormValidator::purify($request->get('authorname'));
                 $description = FormValidator::purifyContent($request->get('description'));
 
                 $request = $this->commentManager->addComment($postId, $authorId, $description);
@@ -103,7 +102,6 @@ Class FrontController extends Controller
                 $this->post($postId);
             }
         }
-        $this->session->set('warning', "Veuillez vous identifier de nouveau");
     }
 
     /**
@@ -132,6 +130,8 @@ Class FrontController extends Controller
 
     /**
      * Connect a User using manager
+     *
+     * @throws \Exception
      */
     public function connect()
     {

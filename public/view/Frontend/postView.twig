@@ -80,6 +80,7 @@
                                     <form action="/comment/add" method="post">
                                         <div class="form-group">
                                             <input type="hidden" value="{{ post.postId }}" id="postid" name="postid"/>
+                                            <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken" name="formtoken"/>
                                             <input type="text" id="authorname" name="authorname"
                                                    value="{{ session._sf2_attributes.auth.username }}"
                                                    class="form-control" readonly/>
