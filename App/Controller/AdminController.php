@@ -125,6 +125,7 @@ class AdminController
      */
     public function deletePost($postId)
     {
+        $request = Request::createFromGlobals();
 
         if ($request->get('formtoken') == $this->session->get('token')) {
 
