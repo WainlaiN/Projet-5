@@ -2,21 +2,6 @@
 {% block title %}Ajouter un article{% endblock %}
 {% block content %}
 
-    <script type="text/javascript">
-        $('a.submit-form').on('click', function (event) {
-            event.preventDefault();
-            // un des trois suivants (celui qui fonctionne ^^)
-            //var id = $(this).attr('data-id');
-            //var id = $(this).attr('data-id').val();
-            var id = $(this).attr('data-id').value;
-            // tu définis la route du formulaire
-            form = $('form#delete_form');
-            //document.form.action = "URL"; // ICI, définir l'url grâce à "var id"
-            // en gros ca devrait donner :
-            document.form.action = "/admin/post/delete/" + id;
-            form.submit();
-        });
-    </script>
 
     <div class="row justify-content-center">
         <h1>Administration</h1>
@@ -54,10 +39,12 @@
                         <a href="/admin/comments/{{ listpost.postId }}" style="color:white" class="btn btn-primary">Commentaires</a>
                     </td>
                     <td>
-                        <a href="" data-id="{{ listpost.postId }}" style="color:white" class="btn btn-danger">Supprimer</a>
+                        <a href="" data-id="{{ listpost.postId }}" style="color:white"
+                           class="btn btn-danger">Supprimer</a>
                         <form id="delete_form" method="POST" action="">
-                            <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken" name="formtoken"/>
-                            <input type="hidden" name="submit_delete_form">
+                            <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken"
+                                   name="formtoken"/>
+                            <input type="hidden" name="submit_form">
                         </form>
 
                     </td>
@@ -72,6 +59,21 @@
         </div>
     </div>
 
-
+    <script type="text/javascript">
+        $('a.submit-form').on('click', function (event) {
+            event.preventDefault();
+            // un des trois suivants (celui qui fonctionne ^^)
+            var id = $(this).attr("data-id");
+            alert(id);
+            //var id = $(this).attr('data-id').val();
+            //var id = $(this).attr('data-id').value;
+            // tu définis la route du formulaire
+            form = $('form#delete_form');
+            //document.form.action = "URL"; // ICI, définir l'url grâce à "var id"
+            // en gros ca devrait donner :
+            document.form.action = "/admin/post/delete/" + id;
+            form.submit();
+        });
+    </script>
 
 {% endblock %}
