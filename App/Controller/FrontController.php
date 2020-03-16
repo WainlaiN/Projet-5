@@ -2,44 +2,50 @@
 
 namespace App\Controller;
 
-use App\Core\Controller;
+use App\Core\TwigRenderer;
 use App\Manager\FormManager;
 use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\FormValidator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
 
 
 /**
  * Class FrontController controller for Frontend
  */
-Class FrontController extends Controller
+Class FrontController
 {
     private $postManager;
     private $commentManager;
     private $formManager;
     private $loginManager;
     private $request;
+    private $session;
+    private $renderer;
 
 
     public function __construct()
     {
-        parent::__construct();
+        $this->renderer = new TwigRenderer();
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
         $this->formManager = new FormManager();
 
-
+        if (session_status() == PHP_SESSION_NONE) {
+            $this->session = new Session\Session;
+            $this->session->start();
+        }
     }
 
-    /**public function __destruct()
-     * {
-     * //$this->session->getFlashBag()->clear();
-     * $this->session->remove('warning');
-     * $this->session->remove('success');
-     * }**/
+    public function __destruct()
+    {
+        //$this->session->getFlashBag()->clear();
+        $this->session->remove('warning');
+        $this->session->remove('success');
+    }
 
     /**
      * Render Home

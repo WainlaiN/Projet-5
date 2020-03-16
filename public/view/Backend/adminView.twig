@@ -27,19 +27,23 @@
                     <td class="idcommentaire">{{ listpost.postId }}</td>
                     <td>{{ listpost.title }}</td>
                     {% if listpost.dateUpdate %}
-                        <td  class="datecommentaire">{{ listpost.dateUpdate }}</td>
+                        <td class="datecommentaire">{{ listpost.dateUpdate }}</td>
                     {% else %}
-                        <td  class="datecommentaire">{{ listpost.dateCreation }}</td>
+                        <td class="datecommentaire">{{ listpost.dateCreation }}</td>
                     {% endif %}
                     <td>
-                        <a href="/admin/post/{{ listpost.postId }}" style="color:white" class="btn btn-primary">Editer</a>
+                        <a href="/admin/post/{{ listpost.postId }}" style="color:white"
+                           class="btn btn-primary">Editer</a>
                     </td>
                     <td>
                         <a href="/admin/comments/{{ listpost.postId }}" style="color:white" class="btn btn-primary">Commentaires</a>
                     </td>
                     <td>
-                        <a href="/admin/post/delete/{{ listpost.postId }}" style="color:white" class="btn btn-danger"
-                           onclick="return confirm('Voulez vous vraiment supprimer ?)">Supprimer</a>
+                        <a href="" data-id="{{ listpost.postId }}" style="color:white" class="btn btn-danger">Supprimer</a>
+                        <form id="delete_form" method="POST" action="">
+                            <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken" name="formtoken"/>
+                            <input type="hidden" name="submit_delete_form">
+                        </form>
 
                     </td>
                 </tr>
@@ -53,5 +57,20 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        $('a.submit-form').on('click', function (event) {
+            event.preventDefault();
+            // un des trois suivants (celui qui fonctionne ^^)
+            var id = $(this).attr('data-id');
+            //var id = $(this).attr('data-id').val();
+            //var id = $(this).attr('data-id').value;
+            // tu définis la route du formulaire
+            form = $('form#delete_form');
+            //document.form.action = "URL"; // ICI, définir l'url grâce à "var id"
+            // en gros ca devrait donner :
+            document.form.action = "/admin/post/delete/" + id;
+            form.submit();
+        });
+    </script>
 
 {% endblock %}

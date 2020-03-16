@@ -2,31 +2,39 @@
 
 namespace App\Controller;
 
-use App\Core\Controller;
+use App\Core\TwigRenderer;
 use App\Manager\LoginManager;
 use App\Manager\PostManager;
 use App\Manager\CommentManager;
 use App\Core\FormValidator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
 
 
 /**
  * Class AdminController controller for Backend
  */
-class AdminController extends Controller
+class AdminController
 {
     private $postManager;
     private $commentManager;
     private $loginManager;
     private $request;
-
+    private $session;
+    private $renderer;
 
     public function __construct()
     {
-        parent::__construct();
+
         $this->postManager = new PostManager();
         $this->commentManager = New CommentManager();
         $this->loginManager = new LoginManager();
+        $this->renderer = new TwigRenderer();
+
+        if (session_status() == PHP_SESSION_NONE) {
+            $this->session = new Session\Session;
+            $this->session->start();
+        }
 
 
         if (!$this->session->get('auth')) {
@@ -40,6 +48,13 @@ class AdminController extends Controller
                 header('Location: /Admin');
             }
         }
+    }
+
+    public function __destruct()
+    {
+        //$this->session->getFlashBag()->clear();
+        //$this->session->remove('warning');
+        //$this->session->remove('success');
     }
 
 
@@ -110,6 +125,7 @@ class AdminController extends Controller
      */
     public function deletePost($postId)
     {
+
         if ($request->get('formtoken') == $this->session->get('token')) {
 
             $request = $this->postManager->deletePost($postId);
