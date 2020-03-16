@@ -2,6 +2,33 @@
 {% block title %}Ajouter un article{% endblock %}
 {% block content %}
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#alert_button").click(function () {
+                alert('This is a custom alert box', 'Alert Dialog');
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a.submit-form').click(function () {
+                //event.preventDefault();
+                // un des trois suivants (celui qui fonctionne ^^)
+                var id = $(this).attr("data-id");
+                alert('This is a custom alert box', 'Alert Dialog');
+                //var id = $(this).attr('data-id').val();
+                //var id = $(this).attr('data-id').value;
+                // tu définis la route du formulaire
+                //form = $('form#delete_form');
+                //document.form.action = "URL"; // ICI, définir l'url grâce à "var id"
+                // en gros ca devrait donner :
+                //document.form.action = "/admin/post/delete/" + id;
+                //form.submit();
+            });
+        });
+    </script>
+
 
     <div class="row justify-content-center">
         <h1>Administration</h1>
@@ -39,6 +66,8 @@
                         <a href="/admin/comments/{{ listpost.postId }}" style="color:white" class="btn btn-primary">Commentaires</a>
                     </td>
                     <td>
+                        <p><input id="alert_button" type="button" value="{{ listpost.postId }}"/></p>
+
                         <a href="" data-id="{{ listpost.postId }}" style="color:white"
                            class="btn btn-danger">Supprimer</a>
                         <form id="delete_form" method="POST" action="">
@@ -59,6 +88,8 @@
         </div>
     </div>
 
+
+
     <script type="text/javascript">
         $('a.submit-form').on('click', function (event) {
             event.preventDefault();
@@ -75,5 +106,6 @@
             form.submit();
         });
     </script>
+
 
 {% endblock %}
