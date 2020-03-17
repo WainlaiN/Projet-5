@@ -28,8 +28,8 @@ $router = new router();
     $router->map('GET', '/admin/add', 'AdminController#addPostView');
     $router->map('POST', '/admin/addpost', 'AdminController#addPost');
     $router->map('GET', '/admin/comments/[i:id]', 'AdminController#listComments');
-    $router->map('GET', '/admin/comment/delete/[i:id]', 'AdminController#deleteComment');
-    $router->map('GET', '/admin/comment/validate/[i:id]', 'AdminController#validateComment');
+    $router->map('POST', '/admin/comment/delete/[i:id]', 'AdminController#deleteComment');
+    $router->map('POST', '/admin/comment/validate/[i:id]', 'AdminController#validateComment');
 
     //login Management
     $router->map('GET', '/login', 'FrontController#login');

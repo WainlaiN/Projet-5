@@ -2,6 +2,51 @@
 {% block title %}Commentaires{% endblock %}
 {% block content %}
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a.submit-form").click(function (eventObject) {
+                eventObject.preventDefault();
+                var answer = confirm("Are you sure you want to delete?");
+                if (answer) {
+                    var id = $(this).attr("data-id");
+                    form = $("#delete_form");
+                    form.attr("action", "/admin/comment/delete/" + id);
+                    form.submit();
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a.validate-form").click(function (eventObject) {
+                eventObject.preventDefault();
+                var answer = confirm("Are you sure you want to confirm?");
+                if (answer) {
+                    var id = $(this).attr("data-id");
+                    form = $("#validate_form");
+                    form.attr("action", "/admin/comment/validate/" + id);
+                    form.submit();
+                }
+            });
+        });
+    </script>
+
+    <form id="delete_form" method="POST" action="">
+        <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken"
+               name="formtoken"/>
+
+        <input type="hidden" name="submit_delete_form">
+    </form>
+
+    <form id="validate_form" method="POST" action="">
+        <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken"
+               name="formtoken"/>
+
+        <input type="hidden" name="submit_validate_form">
+    </form>
+
+
     <p><a href="/admin">Retour à la liste des articles</a></p>
     {% set size = listcomments | length %}
 
@@ -22,7 +67,7 @@
             <th>Supprimer</th>
             </thead>
             <tbody>
-            {% if size > 1 %}
+            {% if listcomments %}
                 {% for comment in listcomments %}
                     <tr>
                         <td>{{ comment.username }}</td>
@@ -30,33 +75,19 @@
                         <td>{{ comment.comment }}</td>
                         {% if comment.isValid is null %}
                             <td>
-                                <a href="/admin/comment/validate/{{ comment.commentId }}" style="color:white" class="btn btn-success">Validez</a>
+                                <a href="" data-id="{{ comment.commentId }}" style="color:white"
+                                   class="btn btn-success validate-form">Validez</a>
                             </td>
                         {% else %}
                             <td>
                                 <button type="button" class="btn btn-dark">OK</button>
                             </td>
                         {% endif %}
-                        <td><a href="/admin/comment/delete/{{ comment.commentId }}" style="color:white" class="btn btn-danger">Supprimer</a>
+                        <td><a href="" data-id="{{ comment.commentId }}" style="color:white"
+                               class="btn btn-danger submit-form">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}
-            {% elseif size == 1 %}
-                <tr>
-                    <td>{{ listcomments.username }}</td>
-                    <td>{{ listcomments.commentDate }}</td>
-                    <td>{{ listcomments.comment }}</td>
-                    {% if listcomments.isValid is null %}
-                        <td>
-                            <a href="/admin/comment/validate/{{ listcomments.commentId }}" style="color:white" class="btn btn-success">Validez</a>
-                        </td>
-                    {% else %}
-                        <td>
-                            <button type="button" class="btn btn-dark">OK</button>
-                        </td>
-                    {% endif %}
-                    <td><a href="/admin/comment/delete/{{ comment.commentId }}" style="color:white" class="btn btn-danger">Supprimer</a></td>
-                </tr>
             {% else %}
                 <div class="alert alert-dark" role="alert">
                     Pas encore de commentaires pour cet article!

@@ -149,13 +149,20 @@ class AdminController
      */
     public function deletecomment($commentId)
     {
-        $request = $this->commentManager->deleteComment($commentId);
-        if ($request === false) {
-            $this->session->set('warning', "Impossible de supprimer le commentaire !");
+        $request = Request::createFromGlobals();
+
+        if ($request->get('formtoken') === $this->session->get('token')) {
+            $deleteRequest = $this->commentManager->deleteComment($commentId);
+            if ($deleteRequest === false) {
+                $this->session->set('warning', "Impossible de supprimer le commentaire !");
+            } else {
+                $this->session->set('success', "Votre commentaire a été supprimé.");
+            }
+            header('Location: /admin');
         } else {
-            $this->session->set('success', "Votre commentaire a été supprimé.");
+            $this->session->set('warning', "Problème de token, veuillez vous reconnecter");
+            header('Location: /logout');
         }
-        header('Location: /admin');
     }
 
     /**

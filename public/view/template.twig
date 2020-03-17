@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-{{ dump(_post) }}
-
 
 <head>
 
@@ -23,13 +21,13 @@
 
 
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="public/css/font-awesome.css">
+    <link rel="stylesheet" href="../../public/css/font-awesome.css">
 
     <!-- Bootstrap Core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="public/css/freelancer.css" rel="stylesheet" type="text/css">
+    <link href="../../public/css/freelancer.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
 
@@ -68,7 +66,7 @@
                     <a class="nav-link" href="/posts">Blog</a>
                 </li>
 
-                {% if session._sf2_attributes.auth.getstatus == 1 %}
+                {% if session._sf2_attributes.auth.userstatus == 1 %}
                     <li class="nav-item">
                         <a class="nav-link" href="/CV">CV</a>
                     </li>
