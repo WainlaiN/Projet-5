@@ -127,10 +127,10 @@ class AdminController
     {
         $request = Request::createFromGlobals();
 
-        if ($request->get('formtoken') == $this->session->get('token')) {
+        if ($request->get('formtoken') === $this->session->get('token')) {
 
-            $request = $this->postManager->deletePost($postId);
-            if ($request === false) {
+            $deleteRequest = $this->postManager->deletePost($postId);
+            if ($deleteRequest === false) {
                 $this->session->set('warning', "Impossible de supprimer l'article !");
             } else {
                 $this->session->set('success', "Votre article a été supprimé.");

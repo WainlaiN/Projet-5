@@ -5,21 +5,26 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("a#submit-form").click(function (event) {
-                event.preventDefault();
-
-                var id = $(this).attr("data-id");
-                alert(id);
-                form = $("#delete_form");
-                //document.form.action = "URL"; // ICI, définir l'url grâce à "var id"
-                form.action = "/admin/post/delete/" + id;
-                alert(form.action);
-                form.submit();
-                //alert(form);
-
+            $("a.submit-form").click(function (eventObject) {
+                eventObject.preventDefault();
+                var answer = confirm("Are you sure you want to delete?");
+                if (answer) {
+                    var id = $(this).attr("data-id");
+                    form = $("#delete_form");
+                    form.attr("action","/admin/post/delete/" + id);
+                    form.submit();
+                }
             });
         });
     </script>
+
+    <form id="delete_form" method="POST" action="">
+        <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken"
+               name="formtoken"/>
+
+        <input type="hidden" name="submit_delete_form">
+    </form>
+
 
 
     <div class="row justify-content-center">
@@ -58,12 +63,10 @@
                         <a href="/admin/comments/{{ listpost.postId }}" style="color:white" class="btn btn-primary">Commentaires</a>
                     </td>
                     <td>
-                        <a href="" data-id="{{ listpost.postId }}" style="color:white" class="btn btn-danger submit-form">Supprimer</a>
-                        <form id="delete_form" method="POST" action="">
-                            <input type="hidden" value="{{ session._sf2_attributes.token }}" id="formtoken" name="formtoken"/>
+                        <a href="" data-id="{{ listpost.postId }}" style="color:white"
+                           class="btn btn-danger submit-form">Supprimer</a>
 
-                            <input type="hidden" name="submit_delete_form">
-                        </form>
+
                     </td>
                 </tr>
             {% endfor %}

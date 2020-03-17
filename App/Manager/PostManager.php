@@ -67,8 +67,8 @@ class PostManager extends Database
 
         ];
 
-        $result = $this->sql($newPost, $parameters);
-        return $result;
+        $this->sql($newPost, $parameters);
+        //return $result;
 
     }
 
@@ -82,8 +82,8 @@ class PostManager extends Database
     {
         $post = 'DELETE FROM posts WHERE post_id= :id';
         $parameters = [':id' => $postId];
-        $result = $this->sql($post, $parameters);
-        return $result;
+        $this->sql($post, $parameters);
+
     }
 
     /**
@@ -103,8 +103,8 @@ class PostManager extends Database
             ':description' => $datas['description'],
 
         ];
-        $result = $this->sql($editedPost, $parameters);
 
-        return $result;
+        $this->sql($editedPost, $parameters);
+
     }
 }
