@@ -249,7 +249,7 @@ Class FrontController
             $this->session->set('warning', "Tous les champs ne sont pas remplis ou corrects.");
         } else {
 
-            $this->formManager->fromTraitment($name, $forename, $email, $message);
+            $this->formManager->formTraitment($name, $forename, $email, $message);
             $this->session->set('success', "Votre formulaire a bien été envoyé.");
         }
         $this->home();

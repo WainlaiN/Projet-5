@@ -16,7 +16,7 @@ class FormManager
      * @param $email
      * @param $message
      */
-    public function fromTraitment($name, $forename, $email, $message)
+    public function formTraitment($name, $forename, $email, $message)
     {
 
         $data = require __DIR__ . './../Config/mail.php';
