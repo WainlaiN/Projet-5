@@ -53,8 +53,8 @@ class AdminController
     public function __destruct()
     {
         //$this->session->getFlashBag()->clear();
-        //$this->session->remove('warning');
-        //$this->session->remove('success');
+        $this->session->remove('warning');
+        $this->session->remove('success');
     }
 
 
