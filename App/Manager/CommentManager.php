@@ -27,6 +27,7 @@ class CommentManager extends Database
             while ($datas = $result->fetch(\PDO::FETCH_ASSOC)) {
                 array_push($custom_array, New Comment($datas));
             }
+
             return $custom_array;
 
     }
@@ -41,7 +42,8 @@ class CommentManager extends Database
     {
         $req = 'SELECT comment_id, author_id, comment, is_valid, post_id, users.username, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date FROM comments INNER JOIN users on comments.author_id=users.user_id WHERE comments.id = :id';
         $parameters = [':id' => $commentId];
-        return $this->sql($req, $parameters);
+
+        $this->sql($req, $parameters);
     }
 
     /**
@@ -58,7 +60,7 @@ class CommentManager extends Database
         $newComments = 'INSERT INTO comments(post_id, author_id, comment, comment_date) VALUES (:postId,:authorId,:comment, DATE(NOW()))';
         $parameters = [':postId' => $postId, ':authorId' => $authorId, ':comment' => $comment];
 
-        return $this->sql($newComments, $parameters);
+        $this->sql($newComments, $parameters);
 
     }
 
@@ -72,8 +74,9 @@ class CommentManager extends Database
     {
         $comment = 'DELETE FROM comments WHERE comment_id= :id';
         $parameters = [':id' => $commentId];
-        $result = $this->sql($comment, $parameters);
-        return $result;
+
+        $this->sql($comment, $parameters);
+
     }
 
     /**
@@ -124,8 +127,9 @@ class CommentManager extends Database
     {
         $validate = 'UPDATE comments SET is_valid = :valid WHERE comment_id = :id';
         $parameters = [':id' => $commentId, ':valid' => 1];
-        $result = $this->sql($validate, $parameters);
-        return $result;
+
+        $this->sql($validate, $parameters);
+
     }
 
 }

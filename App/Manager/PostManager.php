@@ -68,7 +68,6 @@ class PostManager extends Database
         ];
 
         $this->sql($newPost, $parameters);
-        //return $result;
 
     }
 
@@ -82,6 +81,7 @@ class PostManager extends Database
     {
         $post = 'DELETE FROM posts WHERE post_id= :id';
         $parameters = [':id' => $postId];
+
         $this->sql($post, $parameters);
 
     }
