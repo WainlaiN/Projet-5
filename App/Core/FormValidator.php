@@ -34,7 +34,7 @@ class FormValidator
     public static function purifyContent($data)
     {
         if (isset($data) && ($data != '')) {
-            //$data = nl2br($data);
+
             return $data;
         }
     }
