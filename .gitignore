@@ -4,3 +4,4 @@ App/Config/mail.php
 vendor
 .idea
 blog.sql
+composer.phar
