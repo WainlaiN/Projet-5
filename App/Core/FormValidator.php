@@ -15,7 +15,7 @@ class FormValidator
      */
     public static function purify($data)
     {
-        if (isset($data) && ($data != '')) {
+        if ((isset($data) && ($data != '')) && strlen($data) < 255 ) {
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
