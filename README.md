@@ -17,7 +17,7 @@ Voici les principales fonctionnalités disponibles suivant les différents statu
 
 Le visiteur:
 <ul>
-<li>Visiter la page d'accueil et ouvrir les différents liens disponibles (compte GitHub, compte Linkedin, CV).</li>
+<li>Visiter la page d'accueil et ouvrir les différents liens disponibles (compte GitHub, compte Linkedin).</li>
 <li>Envoyer un message au créateur du blog.</li>
 <li>Parcourir la liste des blogs et parcourir la liste de ses commentaires.</li>
 </ul>
@@ -26,8 +26,8 @@ L'utilisateur:
 <li>Prérequis: s'être enregistré via le formulaire d'inscription.</li>
 <li>Accès aux mêmes fonctionnaités que le visiteur.</li>
 <li>Ajout de commentaires.</li>
-<li>Modification/Suppression de ses commentaires.</li>
-<li>Modification du mot de passe en cas d'oubli.</li>
+<li>Accès au CV.</li>
+
 </ul>
 Administrateur:
 <ul>
@@ -35,8 +35,7 @@ Administrateur:
 <li>Accès aux mêmes fonctionnalités que le visiteur.</li>
 <li>Ajout/suppression/modification de blog post.</li>
 <li>Validation/suppression de commentaires.</li>
-<li>Changement status utilisateur.</li>
-<li>Suppression utilisateur.</li>
+
 </ul>
 
 ## Informations
