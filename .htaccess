@@ -1,7 +1,7 @@
 RewriteEngine On
-RewriteBase /
+RewriteBase /Projet5/
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^/]+)/? /Projet5/public/index.php [L,QSA]
+RewriteRule ^([^/]+)/? /Projet5/index.php [L,QSA]
 
 
